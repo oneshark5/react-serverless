@@ -1,8 +1,11 @@
 import React from 'react'
 import 'normalize.css'
+import './style.scss'
+import Home from './container/Home'
 
-export default function App() {
+const App = () => {
   return (
-    <div>App</div>
+    <Home/>
   )
 }
+export default App
