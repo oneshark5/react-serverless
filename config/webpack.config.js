@@ -572,7 +572,7 @@ module.exports = function (webpackEnv) {
           {
             inject: true,
             chunks:['index'],
-            template: paths.appHtml,
+            template: paths.templateHtml,
             filename:'index.html'
           },
           isEnvProduction
@@ -600,7 +600,7 @@ module.exports = function (webpackEnv) {
           {
             inject: true,
             chunks:['admin'],
-            template: paths.adminHtml,
+            template: paths.templateHtml,
             filename:'admin.html'
           },
           isEnvProduction
