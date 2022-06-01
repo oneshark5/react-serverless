@@ -4,7 +4,7 @@ import listImage from './vue3.png'
 
 const Banner = () => {
   return (
-    <div className={styles.courses}>
+    <div className='wrapper'>
       <ul className={styles.list}>
         <li className={styles.item}>
           <img src="https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/vue3.png" alt="Vue3 系统入门与项目实战123" />
