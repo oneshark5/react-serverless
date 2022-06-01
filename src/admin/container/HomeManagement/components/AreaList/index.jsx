@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Button } from 'antd';
 import styles from './style.module.scss'
+import { parseJsonByString } from '../../../../../common/utils';
+
+let listData = parseJsonByString(window.localStorage.homeData, )
 
 const AreaList = () => {
-  const [list, setLIst] = useState([])
+  const [list, setLIst] = useState(listData)
   const handleAddBtnClick = () => {
     const newList = [...list]
     newList.push({})
@@ -14,6 +17,8 @@ const AreaList = () => {
     newList.splice(index, 1)
     setLIst(newList)
   }
+
+
   return (
     <div>
       <ul className={styles.list}>
@@ -31,7 +36,6 @@ const AreaList = () => {
         }
       </ul>
       <Button type="primary" ghost onClick={handleAddBtnClick}>新增页面区块</Button>
-      <Button type="primary" className={styles.save}>保存区块配置</Button>
     </div>
   )
 }
