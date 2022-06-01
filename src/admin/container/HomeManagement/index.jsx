@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Layout, Menu, Button } from 'antd';
 import styles from './style.module.scss'
 import AreaList from './components/AreaList';
 import PageSetting from './components/PageSetting';
+
 
 const { Header, Sider, Content } = Layout;
 // 封装hooks函数
@@ -15,15 +16,20 @@ const useCollapsed = () => {
 }
 
 const HomeManagement = () => {
+
   const { collapsed, toggleCollapsed } = useCollapsed()
   const handleHomePageRedirect = () => {
     window.location.href = "/"
   }
+  const pageSettingRef = useRef()
+  const areaListRef = useRef()
 
   const handleSaveBtnClick = () => {
     // 把生成的内容放到LocalStorage中存储
-    // const listData = JSON.stringify(list)// 转换成字符串
-    // window.localStorage.homeData = listData
+    const listData = JSON.stringify(areaListRef.current.list)// 转换成字符串
+    window.localStorage.homeData = listData
+    window.localStorage.title = pageSettingRef.current.title;
+    window.localStorage.description = pageSettingRef.current.description;
   }
 
   return (
@@ -53,8 +59,8 @@ const HomeManagement = () => {
           }
         </Header>
         <Content className={styles.content}>
-          <PageSetting />
-          <AreaList />
+          <PageSetting ref={pageSettingRef} />
+          <AreaList ref={areaListRef} />
           <div className={styles.save}>
           <Button type="primary" onClick={handleSaveBtnClick}>
             保存区块配置

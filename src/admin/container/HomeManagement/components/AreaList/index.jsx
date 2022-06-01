@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { Button } from 'antd';
 import styles from './style.module.scss'
 import { parseJsonByString } from '../../../../../common/utils';
 
 let listData = parseJsonByString(window.localStorage.homeData, )
 
-const AreaList = () => {
+const AreaList = (props, ref) => {
   const [list, setLIst] = useState(listData)
   const handleAddBtnClick = () => {
     const newList = [...list]
@@ -18,6 +18,11 @@ const AreaList = () => {
     setLIst(newList)
   }
 
+  useImperativeHandle(ref, () => {
+    return {
+      list
+    }
+  })
 
   return (
     <div>
@@ -39,4 +44,4 @@ const AreaList = () => {
     </div>
   )
 }
-export default AreaList
+export default forwardRef(AreaList)
