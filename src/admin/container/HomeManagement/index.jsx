@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import styles from './style.module.scss'
+import AreaList from './components/AreaList';
 
 const { Header, Sider, Content } = Layout;
 // 封装hooks函数
@@ -45,7 +46,7 @@ const HomeManagement = () => {
           }
         </Header>
         <Content className={styles.content}>
-          Content
+          <AreaList/>
         </Content>
       </Layout>
     </Layout>
