@@ -39,9 +39,19 @@
   attributes:{}
   children:[
     {
-      name:'CourseList',
+      name:'Banner',
       attributes:{},
       children:[]
-    }
+    },
+    {
+      name:'List',
+      attributes:{},
+      children:[]
+    },
+    {
+      name:'Footer',
+      attributes:{},
+      children:[]
+    },
   ]
 }

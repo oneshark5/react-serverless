@@ -1,27 +1,32 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { Button } from 'antd';
 import styles from './style.module.scss'
-import { parseJsonByString } from '../../../../../common/utils';
-
-let schema = parseJsonByString(window.localStorage.schema, [])
-const listData = schema?.children.splice(3) || [];
+import AreaItem from '../AreaItem';
 
 const AreaList = (props, ref) => {
-  const [list, setLIst] = useState(listData)
-  const handleAddBtnClick = () => {
-    const newList = [...list]
-    newList.push({})
-    setLIst(newList)
+  const [children, setChildren] = useState(props.children)
+
+  const addItemToChildren = () => {
+    const newChildren = [...children]
+    newChildren.push({})
+    setChildren(newChildren)
   }
-  const handleDelBtnClick = (index) => {
-    const newList = [...list]
-    newList.splice(index, 1)
-    setLIst(newList)
+  const removeItemFromChildren = (index) => {
+    const newChildren = [...children]
+    newChildren.splice(index, 1)
+    setChildren(newChildren)
+  }
+
+  // 点击ok更改schema---子组件调用时，允许构建一个新的children，把你变更的children改成传递过来的children
+  const changeChildrenItem = (index, child) => {
+    const newChildren = [...children];
+    newChildren.splice(index, 1, child);
+    setChildren(newChildren)
   }
 
   useImperativeHandle(ref, () => {
     return {
-      list
+      children
     }
   })
 
@@ -29,19 +34,17 @@ const AreaList = (props, ref) => {
     <div>
       <ul className={styles.list}>
         {
-          list.map((item, index) => (
-            <li key={index} className={styles.item}>
-              <span className={styles.content}>当前区块内容为空</span>
-              <span className={styles.delete}>
-              <Button type="primary" onClick={() => handleDelBtnClick(index)} danger size='small'>
-                删除
-              </Button>
-              </span>
-            </li>
+          children.map((item, index) => (
+            <AreaItem 
+              key={index} index={index} 
+              item={item}
+              removeItemFromChildren={removeItemFromChildren}
+              changeChildrenItem={changeChildrenItem}
+            />
           ))
         }
       </ul>
-      <Button type="primary" ghost onClick={handleAddBtnClick}>新增页面区块</Button>
+      <Button type="primary" ghost onClick={addItemToChildren}>新增页面区块</Button>
     </div>
   )
 }
