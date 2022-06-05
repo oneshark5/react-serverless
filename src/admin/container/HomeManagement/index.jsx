@@ -25,11 +25,37 @@ const HomeManagement = () => {
   const areaListRef = useRef()
 
   const handleSaveBtnClick = () => {
+    // 配置Schema结构
+    const schema = {
+      name: 'Page',
+      attributes: {},
+      children: [{
+        name: 'Banner',
+        attributes: {
+          title: pageSettingRef.current.title,
+          description: pageSettingRef.current.description
+        }
+      },{
+        name: 'CourseList'
+      },{
+        name: 'Footer'
+      }]
+    };
+    // 动态生成schema
+    areaListRef.current.list.forEach(item => {
+      schema.children.push({
+        name:'Area'
+      })
+    })
+    // 把生成的schema数据存储到本地localStorage中---local只能存放字符串
+    const schemaStr = JSON.stringify(schema)
+    window.localStorage.schema = schemaStr
+    
     // 把生成的内容放到LocalStorage中存储
-    const listData = JSON.stringify(areaListRef.current.list)// 转换成字符串
-    window.localStorage.homeData = listData
-    window.localStorage.title = pageSettingRef.current.title;
-    window.localStorage.description = pageSettingRef.current.description;
+    // const listData = JSON.stringify(areaListRef.current.list)// 转换成字符串
+    // window.localStorage.homeData = listData
+    // window.localStorage.title = pageSettingRef.current.title;
+    // window.localStorage.description = pageSettingRef.current.description;
   }
 
   return (
@@ -62,9 +88,9 @@ const HomeManagement = () => {
           <PageSetting ref={pageSettingRef} />
           <AreaList ref={areaListRef} />
           <div className={styles.save}>
-          <Button type="primary" onClick={handleSaveBtnClick}>
-            保存区块配置
-          </Button>
+            <Button type="primary" onClick={handleSaveBtnClick}>
+              保存区块配置
+            </Button>
           </div>
         </Content>
       </Layout>

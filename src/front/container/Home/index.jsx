@@ -4,7 +4,8 @@ import Courses from './components/Courses'
 import Footer from './components/Footer'
 import { parseJsonByString } from '../../../common/utils'
 
-let listData = parseJsonByString(window.localStorage.homeData, [])
+const schema = parseJsonByString(window.localStorage?.schema, {})
+const listData = schema?.children.splice(3) || [];
 
 export const useDocumentTitle = (title, keepAlive = true) => {
 	// 获取当前最新的 document.title 值
@@ -31,8 +32,8 @@ const Home = () => {
       <Courses/>
       <Footer/>
       {
-        listData.map(item => {
-          return <div className='wrapper'>area</div>
+        listData.map((item, index) => {
+          return <div key={index} className='wrapper'>area</div>
         })
       }
     </div>

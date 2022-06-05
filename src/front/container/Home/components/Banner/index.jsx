@@ -1,9 +1,13 @@
 import React from 'react'
+import { parseJsonByString } from '../../../../../common/utils'
 import styles from './style.module.scss'
 
+const schema = parseJsonByString(window.localStorage?.schema, {});
+const bannerSchema = schema?.children?.[0] || {};
+
 const Banner = () => {
-  const title = window.localStorage.title || '鲨鱼小站'
-  const description = window.localStorage.description || 'this is the description area'
+  const title = bannerSchema?.attributes?.title || '鲨鱼小站'
+  const description = bannerSchema?.attributes?.description || 'this is the description area'
   return (
     <div className='wrapper'>
       <div className={styles.banner}>

@@ -1,12 +1,16 @@
 import { Input } from 'antd'
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
+import { parseJsonByString } from '../../../../../common/utils';
 import styles from './style.module.scss'
 
 const { TextArea } = Input;
 
+// 把json数据转化成字符串
+const schema = parseJsonByString(window.localStorage?.schema, {})
+
 function PageSetting(props, ref) {
-  const [title, setTitle] = useState(window.localStorage.title || '')
-  const [description, setDescription] = useState(window.localStorage.description || '')
+  const [title, setTitle] = useState(schema?.children?.[0]?.attributes?.title || '')
+  const [description, setDescription] = useState(schema?.children?.[0]?.attributes?.title?.description || '')
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value)

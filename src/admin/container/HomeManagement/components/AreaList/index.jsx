@@ -3,7 +3,8 @@ import { Button } from 'antd';
 import styles from './style.module.scss'
 import { parseJsonByString } from '../../../../../common/utils';
 
-let listData = parseJsonByString(window.localStorage.homeData, )
+let schema = parseJsonByString(window.localStorage.schema, [])
+const listData = schema?.children.splice(3) || [];
 
 const AreaList = (props, ref) => {
   const [list, setLIst] = useState(listData)
