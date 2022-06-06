@@ -2,6 +2,7 @@ import React, { useState, forwardRef, useImperativeHandle, createRef, useMemo, u
 import { Button } from 'antd';
 import styles from './style.module.scss'
 import AreaItem from '../AreaItem';
+import { ReactSortable } from "react-sortablejs";
 
 let refs = []
 
@@ -24,22 +25,19 @@ const AreaList = (props, ref) => {
     newChildren.push({})
     setChildren(newChildren)
   }
+  const changeAreaItem = (index, item) => {
+    const newChildren = [...children]
+    newChildren.splice(index, 1, item)
+    setChildren(newChildren)
+  }
+
   const removeItemFromChildren = (index) => {
     const newChildren = [...children]
     newChildren.splice(index, 1)
     setChildren(newChildren)
   }
-
-  // // 点击ok更改schema---子组件调用时，允许构建一个新的children，把你变更的children改成传递过来的children
-  // const changeChildrenItem = (index, child) => {
-  //   const newChildren = [...children];
-  //   newChildren.splice(index, 1, child);
-  //   setChildren(newChildren)
-  // }
-
   // 最外层的 schema 中的 children 通过 子组件的ref，调用子组件的 方法获取
   // children 的获取，是通过ref，调用子组件的方法获取。
-
 
   // 返回children给父组件，children由子组件拼接---一层层传递
   useImperativeHandle(ref, () => {
@@ -58,16 +56,19 @@ const AreaList = (props, ref) => {
   return (
     <div>
       <ul className={styles.list}>
+      <ReactSortable list={children} setList={setChildren}>
         {
           children.map((item, index) => (
             <AreaItem 
               key={index} index={index} 
               item={item}
               removeItemFromChildren={removeItemFromChildren}
+              changeAreaItem={changeAreaItem}
               ref={refs[index]}
             />
           ))
         }
+      </ReactSortable>
       </ul>
       <Button type="primary" ghost onClick={addItemToChildren}>新增页面区块</Button>
     </div>

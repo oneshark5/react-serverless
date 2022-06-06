@@ -7,7 +7,7 @@ const { Option } = Select// 选择组件，下拉列表选择器
 
 
 const AreaItem = (props, ref) => {
-  const { index, item, removeItemFromChildren } = props
+  const { index, item, changeAreaItem, removeItemFromChildren } = props
   const [isModalVisible, setIsModalVisible] = useState(false);// 控制弹框是否可见
   // 定义状态，接收父组件传来的schema
   const [schema, setSchema] = useState(item)
@@ -35,6 +35,7 @@ const AreaItem = (props, ref) => {
   const handleModalOk = () => {
     setIsModalVisible(false);
     setSchema(temp)
+    changeAreaItem(index, temp)
   };
   // 取消时：选择框为空，列表里是默认值
   const handleModalCancel = () => {
