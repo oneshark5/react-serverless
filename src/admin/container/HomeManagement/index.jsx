@@ -25,15 +25,22 @@ const HomeManagement = () => {
   }
   const areaListRef = useRef()
 
+  // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
-    const { children } = areaListRef.current;
+    const { getSchema } = areaListRef.current;
     // 最外层schema结构
     const schema = {
       name:'Page',
       attributes:{},
-      children,
+      children:getSchema() // 调用getSchema获取子组件的children内容
+      // 层层获取子组件中schema对应的内容，最终把schema拼接完成，然后存储起来
     }
     window.localStorage.schema = JSON.stringify(schema)
+  }
+  // 要重置的是children
+  const handleResetBtnClick = () => {
+    const { resetSchema } = areaListRef.current;
+    resetSchema()
   }
 
   return (
@@ -64,9 +71,12 @@ const HomeManagement = () => {
         </Header>
         <Content className={styles.content}>
           <AreaList ref={areaListRef} children={schema.children || []} />
-          <div className={styles.save}>
+          <div className={styles.button}>
             <Button type="primary" onClick={handleSaveBtnClick}>
               保存区块配置
+            </Button>
+            <Button type="primary" className={styles.reset} onClick={handleResetBtnClick}>
+              重置区块配置
             </Button>
           </div>
         </Content>
