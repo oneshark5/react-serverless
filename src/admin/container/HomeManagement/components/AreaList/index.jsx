@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle, createRef, useMemo } from 'react'
+import React, { useState, forwardRef, useImperativeHandle, createRef, useMemo, useEffect } from 'react'
 import { Button } from 'antd';
 import styles from './style.module.scss'
 import AreaItem from '../AreaItem';
@@ -7,6 +7,13 @@ let refs = []
 
 const AreaList = (props, ref) => {
   const [children, setChildren] = useState(props.children)
+
+  // 当感知到父组件发生变化时，就更新
+  useEffect(() => {
+    setChildren(props.children)
+  },[props.children])
+
+
   // 采用createRef创建ref，useMemo避免重复创建ref(提高性能)
   useMemo(() => {
     refs = children.map(item => createRef())
@@ -43,15 +50,6 @@ const AreaList = (props, ref) => {
           schema.push(refs[index].current.getSchema())
         })
         return schema
-      },
-      resetSchema: () => {
-        // 将schema设置为最开始的初始内容
-        setChildren(props.children)
-        // children里面的对象内容也要改变，让子组件自己更新子组件的schema
-        children.forEach((item, index) => {
-          refs[index].current.resetSchema();
-        })
-
       }
     }
   })

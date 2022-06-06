@@ -6,7 +6,7 @@ import { parseJsonByString } from '../../../common/utils';
 
 const { Header, Sider, Content } = Layout;
 
-const schema = parseJsonByString(window.localStorage.schema, {})
+const initialSchema = parseJsonByString(window.localStorage.schema, {})
 
 // 封装hooks函数
 const useCollapsed = () => {
@@ -18,8 +18,9 @@ const useCollapsed = () => {
 }
 
 const HomeManagement = () => {
-
   const { collapsed, toggleCollapsed } = useCollapsed()
+  // 定义状态
+  const [schema, setSchema] = useState(initialSchema)
   const handleHomePageRedirect = () => {
     window.location.href = "/"
   }
@@ -38,9 +39,10 @@ const HomeManagement = () => {
     window.localStorage.schema = JSON.stringify(schema)
   }
   // 要重置的是children
+  // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
-    const { resetSchema } = areaListRef.current;
-    resetSchema()
+    const newSchema = parseJsonByString(window.localStorage.schema, {})
+    setSchema(newSchema)//设置已经保存的schema---未保存的会被重置
   }
 
   return (
