@@ -20,7 +20,7 @@ const useCollapsed = () => {
 }
 
 const HomeManagement = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const { collapsed, toggleCollapsed } = useCollapsed()
   // 定义状态
@@ -52,7 +52,7 @@ const HomeManagement = () => {
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
     const newSchema = parseJsonByString(window.localStorage.schema, {})
-    setSchema(newSchema)//设置已经保存的schema---未保存的会被重置
+    
   }
 
   return (
