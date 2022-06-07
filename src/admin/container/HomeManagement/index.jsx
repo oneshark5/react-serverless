@@ -17,19 +17,35 @@ const useCollapsed = () => {
   return { collapsed, toggleCollapsed }
 }
 
-const HomeManagement = () => {
+// store中存取数据（把使用store的逻辑放在一起）
+const useStore = () => {
   const dispatch = useDispatch()
-
-  const { collapsed, toggleCollapsed } = useCollapsed()
-
-  const handleHomePageRedirect = () => {
-    window.location.href = "/"
-  }
-
   // 使用redux，采用useSelector拿到仓库的数据
   const schema = useSelector((state) => {
     return state.homeManagement.schema
   })
+
+  // dispatch
+  const changeSchema = (schema) => {
+    // 构建action
+    const action = {
+      type: "CHANGE_SCHEMA",
+      value: schema
+    }
+    // 调用dispatch
+    dispatch(action)
+  }
+  return { schema, changeSchema }
+}
+
+const HomeManagement = () => {
+
+  const { collapsed, toggleCollapsed } = useCollapsed()
+  const { schema, changeSchema } = useStore()
+
+  const handleHomePageRedirect = () => {
+    window.location.href = "/"
+  }
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
@@ -39,13 +55,7 @@ const HomeManagement = () => {
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
     const newSchema = parseJsonByString(window.localStorage.schema, {})
-    // 构建action
-    const action = {
-      type:"CHANGE_SCHEMA",
-      value:newSchema
-    }
-    // 调用dispatch
-    dispatch(action)
+    changeSchema(newSchema)
   }
 
   return (
