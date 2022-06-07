@@ -2,6 +2,7 @@
 // 基础数据
 import produce from "immer"
 import { parseJsonByString } from '../../../common/utils';
+import { CHANGE_SCHEMA } from '../constant/homeManagement'
 
 const initialSchema = parseJsonByString(window.localStorage.schema, {
   name:'Page',
@@ -18,7 +19,7 @@ const defaultState = {
 // draft是当前页面存储的homeManagement的所有数据即defaultSchema的数据
 const reducer = (state = defaultState, action) => produce(state, (draft) => {
   switch(action.type){
-    case 'CHANGE_SCHEMA':
+    case CHANGE_SCHEMA:
       draft.schema = action.value;
       break;
     default:
