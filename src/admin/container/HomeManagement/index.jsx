@@ -4,7 +4,7 @@ import { Layout, Menu, Button } from 'antd';
 import styles from './style.module.scss'
 import AreaList from './components/AreaList';
 import { parseJsonByString } from '../../../common/utils';
-
+import { getChangeSchemaAction } from '../../store/action/homeManagement';
 
 const { Header, Sider, Content } = Layout;
 
@@ -24,16 +24,10 @@ const useStore = () => {
   const schema = useSelector((state) => {
     return state.homeManagement.schema
   })
-
   // dispatch
   const changeSchema = (schema) => {
-    // 构建action
-    const action = {
-      type: "CHANGE_SCHEMA",
-      value: schema
-    }
     // 调用dispatch
-    dispatch(action)
+    dispatch(getChangeSchemaAction(schema))
   }
   return { schema, changeSchema }
 }
