@@ -52,7 +52,13 @@ const HomeManagement = () => {
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
     const newSchema = parseJsonByString(window.localStorage.schema, {})
-    
+    // 构建action
+    const action = {
+      type:"CHANGE_SCHEMA",
+      value:newSchema
+    }
+    // 调用dispatch
+    dispatch(action)
   }
 
   return (
