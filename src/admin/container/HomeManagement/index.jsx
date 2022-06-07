@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Menu, Button } from 'antd';
 import styles from './style.module.scss'
 import AreaList from './components/AreaList';
@@ -20,6 +20,8 @@ const useCollapsed = () => {
 }
 
 const HomeManagement = () => {
+  const dispatch = useDispatch()
+
   const { collapsed, toggleCollapsed } = useCollapsed()
   // 定义状态
   const [schema, setSchema] = useState(initialSchema)
@@ -50,7 +52,7 @@ const HomeManagement = () => {
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
     const newSchema = parseJsonByString(window.localStorage.schema, {})
-    setSchema(newSchema)//设置已经保存的schema---未保存的会被重置
+    // setSchema(newSchema)//设置已经保存的schema---未保存的会被重置
   }
 
   return (
