@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Layout, Menu, Button } from 'antd';
 import styles from './style.module.scss'
 import AreaList from './components/AreaList';
 import { parseJsonByString } from '../../../common/utils';
+
 
 const { Header, Sider, Content } = Layout;
 
@@ -25,6 +27,12 @@ const HomeManagement = () => {
     window.location.href = "/"
   }
   const areaListRef = useRef()
+
+  // 使用redux，采用useSelector拿到仓库的数据
+  const state = useSelector((state) => {
+    console.log(state);
+    return {};
+  })
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
