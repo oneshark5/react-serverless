@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './style.module.scss'
 import listImage from './vue3.png'
 
-const Banner = () => {
+const List = () => {
   return (
     <div className='wrapper'>
       <ul className={styles.list}>
@@ -60,4 +60,4 @@ const Banner = () => {
     </div>
   )
 }
-export default Banner
+export default List

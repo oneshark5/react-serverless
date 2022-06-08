@@ -4,7 +4,7 @@ import { Layout, Menu, Button } from 'antd';
 import styles from './style.module.scss'
 import AreaList from './components/AreaList';
 import { parseJsonByString } from '../../../common/utils';
-import { getChangeSchemaAction } from '../../store/action/homeManagement';
+import { getChangeSchemaAction } from './store/action';
 
 const { Header, Sider, Content } = Layout;
 
@@ -49,7 +49,7 @@ const HomeManagement = () => {
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
     const newSchema = parseJsonByString(window.localStorage.schema, {})
-    changeSchema(newSchema)
+    changeSchema(newSchema)//action
   }
 
   return (
@@ -79,7 +79,7 @@ const HomeManagement = () => {
           }
         </Header>
         <Content className={styles.content}>
-          <AreaList children={schema.children || []} />
+          <AreaList />
           <div className={styles.button}>
             <Button type="primary" onClick={handleSaveBtnClick}>
               保存区块配置
