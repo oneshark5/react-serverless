@@ -1,4 +1,4 @@
-import { CHANGE_SCHEMA } from "../constant/homeManagement"
+import { CHANGE_SCHEMA } from "./constant"
 
 export const getChangeSchemaAction = (schema) => {
   return {

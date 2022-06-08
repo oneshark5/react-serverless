@@ -1,8 +1,8 @@
 // reducer两个作用：一是初始化数据怎么存储，二是接收到action动作改变的时候怎么改变数据内容
 // 基础数据
 import produce from "immer"
-import { parseJsonByString } from '../../../common/utils';
-import { CHANGE_SCHEMA } from '../constant/homeManagement'
+import { parseJsonByString } from '../../../../common/utils';
+import { CHANGE_SCHEMA } from './constant'
 
 const initialSchema = parseJsonByString(window.localStorage.schema, {
   name:'Page',
