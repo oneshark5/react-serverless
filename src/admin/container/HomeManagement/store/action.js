@@ -1,4 +1,5 @@
-import { CHANGE_SCHEMA, ADD_PAGE_CHILDREN, CHANGE_PAGE_CHILD, DELETE_PAGE_CHILD } from "./constant"
+import { CHANGE_SCHEMA, ADD_PAGE_CHILDREN, CHANGE_PAGE_CHILD, DELETE_PAGE_CHILD,
+  CHANGE_PAGE_CHILD_POSITION } from "./constant"
 
 export const getChangeSchemaAction = (schema) => {
   return {
@@ -23,5 +24,12 @@ export const getDeletePageChildAction = (index) => {
   return {
     type:DELETE_PAGE_CHILD,
     index
+  }
+}
+export const getChangePageChildPositionAction = (oldIndex, newIndex) => {
+  return {
+    type:CHANGE_PAGE_CHILD_POSITION,
+    oldIndex,
+    newIndex
   }
 }

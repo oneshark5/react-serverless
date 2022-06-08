@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal, Select } from 'antd';
+import { SortableElement } from 'react-sortable-hoc';
 import { getChangePageChildAction, getDeletePageChildAction } from '../../store/action';
 import styles from './style.module.scss'
 
@@ -19,7 +20,9 @@ const useStore = (index) => {
 
 
 const AreaItem = (props) => {
-  const { index } = props
+  const { value: index } = props;
+  // 等价于
+  // const index = props.value
   const { pageChild, changePageChild, removePageChild } = useStore(index)
 
   const [isModalVisible, setIsModalVisible] = useState(false);// 控制弹框是否可见
@@ -70,4 +73,4 @@ const AreaItem = (props) => {
     </div>
   )
 }
-export default AreaItem
+export default SortableElement(AreaItem)
