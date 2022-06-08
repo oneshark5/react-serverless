@@ -79,7 +79,7 @@ const HomeManagement = () => {
           }
         </Header>
         <Content className={styles.content}>
-          <AreaList children={schema.children || []} />
+          <AreaList />
           <div className={styles.button}>
             <Button type="primary" onClick={handleSaveBtnClick}>
               保存区块配置
