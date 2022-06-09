@@ -66,3 +66,13 @@
   ]
 }
 ```
+
+
+图库地址
+头像：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/avatar.jpeg`
+背景1：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/bg.jpeg`
+背景2：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/react.jpeg`
+背景图片的计算过程
+分辨率：1920*697
+网页宽度为1280 1920 / 1280 = 1.5
+所以高度设置为 697 / 1.5

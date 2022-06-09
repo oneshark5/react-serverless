@@ -85,6 +85,7 @@ const Banner = (props) => {
       <div className={styles.row}>
         <span className={styles.label}>背景高度</span>
         <Input
+          type="number"
           value={backgroundHeight}
           className={styles.content}
           placeholder='请输入背景图高度的像素值'
