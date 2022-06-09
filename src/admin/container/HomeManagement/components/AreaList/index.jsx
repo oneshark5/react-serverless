@@ -33,7 +33,7 @@ const AreaList = () => {
   };
   return (
     <div>
-      <SortableList distance={5} lockAxis="y" list={children} onSortEnd={onSortEnd} />;
+      <SortableList distance={5} lockAxis="y" list={children} onSortEnd={onSortEnd} />
       <Button type="primary" ghost onClick={addPageChildren}>新增页面区块</Button>
     </div>
   )

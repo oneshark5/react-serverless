@@ -2,11 +2,18 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal, Select } from 'antd';
 import { SortableElement } from 'react-sortable-hoc';
+import { cloneDeep } from 'lodash' 
 import { getChangePageChildAction, getDeletePageChildAction } from '../../store/action';
+import Banner from './components/Banner';
+import List from './components/List';
+import Footer from './components/Footer';
 import styles from './style.module.scss'
+
 
 const { Option } = Select// 选择组件，下拉列表选择器
 // 定义一个变量做临时存储---放在外层的原因：内部每次渲染时都会重新生成该变量；本身和render没有关系，放在里面会降低性能。
+
+const map = {Banner, List, Footer}
 
 // store中存取数据（把使用store的逻辑放在一起）
 const useStore = (index) => {
@@ -47,6 +54,20 @@ const AreaItem = (props) => {
     setTempPageChild(newSchema)
   }
 
+  const changeTempAttribute = (key, value) => {
+    const newTempPageChild = cloneDeep(tempPageChild)// 采用lodash就可以改变tempPageChild某个attributes对应的值
+    newTempPageChild.attributes[key] = value
+    setTempPageChild(newTempPageChild)
+  }
+
+
+  const getComponent = () => {
+    const { name } = tempPageChild
+    const Component = map[name]
+    console.log(tempPageChild);
+    return Component ? <Component {...tempPageChild} changeAttribute={changeTempAttribute} /> : null
+  }
+
   return (
     <div>
       <li className={styles.item} >
@@ -68,6 +89,8 @@ const AreaItem = (props) => {
             <Option value='List'>List 组件</Option>
             <Option value='Footer'>Footer 组件</Option>
           </Select>
+
+          { getComponent() }
         </Modal>
       </li>
     </div>

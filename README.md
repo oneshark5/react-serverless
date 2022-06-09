@@ -33,14 +33,24 @@
   ]
 }
 
+设置协议
 <!-- 对前面的schema结构进行精简 -->
+<!-- 首页配置化 -->
+```json
 {
   name:'',
   attributes:{}
   children:[
     {
       name:'Banner',
-      attributes:{},
+      attributes:{
+        title:'鲨鱼小站',
+        description:'this is the description area',
+        showSmallPic:true,//是否显示logo
+        smallPicUrl:'',//logo地址
+        backgroundUrl:'',//背景
+        backgroundHeight:'100px'//背景高度
+      },
       children:[]
     },
     {
@@ -55,3 +65,4 @@
     },
   ]
 }
+```
