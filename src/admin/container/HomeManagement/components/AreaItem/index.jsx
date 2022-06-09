@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal, Select } from 'antd';
 import { SortableElement } from 'react-sortable-hoc';
@@ -35,6 +35,10 @@ const AreaItem = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);// 控制弹框是否可见
   const [tempPageChild, setTempPageChild] = useState(pageChild)//临时变量控制着内部弹窗组件选择框的内容
 
+  useEffect(() => {
+    setTempPageChild(pageChild)
+  },[pageChild])
+
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -54,18 +58,20 @@ const AreaItem = (props) => {
     setTempPageChild(newSchema)
   }
 
-  const changeTempAttribute = (key, value) => {
+  // 多属性同时变更
+  const changeTempPageChildAttributes = (kvObj) => {
     const newTempPageChild = cloneDeep(tempPageChild)// 采用lodash就可以改变tempPageChild某个attributes对应的值
-    newTempPageChild.attributes[key] = value
+    for(let key in kvObj){
+      newTempPageChild.attributes[key] = kvObj[key]
+    }
     setTempPageChild(newTempPageChild)
   }
-
 
   const getComponent = () => {
     const { name } = tempPageChild
     const Component = map[name]
     console.log(tempPageChild);
-    return Component ? <Component {...tempPageChild} changeAttribute={changeTempAttribute} /> : null
+    return Component ? <Component {...tempPageChild} changeAttributes={changeTempPageChildAttributes} /> : null
   }
 
   return (
