@@ -1,0 +1,19 @@
+// 技巧：如果把:global卸载外面会影响全局样式，但是写在一个组件里面，影响的仅仅是该组件所有的样式
+.sidebar {
+  padding: 10px 0;
+  // 修饰里面的图标
+  :global(.iconfont){
+    margin-right: 10px;
+  }
+}
+.header{
+  padding: 0 25px;
+  cursor: pointer;
+  :global(.iconfont){
+    color: #fff;
+  }
+}
+.content{
+  padding: 20px;
+  min-height: 1000px !important;
+}

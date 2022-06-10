@@ -1,5 +1,5 @@
 import { Input, Switch } from 'antd'
-import styles from '../style.module.scss'
+import styles from './style.module.scss'
 
 /* 
 handleTitleChange/handleDescriptionChange

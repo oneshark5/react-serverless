@@ -1,5 +1,5 @@
 import { Input, Button } from 'antd'
-import styles from '../style.module.scss'
+import styles from './style.module.scss'
 
 const List = (props) => {
   console.log(props);
@@ -44,6 +44,7 @@ const List = (props) => {
         children.map(({ attributes: {title, description, imageUrl, link} }, index) => (
           <div className={styles.area} key={index} >
             <div className={styles.delete} onClick={() => deleteItemFromChildren(index)}>X</div>
+
             <div className={styles['area-row']}>
               <span className={styles.label}>标题</span>
               <Input
@@ -53,7 +54,6 @@ const List = (props) => {
                 onChange={(e) => { changeChildrenItem(index, 'title', e.target.value) }}
               />
             </div>
-
             <div className={styles['area-row']}>
               <span className={styles.label}>描述</span>
               <Input
@@ -63,7 +63,6 @@ const List = (props) => {
                 onChange={(e) => { changeChildrenItem(index, 'description', e.target.value) }}
               />
             </div>
-
             <div className={styles['area-row']}>
               <span className={styles.label}>图片</span>
               <Input
@@ -73,7 +72,6 @@ const List = (props) => {
                 onChange={(e) => { changeChildrenItem(index, 'imageUrl', e.target.value) }}
               />
             </div>
-
             <div className={styles['area-row']}>
               <span className={styles.label}>链接</span>
               <Input
