@@ -1,6 +1,5 @@
 import { Input, Switch } from 'antd'
-import commonStyles from '../style.module.scss'
-import styles from './style.module.scss'
+import styles from '../style.module.scss'
 
 /* 
 handleTitleChange/handleDescriptionChange
@@ -33,8 +32,8 @@ const Banner = (props) => {
   }
   
   return (
-    <div className={commonStyles.wrapper} >
-      <div className={styles.row}>
+    <div className={styles.wrapper} >
+      <div className={styles['attribute-row']}>
         <span className={styles.label}>页面标题</span>
         <Input
           value={title}
@@ -43,7 +42,7 @@ const Banner = (props) => {
           onChange={(e) => { changeAttributes({title: e.target.value})}}
         />
       </div>
-      <div className={styles.row}>
+      <div className={styles['attribute-row']}>
         <span className={styles.label}>页面描述</span>
         <TextArea
           value={description}
@@ -54,14 +53,14 @@ const Banner = (props) => {
         />
       </div>
 
-      <div className={styles.row}>
+      <div className={styles['attribute-row']}>
         <span className={styles.label}>展示小图</span>
         <Switch checked={showSmallPic} onChange={handleShowSmallPicChange} />
       </div>
       {/* 判断是否显示小图 */}
       {
         showSmallPic ? (
-          <div className={styles.row}>
+          <div className={styles['attribute-row']}>
             <span className={styles.label}>小图链接</span>
             <Input
               value={smallPicUrl}
@@ -73,7 +72,7 @@ const Banner = (props) => {
         ) : null
       }
 
-      <div className={styles.row}>
+      <div className={styles['attribute-row']}>
         <span className={styles.label}>背景链接</span>
         <Input
           value={backgroundUrl}
@@ -82,7 +81,7 @@ const Banner = (props) => {
           onChange={(e) => { changeAttributes({backgroundUrl: e.target.value}) }}
         />
       </div>
-      <div className={styles.row}>
+      <div className={styles['attribute-row']}>
         <span className={styles.label}>背景高度</span>
         <Input
           type="number"

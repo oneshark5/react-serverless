@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 const List = ({ schema }) => {
   // 从后台获取属性
   const { children = [] } = schema
-  console.log(children);
+
   return (
     <div className='wrapper'>
       <ul className={styles.list}>

@@ -69,8 +69,18 @@
     },
     {
       name:'Footer',
-      attributes:{},
-      children:[]
+      attributes:{
+        copyright:'',
+        record:''
+      },
+      children:[{
+        name:'Item',
+        attributes:{
+          title:'Vue3 系统入门与项目实战',
+          link:''
+        },
+        children:[]
+      }]
     },
   ]
 }
