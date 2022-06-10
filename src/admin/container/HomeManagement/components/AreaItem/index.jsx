@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal, Select } from 'antd';
 import { SortableElement } from 'react-sortable-hoc';
+import { cloneDeep } from 'lodash' 
 import { getChangePageChildAction, getDeletePageChildAction } from '../../store/action';
+import Banner from './components/Banner';
+import List from './components/List';
+import Footer from './components/Footer';
 import styles from './style.module.scss'
+
 
 const { Option } = Select// 选择组件，下拉列表选择器
 // 定义一个变量做临时存储---放在外层的原因：内部每次渲染时都会重新生成该变量；本身和render没有关系，放在里面会降低性能。
+
+const map = {Banner, List, Footer}
 
 // store中存取数据（把使用store的逻辑放在一起）
 const useStore = (index) => {
@@ -26,7 +33,12 @@ const AreaItem = (props) => {
   const { pageChild, changePageChild, removePageChild } = useStore(index)
 
   const [isModalVisible, setIsModalVisible] = useState(false);// 控制弹框是否可见
-  const [tempPageChild, setTempPageChild] = useState(pageChild)//临时变量控制着内部弹窗组件选择框的内容
+  const [tempPageChild, setTempPageChild] = useState(cloneDeep(pageChild))//临时变量控制着内部弹窗组件选择框的内容
+
+
+  useEffect(() => {
+    setTempPageChild(cloneDeep(pageChild))
+  },[pageChild])
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -39,12 +51,37 @@ const AreaItem = (props) => {
   // 取消时：选择框为空，列表里是默认值---取消时，temp设置为schema
   const handleModalCancel = () => {
     setIsModalVisible(false);
-    setTempPageChild(pageChild)
+    setTempPageChild(cloneDeep(pageChild))
   };
   // 内容变更，设计temp
   const handleSelectorChange = (value) => {
     const newSchema = { name: value, attributes: {}, children: [] }
     setTempPageChild(newSchema)
+  }
+
+  // 改变attributes属性：多属性同时变更
+  const changeTempPageChildAttributes = (kvObj) => {
+    const newTempPageChild = { ...tempPageChild }// 采用lodash就可以改变tempPageChild某个attributes对应的值
+    for(let key in kvObj){
+      newTempPageChild.attributes[key] = kvObj[key]
+    }
+    setTempPageChild(newTempPageChild)
+  }
+
+  // 改变children属性：
+  const changeTempPageChildren = (children) => {
+    const newTempPageChild = {...tempPageChild}// 采用lodash就可以改变tempPageChild某个attributes对应的值
+    newTempPageChild.children = children
+    setTempPageChild(newTempPageChild)
+  }
+
+  const getComponent = () => {
+    const { name } = tempPageChild
+    const Component = map[name]
+    console.log(tempPageChild);
+    return Component ? (
+      <Component {...tempPageChild} changeAttributes={changeTempPageChildAttributes} changeChildren={changeTempPageChildren} />
+    ) : null
   }
 
   return (
@@ -60,7 +97,13 @@ const AreaItem = (props) => {
             删除
           </Button>
         </span>
-        <Modal title="选择组件" visible={isModalVisible} onOk={handleModalOk} onCancel={handleModalCancel}>
+        <Modal 
+          title="选择组件" 
+          visible={isModalVisible} 
+          onOk={handleModalOk} 
+          onCancel={handleModalCancel}
+          bodyStyle={{maxHeight:500, overflowY:'scroll'}}
+        >
           <Select value={tempPageChild.name} className={styles.selector} style={{ width: "100%" }}
             onChange={handleSelectorChange}
           >
@@ -68,6 +111,8 @@ const AreaItem = (props) => {
             <Option value='List'>List 组件</Option>
             <Option value='Footer'>Footer 组件</Option>
           </Select>
+
+          { getComponent() }
         </Modal>
       </li>
     </div>

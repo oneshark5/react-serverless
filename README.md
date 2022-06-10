@@ -33,25 +33,65 @@
   ]
 }
 
+设置协议
 <!-- 对前面的schema结构进行精简 -->
+<!-- 首页配置化 -->
+```json
 {
-  name:'',
+  name:'Page',
   attributes:{}
   children:[
     {
       name:'Banner',
-      attributes:{},
+      attributes:{
+        title:'鲨鱼小站',
+        description:'this is the description area',
+        showSmallPic:true,//是否显示logo
+        smallPicUrl:'',//logo地址
+        backgroundUrl:'',//背景
+        backgroundHeight:'100px'//背景高度
+      },
       children:[]
     },
     {
       name:'List',
       attributes:{},
-      children:[]
+      children:[{
+        name:'Item',
+        attributes:{
+          title:'Vue3 系统入门与项目实战',
+          description:'内容描述',
+          imageUrl:'',
+          link:''
+        },
+        children:[]
+      }]
     },
     {
       name:'Footer',
-      attributes:{},
-      children:[]
+      attributes:{
+        copyright:'',
+        record:''
+      },
+      children:[{
+        name:'Item',
+        attributes:{
+          title:'Vue3 系统入门与项目实战',
+          link:''
+        },
+        children:[]
+      }]
     },
   ]
 }
+```
+
+
+图库地址
+头像：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/avatar.jpeg`
+背景1：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/bg.jpeg`
+背景2：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/react.jpeg`
+背景图片的计算过程
+分辨率：1920*697
+网页宽度为1280 1920 / 1280 = 1.5
+所以高度设置为 697 / 1.5
