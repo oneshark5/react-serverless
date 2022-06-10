@@ -97,7 +97,13 @@ const AreaItem = (props) => {
             删除
           </Button>
         </span>
-        <Modal title="选择组件" visible={isModalVisible} onOk={handleModalOk} onCancel={handleModalCancel}>
+        <Modal 
+          title="选择组件" 
+          visible={isModalVisible} 
+          onOk={handleModalOk} 
+          onCancel={handleModalCancel}
+          bodyStyle={{maxHeight:500, overflowY:'scroll'}}
+        >
           <Select value={tempPageChild.name} className={styles.selector} style={{ width: "100%" }}
             onChange={handleSelectorChange}
           >
