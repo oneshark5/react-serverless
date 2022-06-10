@@ -1,0 +1,13 @@
+.row {
+  display: flex;
+  margin-top: 15px;
+
+  .label {
+    line-height: 32px;
+    width: 70px;
+  }
+
+  .conten {
+    flex: 1;
+  }
+}

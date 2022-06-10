@@ -56,7 +56,12 @@
     {
       name:'List',
       attributes:{},
-      children:[]
+      children:[{
+        title:'Vue3 系统入门与项目实战',
+        description:'内容描述',
+        imageUrl:'',
+        link:''
+      }]
     },
     {
       name:'Footer',

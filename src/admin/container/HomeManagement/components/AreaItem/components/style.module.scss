@@ -1,10 +1,4 @@
-.row {
-  display: flex;
+.wrapper{
   margin-top: 15px;
-  .label{
-    width: 70px;
-  }
-  .conten{
-    flex: 1;
-  }
+  border-top: 1px solid #ccc;
 }

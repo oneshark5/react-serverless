@@ -1,4 +1,5 @@
 import { Input, Switch } from 'antd'
+import commonStyles from '../style.module.scss'
 import styles from './style.module.scss'
 
 /* 
@@ -33,7 +34,7 @@ const Banner = (props) => {
   }
   
   return (
-    <div >
+    <div className={commonStyles.wrapper} >
       <div className={styles.row}>
         <span className={styles.label}>页面标题</span>
         <Input

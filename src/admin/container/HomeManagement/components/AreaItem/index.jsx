@@ -67,11 +67,19 @@ const AreaItem = (props) => {
     setTempPageChild(newTempPageChild)
   }
 
+  const changeTempPageChildren = (children) => {
+    const newTempPageChild = cloneDeep(tempPageChild)// 采用lodash就可以改变tempPageChild某个attributes对应的值
+    newTempPageChild.children = children
+    setTempPageChild(newTempPageChild)
+  }
+
   const getComponent = () => {
     const { name } = tempPageChild
     const Component = map[name]
     console.log(tempPageChild);
-    return Component ? <Component {...tempPageChild} changeAttributes={changeTempPageChildAttributes} /> : null
+    return Component ? (
+      <Component {...tempPageChild} changeAttributes={changeTempPageChildAttributes} changeChildren={changeTempPageChildren} />
+    ) : null
   }
 
   return (
