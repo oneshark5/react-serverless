@@ -8,7 +8,6 @@ handleTitleChange/handleDescriptionChange
 当title和description改变时，选择框里是tempSchema临时变量，当点击ok的时候改变临时变量里的内容
 临时变量在父组件AreaItem中handleSelectorChange；
 在父组件AreaItem中定义一个新方法，传递给子组件，子组件调用handleSelectorChange；方法改变临时变量
-
 */
 
 const { TextArea } = Input;

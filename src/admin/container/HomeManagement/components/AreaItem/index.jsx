@@ -33,11 +33,11 @@ const AreaItem = (props) => {
   const { pageChild, changePageChild, removePageChild } = useStore(index)
 
   const [isModalVisible, setIsModalVisible] = useState(false);// 控制弹框是否可见
-  const [tempPageChild, setTempPageChild] = useState(pageChild)//临时变量控制着内部弹窗组件选择框的内容
+  const [tempPageChild, setTempPageChild] = useState(cloneDeep(pageChild))//临时变量控制着内部弹窗组件选择框的内容
 
 
   useEffect(() => {
-    setTempPageChild(pageChild)
+    setTempPageChild(cloneDeep(pageChild))
   },[pageChild])
 
   const showModal = () => {
@@ -51,7 +51,7 @@ const AreaItem = (props) => {
   // 取消时：选择框为空，列表里是默认值---取消时，temp设置为schema
   const handleModalCancel = () => {
     setIsModalVisible(false);
-    setTempPageChild(pageChild)
+    setTempPageChild(cloneDeep(pageChild))
   };
   // 内容变更，设计temp
   const handleSelectorChange = (value) => {
@@ -61,7 +61,7 @@ const AreaItem = (props) => {
 
   // 改变attributes属性：多属性同时变更
   const changeTempPageChildAttributes = (kvObj) => {
-    const newTempPageChild = cloneDeep(tempPageChild)// 采用lodash就可以改变tempPageChild某个attributes对应的值
+    const newTempPageChild = { ...tempPageChild }// 采用lodash就可以改变tempPageChild某个attributes对应的值
     for(let key in kvObj){
       newTempPageChild.attributes[key] = kvObj[key]
     }
@@ -70,7 +70,7 @@ const AreaItem = (props) => {
 
   // 改变children属性：
   const changeTempPageChildren = (children) => {
-    const newTempPageChild = cloneDeep(tempPageChild)// 采用lodash就可以改变tempPageChild某个attributes对应的值
+    const newTempPageChild = {...tempPageChild}// 采用lodash就可以改变tempPageChild某个attributes对应的值
     newTempPageChild.children = children
     setTempPageChild(newTempPageChild)
   }

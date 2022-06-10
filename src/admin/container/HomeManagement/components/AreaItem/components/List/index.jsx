@@ -26,8 +26,7 @@ const List = (props) => {
   // 内容变化时，改变里面的属性---该方法存在一些问题⭐⭐⭐---添加了个分号解决了。。。😅
   const changeChildrenItem = (index, key, value) => {
     const originItem = children[index];
-    const item = cloneDeep(originItem);
-    (!item.attributes) && (item.attributes = {});
+    const item = {...originItem};
     item.attributes[key] = value;
     const newChildren = [...children];
     newChildren.splice(index, 1, item);
