@@ -38,7 +38,7 @@
 <!-- 首页配置化 -->
 ```json
 {
-  name:'',
+  name:'Page',
   attributes:{}
   children:[
     {
@@ -57,10 +57,14 @@
       name:'List',
       attributes:{},
       children:[{
-        title:'Vue3 系统入门与项目实战',
-        description:'内容描述',
-        imageUrl:'',
-        link:''
+        name:'Item',
+        attributes:{
+          title:'Vue3 系统入门与项目实战',
+          description:'内容描述',
+          imageUrl:'',
+          link:''
+        },
+        children:[]
       }]
     },
     {
