@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal, Select } from 'antd';
 import { SortableElement } from 'react-sortable-hoc';
 import { cloneDeep } from 'lodash' 
-import { getChangePageChildAction, getDeletePageChildAction } from '../../store/action';
+import { getChangePageChildAction, getDeletePageChildAction } from '../../../../store/action';
 import Banner from './components/Banner';
 import List from './components/List';
 import Footer from './components/Footer';
@@ -19,7 +19,7 @@ const map = {Banner, List, Footer}
 const useStore = (index) => {
   const dispatch = useDispatch()
   // 使用redux，采用useSelector拿到仓库的数据---获取children里面的内容（子节点）
-  const pageChild = useSelector(state => state.homeManagement.schema.children?.[index] || {})
+  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
   const changePageChild = (tempPageChild) => {dispatch(getChangePageChildAction(index, tempPageChild))}
   const removePageChild = () => { dispatch(getDeletePageChildAction(index)) }
   return { pageChild, changePageChild, removePageChild }

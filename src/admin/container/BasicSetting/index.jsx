@@ -1,10 +1,10 @@
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from 'antd';
+import { Button, Input } from 'antd';
 import styles from './style.module.scss'
-import AreaList from './components/AreaList';
 import { parseJsonByString } from '../../../common/utils';
-import { getChangeSchemaAction } from '../../store/action';
+import { getChangeSchemaAction, getChangePageAttributeAction } from '../../store/action';
+import { useCallback } from 'react';
 
 // store中存取数据（把使用store的逻辑放在一起）
 const useStore = () => {
@@ -18,12 +18,17 @@ const useStore = () => {
     // 调用dispatch
     dispatch(getChangeSchemaAction(schema))
   }
-  return { schema, changeSchema }
+  const changePageAttribute = (key, value) => {
+    dispatch(getChangePageAttributeAction(key, value))
+  }
+  return { schema, changeSchema, changePageAttribute }
 }
 
-const HomeManagement = () => {
+const BasicSetting = () => {
 
-  const { schema, changeSchema } = useStore()
+  const { schema = {}, changeSchema, changePageAttribute } = useStore()
+  const { attributes={} } = schema
+  const { title = '' } = attributes
 
 
   // 获取子组件AreaList的children
@@ -37,19 +42,31 @@ const HomeManagement = () => {
     changeSchema(newSchema)//action
   }
 
+  // 每次BasicSetting组件重新渲染的时候都会重新生成该方法，浪费性能；采用useCallback优化/useMemo也可以
+  const handleTitleChange = useCallback((e) => {
+    changePageAttribute('title', e.target.value)
+  },[changePageAttribute])
+
   return (
     <div>
-      <AreaList />
+      <div className={styles.row}>
+        <div className={styles.title}>
+          页面标题
+        </div>
+        <div className={styles.content}>
+          <Input value={title} onChange={handleTitleChange} />
+        </div>
+      </div>
       <div className={styles.buttons}>
         <Button type="primary" onClick={handleSaveBtnClick}>
-          保存区块配置
+          保存基础配置
         </Button>
         <Button type="primary" className={styles.reset} onClick={handleResetBtnClick}>
-          重置区块配置
+          重置基础配置
         </Button>
       </div>
     </div>
   );
 };
 
-export default HomeManagement
+export default BasicSetting

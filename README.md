@@ -39,7 +39,9 @@
 ```json
 {
   name:'Page',
-  attributes:{}
+  attributes:{
+    title:'鲨鱼小站'
+  }
   children:[
     {
       name:'Banner',
