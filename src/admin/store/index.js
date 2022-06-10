@@ -3,11 +3,11 @@
 // 拆分reducer，然后在store引入reducer
 
 import { createStore, combineReducers } from 'redux'
-import  homeManagementReducer from './container/HomeManagement/store/reducer'
+import  commonReducer from './reducer'
 
 // 采用combineReducers构建reducer
 const reducer = combineReducers({
-  homeManagement: homeManagementReducer
+  common: commonReducer
 })
 
 const store = createStore(

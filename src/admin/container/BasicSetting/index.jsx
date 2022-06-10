@@ -11,7 +11,7 @@
 //   const dispatch = useDispatch()
 //   // 使用redux，采用useSelector拿到仓库的数据
 //   const schema = useSelector((state) => {
-//     return state.homeManagement.schema
+//     return state.common.schema
 //   })
 //   // dispatch
 //   const changeSchema = (schema) => {

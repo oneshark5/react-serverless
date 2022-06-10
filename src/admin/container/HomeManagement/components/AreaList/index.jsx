@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
-import { getAddPageChildrenAction, getChangePageChildPositionAction } from '../../store/action';
+import { getAddPageChildrenAction, getChangePageChildPositionAction } from '../../../../store/action';
 import AreaItem from '../AreaItem';
 import styles from './style.module.scss'
 
@@ -22,7 +22,7 @@ const SortableList = SortableContainer(({list}) => {
 const AreaList = () => {
   const dispatch = useDispatch()
   // 使用redux，采用useSelector拿到仓库的数据
-  const children = useSelector(state => state.homeManagement.schema?.children || [])
+  const children = useSelector(state => state.common.schema?.children || [])
 
   const addPageChildren = () => {
     dispatch(getAddPageChildrenAction())

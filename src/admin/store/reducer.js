@@ -1,7 +1,7 @@
 // reducer两个作用：一是初始化数据怎么存储，二是接收到action动作改变的时候怎么改变数据内容
 // 基础数据
 import {produce,original} from "immer"
-import { parseJsonByString } from '../../../../common/utils';
+import { parseJsonByString } from '../../common/utils';
 import { CHANGE_SCHEMA, ADD_PAGE_CHILDREN, CHANGE_PAGE_CHILD, DELETE_PAGE_CHILD,
   CHANGE_PAGE_CHILD_POSITION } from './constant'
 
