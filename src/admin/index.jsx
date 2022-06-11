@@ -6,7 +6,8 @@ import { Provider } from 'react-redux'
 import store from './store'
 import styles from './style.module.scss'
 import 'normalize.css' // 页面样式标准化
-import 'antd/dist/antd.css'
+// import 'antd/dist/antd.css'
+import 'antd/dist/antd.min.css';
 import './style.scss';
 import AdminRouter from './container/AdminRouter';
 
