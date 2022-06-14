@@ -6,16 +6,15 @@ import { CHANGE_SCHEMA, ADD_PAGE_CHILDREN, CHANGE_PAGE_CHILD, DELETE_PAGE_CHILD,
   CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE } from './constant'
 
 // ⭐⭐⭐这就是原始数据
-const initialSchema = parseJsonByString(window.localStorage.schema, {
+const initialSchema = {
   name:'Page',
   attributes:{},
   children:[]
-})
+};
 //  初始化数据
 const defaultState = {
   schema: initialSchema
 }
-
 // 引入redux
 // 引入immer接收一个state状态和回调
 // draft是当前页面存储的homeManagement的所有数据即defaultSchema的数据
