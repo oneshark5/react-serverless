@@ -5,6 +5,7 @@ import styles from './style.module.scss'
 import AreaList from './components/AreaList';
 import { parseJsonByString } from '../../../common/utils';
 import { getChangeSchemaAction } from '../../store/action';
+import axios from 'axios';
 
 // store中存取数据（把使用store的逻辑放在一起）
 const useStore = () => {
@@ -28,13 +29,17 @@ const HomeManagement = () => {
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
-    window.localStorage.schema = JSON.stringify(schema)
+    axios.post('/api/schema/save', {
+      schema: JSON.stringify(schema)
+    }).then(() => {})
   }
   // 要重置的是children
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
-    const newSchema = parseJsonByString(window.localStorage.schema, {})
-    changeSchema(newSchema)//action
+    axios.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data?.data;
+      data && changeSchema(parseJsonByString(data[0].schema))
+    })
   }
 
   return (

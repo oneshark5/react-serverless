@@ -2,9 +2,6 @@ import React from 'react'
 import { parseJsonByString } from '../../../../../common/utils'
 import styles from './style.module.scss'
 
-// const schema = parseJsonByString(window.localStorage?.schema, {});
-// const bannerSchema = schema?.children?.[0] || {};
-
 const Banner = ({ schema }) => {
   // 从后台获取属性
   const { attributes = {} } = schema

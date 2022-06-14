@@ -78,7 +78,7 @@ const AreaItem = (props) => {
   const getComponent = () => {
     const { name } = tempPageChild
     const Component = map[name]
-    console.log(tempPageChild);
+
     return Component ? (
       <Component {...tempPageChild} changeAttributes={changeTempPageChildAttributes} changeChildren={changeTempPageChildren} />
     ) : null
