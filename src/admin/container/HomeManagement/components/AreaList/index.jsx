@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import {SortableContainer} from 'react-sortable-hoc';
 import { getAddPageChildrenAction, getChangePageChildPositionAction } from '../../../../store/action';
 import AreaItem from '../AreaItem';
 import styles from './style.module.scss'

@@ -1,5 +1,4 @@
 import React from 'react'
-import { parseJsonByString } from '../../../../../common/utils'
 import styles from './style.module.scss'
 
 const Banner = ({ schema }) => {
