@@ -29,12 +29,12 @@ const Home = () => {
         <title>{title}</title>
       </Helmet>
 
-
       <div className={styles.box}>
         <div className={styles.title}>{title}</div>
         <div className={styles.poem}>{poem}</div>
       </div>
 
+      {/* 各个组件 */}
       {
         children.map((index, item) => {
           return render(index, item)

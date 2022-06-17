@@ -12,7 +12,7 @@ const Banner = ({ schema }) => {
     const [visible, setVisible] = useState(false)
 
   return (
-    <div>
+    <div className='wrapper'>
       <nav className={styles.nav}>
         <div className={styles.navContent}>
 
