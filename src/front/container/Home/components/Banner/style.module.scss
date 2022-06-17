@@ -1,63 +1,236 @@
-.banner{
-  position: relative;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding-bottom: 150px;
-  .person{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    border: solid 5px blue;
-    background-color: rgb(237, 227, 247);
-    box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    transition: all 0.3s !important;
-    // display: flex;
-    // height: 150px;
-    // position: absolute;
-    // bottom: 0;
-    // left: 0;
-    // right: 0;
-    // background: #fff;// 采用白色背景隐藏背景延申部分
-    .avatar{
-      position: relative;
-      top: -70px;
-      margin-left: 40px;
-      width: 200px;
-      height: 200px;
-      // background-image: url('./avatar.jpeg');
-      // background-size: contain;
-      border-radius: 20px;
+@import '../../styles/base.scss';
+@import '../../styles/style.scss';
+
+.baseBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  width: 70px;
+  font-size: 22px;
+  font-weight: 700;
+  margin-right: 20px;
+  border-radius: 14px;
+  color: $textColor;
+  user-select: none;
+  @extend .hover;
+}
+
+.hiddenNav {
+  box-shadow: none !important;
+  transform: translate(0, -$navHeight);
+}
+
+.nav{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $navHeight;
+  background-color: $themeColor1;
+  box-shadow: 0 0 18px $footerBg;
+  z-index: 10;
+  @extend .trans;
+
+  .navContent{
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $centerWidth;
+    height: 100%;
+
+    .homeAndAdmin {
+      @extend .baseBtn;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%);
+      font-size: 26px;
+      width: 60px;
     }
-    .content{
-      flex: 1;
-      .title{
-        overflow: hidden;
-        height: 50px;
-        line-height: 50px;
-        margin-top: 10px;
-        margin-left: 30px;
-        font-size: 28px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #000;
+    .homeBtn {
+      @extend .homeAndAdmin;
+      // 开启定位后，设置偏移量，此时是相对于navContent定位
+      left: 0px;
+    }
+    .adminBtn {
+      @extend .homeAndAdmin;
+      margin-right: 0;
+    }
+    .navBtn {
+      @extend .baseBtn;
+    }
+    .navBtn:last-child {
+      margin-right: 0;
+    }
+    .navActive{
+      @extend .navBtn;
+      background-color: $hoverColor;
+    }
+
+    .articlesBtn {
+      position: relative;
+      @extend .baseBtn;
+
+      .articlesSecond{
+        position: absolute;
+        top: -160px;
+        width: 90px;
+        background-color: $themeColor1;
+        border-radius: 14px;
+        padding: 10px;
+        z-index: 0;
+        @extend .trans;
       }
-      .description{
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        height: 64px;
-        line-height: 32px;
-        margin-left: 30px;
-        font-size: 18px;
-        color: #333;
-      }
+    }
+    .articlesBtn:hover .articelsSecond {
+      top: 60px;
+    }
+
+    .modeBtn {
+      @extend .homeAndAdmin;
+      right: 80px;
+      margin-right: 0;
+    }
+    .modeBtn:hover .modeOpions {
+      top: 60px;
     }
   }
-} 
+}
+
+// 移动端
+.mobileNavBtn {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  font-size: 2rem;
+  color: $textColor;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+// 手机端导航
+.mobileNavBox {
+  .mobileNavItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: $textColor;
+    font-size: 1rem;
+    font-family: 'dengxian';
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .mobileNavItem:last-child {
+    margin-bottom: 0;
+  }
+  .mobileNavActive {
+    @extend .mobileNavItem;
+    background-color: $hoverColor;
+  }
+  .modeItem {
+    @extend .mobileNavItem;
+    border: 2rem solid #ccc;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+  .mobileNavBtn {
+    display: flex;
+  }
+}
+
+
+// @media screen and (max-width: 768px) {
+//   .nav {
+//     display: none;
+//   }
+//   .mobileNavBtn {
+//     display: flex;
+//   }
+// }
+// @media screen and (min-width: 768px) {
+//   .nav {
+//     display: flex;
+//   }
+//   .mobileNavBtn {
+//     display: none;
+//   }
+// }
+
+
+
+// .banner{
+//   position: relative;
+//   height: 100px;
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   padding-bottom: 150px;
+//   .person{
+//     position: fixed;
+//     top: 0;
+//     width: 100%;
+//     height: 60px;
+//     border: solid 5px blue;
+//     background-color: rgb(237, 227, 247);
+//     box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+//     z-index: 10;
+//     transition: all 0.3s !important;
+//     // display: flex;
+//     // height: 150px;
+//     // position: absolute;
+//     // bottom: 0;
+//     // left: 0;
+//     // right: 0;
+//     // background: #fff;// 采用白色背景隐藏背景延申部分
+//     .avatar{
+//       position: relative;
+//       top: -70px;
+//       margin-left: 40px;
+//       width: 200px;
+//       height: 200px;
+//       // background-image: url('./avatar.jpeg');
+//       // background-size: contain;
+//       border-radius: 20px;
+//     }
+//     .content{
+//       flex: 1;
+//       .title{
+//         overflow: hidden;
+//         height: 50px;
+//         line-height: 50px;
+//         margin-top: 10px;
+//         margin-left: 30px;
+//         font-size: 28px;
+//         text-overflow: ellipsis;
+//         white-space: nowrap;
+//         color: #000;
+//       }
+//       .description{
+//         overflow: hidden;
+//         display: -webkit-box;
+//         -webkit-box-orient: vertical;
+//         -webkit-line-clamp: 2;
+//         height: 64px;
+//         line-height: 32px;
+//         margin-left: 30px;
+//         font-size: 18px;
+//         color: #333;
+//       }
+//     }
+//   }
+// } 
 
 /* 
 多行文本溢出显示省略号

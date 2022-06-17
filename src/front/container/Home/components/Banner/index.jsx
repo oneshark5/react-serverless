@@ -1,26 +1,60 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './index.custom.scss';
 import styles from './style.module.scss'
+import { Drawer } from 'antd';
+import { MenuOutlined, HomeOutlined, BgColorsOutlined, SettingOutlined } from '@ant-design/icons';
 
 const Banner = ({ schema }) => {
   // 从后台获取属性
-  const { attributes = {} } = schema
-  const { title, description, backgroundUrl, backgroundHeight } = attributes
+  const { children = [] } = schema
 
-  const wrapperStyleObj = backgroundUrl ? { 
-    backgroundImage:`url('${backgroundUrl}')`
-   } : {}
+    // 移动端按钮
+    const [visible, setVisible] = useState(false)
 
-  backgroundHeight && (wrapperStyleObj.height = parseInt(backgroundHeight, 10))
   return (
-    <div className='wrapper'>
-      <div className={styles.banner} style={wrapperStyleObj}>
-        <div className={styles.person}>
-          <div className={styles.content}>
-            <div className={styles.title}>{title}</div>
-            <div className={styles.description}>{description}</div>
+    <div>
+      <nav className={styles.nav}>
+        <div className={styles.navContent}>
+
+          <div className={styles.homeBtn}>
+            <HomeOutlined />
           </div>
+
+          {
+            children.map(({ attributes: { title, link } }, index) =>
+              <div className={styles.navBtn}>{title}</div>
+            )
+          }
+
+          {/* 黑白模式切换 */}
+          <div className={styles.modeBtn}>
+            <BgColorsOutlined />
+            <div className={styles.modeOptions}>
+            </div>
+          </div>
+
+          {/* 后台管理 */}
+          <a className={styles.adminBtn}>
+            <SettingOutlined />
+          </a>
         </div>
+      </nav>
+
+      {/* 移动端 */}
+      <div className={styles.mobileNavBtn} onClick={() => setVisible(true)}>
+        <MenuOutlined />
       </div>
+      <Drawer placement="left" onClose={() => setVisible(false)}
+        visible={visible} className='mobile-nav-box'>
+        <div className={styles.mobileNavBox}>
+          {
+            children.map(({ attributes: { title } }, index) => 
+              <div key={index} className={styles.mobileNavItem}> 
+              {title} 
+            </div>)
+          }
+        </div>
+      </Drawer>
     </div>
   )
 }
