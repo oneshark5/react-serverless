@@ -21,7 +21,7 @@ const render = (item, index) => {
 // import React from 'react'
 const Home = () => {
   const homeBoxStyleObj = {
-    backgroundImage:`url('${backgroundUrl}')`
+    backgroundImage: `url('${backgroundUrl}')`
   }
   return (
     <div className={styles.HomeBox} style={homeBoxStyleObj}>
@@ -29,7 +29,11 @@ const Home = () => {
         <title>{title}</title>
       </Helmet>
 
-      <div className={styles.poem}>{poem}</div>
+
+      <div className={styles.box}>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.poem}>{poem}</div>
+      </div>
 
       {
         children.map((index, item) => {
