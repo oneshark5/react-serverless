@@ -28,7 +28,7 @@ const BasicSetting = () => {
 
   const { schema = {}, changeSchema, changePageAttribute } = useStore()
   const { attributes={} } = schema
-  const { title = '' } = attributes
+  const { title = '', poem, backgroundUrl } = attributes
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
@@ -41,9 +41,18 @@ const BasicSetting = () => {
     changeSchema(newSchema)//action
   }
 
+  // 事件处理函数
   // 每次BasicSetting组件重新渲染的时候都会重新生成该方法，浪费性能；采用useCallback优化/useMemo也可以
   const handleTitleChange = useCallback((e) => {
     changePageAttribute('title', e.target.value)
+  },[changePageAttribute])
+
+  const handlePoemChange = useCallback((e) => {
+    changePageAttribute('poem', e.target.value)
+  },[changePageAttribute])
+
+  const handleBackgroundChange = useCallback((e) => {
+    changePageAttribute('backgroundUrl', e.target.value)
   },[changePageAttribute])
 
   return (
@@ -56,6 +65,26 @@ const BasicSetting = () => {
           <Input value={title} onChange={handleTitleChange} />
         </div>
       </div>
+
+      <div className={styles.row}>
+        <div className={styles.title}>
+          每日诗句
+        </div>
+        <div className={styles.content}>
+          <Input value={poem} onChange={handlePoemChange} />
+        </div>
+      </div>
+
+      <div className={styles.row}>
+        <div className={styles.title}>
+          背景图片
+        </div>
+        <div className={styles.content}>
+          <Input value={backgroundUrl} onChange={handleBackgroundChange} />
+        </div>
+      </div>
+
+
       <div className={styles.buttons}>
         <Button type="primary" onClick={handleSaveBtnClick}>
           保存基础配置

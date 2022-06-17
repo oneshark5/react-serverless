@@ -3,10 +3,13 @@ import { Helmet } from "react-helmet";
 import Banner from './components/Banner'
 import Footer from './components/Footer'
 import List from './components/List'
+import styles from './styles.module.scss'
+import './global.custom.scss'
 
 // 获取schema数据
 const pageSchema = parseJsonByString(window.localStorage.schema, {})
-const { children = [], attributes = {} } = pageSchema // 解构
+const { children = [], attributes = {} } = pageSchema
+const { title = '', poem = '', backgroundUrl = '' } = attributes
 
 const map = { Banner, Footer, List }
 
@@ -17,11 +20,17 @@ const render = (item, index) => {
 
 // import React from 'react'
 const Home = () => {
+  const homeBoxStyleObj = {
+    backgroundImage:`url('${backgroundUrl}')`
+  }
   return (
-    <div>
+    <div className={styles.HomeBox} style={homeBoxStyleObj}>
       <Helmet>
-        <title>{attributes?.title || ''}</title>
+        <title>{title}</title>
       </Helmet>
+
+      <div className={styles.poem}>{poem}</div>
+
       {
         children.map((index, item) => {
           return render(index, item)

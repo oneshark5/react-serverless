@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 const Banner = ({ schema }) => {
   // 从后台获取属性
   const { attributes = {} } = schema
-  const { title, description, showSmallPic, smallPicUrl, backgroundUrl, backgroundHeight } = attributes
+  const { title, description, backgroundUrl, backgroundHeight } = attributes
 
   const wrapperStyleObj = backgroundUrl ? { 
     backgroundImage:`url('${backgroundUrl}')`
@@ -15,14 +15,10 @@ const Banner = ({ schema }) => {
     <div className='wrapper'>
       <div className={styles.banner} style={wrapperStyleObj}>
         <div className={styles.person}>
-          {
-            (showSmallPic && smallPicUrl) ? <img className={styles.avatar} src={smallPicUrl} alt='oneshark' /> : null
-          }
           <div className={styles.content}>
             <div className={styles.title}>{title}</div>
             <div className={styles.description}>{description}</div>
           </div>
-
         </div>
       </div>
     </div>
