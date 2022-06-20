@@ -1,5 +1,5 @@
-@import '../../../styles/base.scss';
-@import '../../../styles/style.scss';
+@import '../../styles/base.scss';
+@import '../../styles/style.scss';
 
 .card {
   margin-bottom: $space;
@@ -16,11 +16,12 @@
   transform: scale(1.04);
 }
 
-// .center {
-//   display: flex !important;
-//   justify-content: center !important;
-//   align-items: center !important;
-// }
+.center {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
 
 @media screen and (max-width: 1240px) {
   .card {

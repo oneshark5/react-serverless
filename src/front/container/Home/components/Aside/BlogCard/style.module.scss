@@ -1,0 +1,41 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  // 去掉list默认样式，li前面的点、内边距padding、外边距margin
+  margin: 0;
+  padding: 0 0 10px 10px;
+  list-style-type: none;
+
+  .item {
+    width: 20%;
+    margin-top: 10px;
+    .link{
+      color: #333;
+      text-decoration: none;
+    }
+
+    .title {
+      overflow: hidden;//超出文本隐藏
+      margin: 0;
+      padding: 0 10px;
+      line-height: 32px;
+      font-size: 16px;
+      font-weight: normal;
+      white-space: nowrap;// 溢出不换行
+      text-overflow: ellipsis;// 溢出用省略号显示
+    }
+    .desc {
+      overflow: hidden;
+      margin: 0;
+      padding: 0 10px;
+      line-height: 24px;
+      font-size: 14px;
+      font-weight: normal;
+      color: #777;
+      text-overflow: ellipsis;
+      display: -webkit-box;// 作为弹性伸缩盒子模型显示
+      -webkit-box-orient: vertical;//设置伸缩盒子的子元素排列方式--从上到下垂直排列
+      -webkit-line-clamp: 4; //现实的行
+    }
+  }
+}

@@ -1,29 +1,27 @@
 import React from 'react'
+import BlogCard from './BlogCard'
 import styles from './style.module.scss'
+import '../styles.scss'
+
 
 const Aside = ({ schema }) => {
+
+  const map = { BlogCard }
   // 从后台获取属性
   const { children = [] } = schema
+  // 渲染成组件
+  const render = (item, index) => {
+    const Component = map[item.title]
+    return Component ? <Component key={index} schema={item} /> : null;
+  }
 
   return (
-    <div className='wrapper'>
-      <ul className={styles.list}>
-
-        {
-          children.map((item, index) => {
-            const { attributes = {} } = item
-            const { title, description, link } = attributes
-            return (
-              <li className={styles.item} key={index}>
-                <a className={styles.link} href={link} target="_blank" rel='noreferrer'>
-                  <h4 className={styles.title}>{title || '暂无标题'}</h4>
-                  <p className={styles.desc}>{description || '暂无描述'}</p>
-                </a>
-              </li>
-            )
-          })
-        }
-      </ul>
+    <div className={styles.aside}>
+      {
+        children.map(({attributes}, index ) => {
+          return render(attributes, index)
+        })
+      }
     </div>
   )
 }

@@ -1,7 +1,9 @@
 import React from 'react'
 import dayjs from 'dayjs'
-import Card from './Card'
+import Card from '../Card'
 import styles from './style.module.scss'
+import '../styles.scss'
+
 
 
 const Section = ({ schema }) => {
@@ -9,8 +11,8 @@ const Section = ({ schema }) => {
   const { children = [] } = schema
 
   return (
-    <div className={styles.main}>
-      <div className={styles.center}>
+    <div className='main'>
+      <div className='center'>
 
         <div className={styles.section} >
           {
@@ -18,7 +20,7 @@ const Section = ({ schema }) => {
               const { attributes = {} } = item
               const { title, description, tags, createTime, link } = attributes
               return (
-                <Card className={styles.card} key={index}>
+                <Card className={styles.card} key={index} >
                   <div className={styles.title}>{title}</div>
                   <p className={styles.description}>{description}</p>
                   <div className={styles.info}>
@@ -28,7 +30,6 @@ const Section = ({ schema }) => {
 
                     </div>
                   </div>
-
                 </Card>
               )
             })
