@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './style.module.scss'
 
-const List = ({ schema }) => {
+const Aside = ({ schema }) => {
   // 从后台获取属性
   const { children = [] } = schema
 
@@ -12,11 +12,10 @@ const List = ({ schema }) => {
         {
           children.map((item, index) => {
             const { attributes = {} } = item
-            const { title, description, imageUrl, link } = attributes
+            const { title, description, link } = attributes
             return (
               <li className={styles.item} key={index}>
                 <a className={styles.link} href={link} target="_blank" rel='noreferrer'>
-                  <img className={styles.img} src={imageUrl} alt={title} />
                   <h4 className={styles.title}>{title || '暂无标题'}</h4>
                   <p className={styles.desc}>{description || '暂无描述'}</p>
                 </a>
@@ -28,4 +27,4 @@ const List = ({ schema }) => {
     </div>
   )
 }
-export default List
+export default Aside

@@ -1,7 +1,7 @@
 import { Input, Button } from 'antd'
 import styles from './style.module.scss'
 
-const List = (props) => {
+const Aside = (props) => {
   console.log(props);
   const { children = [], changeChildren } = props // 给一个空对象，避免外部传的时候边界没处理
 
@@ -37,7 +37,8 @@ const List = (props) => {
         type='primary'
         className={styles.button}
         onClick={addItemToChildren}
-      >新增列表项</Button>
+      >新增功能</Button>
+      
 
       {/* 页面有几个区块由外部schema里的children决定，由children循环生成 */}
       {
@@ -64,15 +65,6 @@ const List = (props) => {
               />
             </div>
             <div className={styles['area-row']}>
-              <span className={styles.label}>图片</span>
-              <Input
-                value={imageUrl}
-                className={styles.content}
-                placeholder='请输入图片地址'
-                onChange={(e) => { changeChildrenItem(index, 'imageUrl', e.target.value) }}
-              />
-            </div>
-            <div className={styles['area-row']}>
               <span className={styles.label}>链接</span>
               <Input
                 value={link}
@@ -85,8 +77,7 @@ const List = (props) => {
         ))
       }
 
-
     </div>
   )
 }
-export default List
+export default Aside

@@ -1,0 +1,139 @@
+@import '../../styles/base.scss';
+@import '../../styles/style.scss';
+
+
+.main {
+  min-height: calc(100vh - #{$footerHeight + 2 * $space});
+
+  .center {
+    width: $centerWidth;
+    margin: auto;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+
+
+.section {
+  width: calc(100% - #{$asideWidth});
+  padding-right: $space;
+  box-sizing: border-box;
+}
+
+.tagBase {
+  padding: 0 10px;
+  border-radius: 10px;
+  color: $textColor;
+  height: 30px;
+  font-size: 18px;
+  background-color: rgb(87, 104, 160);
+  @extend .hover;
+}
+
+.card {
+  margin-bottom: $space;
+  border-radius: $bigRadius;
+  overflow: hidden;
+  user-select: none;
+  background-color: $themeColor1;
+  color: $textColor;
+  padding: $space;
+  @extend .trans;
+  .title {
+    margin: 0;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: $textColor;
+  }
+
+  .description {
+    margin: 0;
+    height: 80px;
+    text-indent: 2em;
+    color: $textColor;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .info {
+    position: relative;
+    height: 50px;
+    
+    .date {
+      @extend .tagBase;
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tags {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      max-width: 800px;
+      height: 30px;
+      @extend .tagBase;
+      display: inline-block;
+      margin-right: 20px;
+      text-align: center;
+      line-height: 30px;
+
+      .tag:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.card:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1240px) {
+  .main {
+    min-height: calc(100vh - 1rem);
+    .center {
+      width: 100vw;
+      .section {
+        width: 100vw;
+        padding: 0 0.5rem;
+      }
+    }
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    .title {
+      height: 3rem;
+      line-height: 1rem;
+      font-size: 1rem;
+    }
+
+    .description {
+      padding-bottom: 0.3rem;
+      height: 3rem;
+      text-indent: 1em;
+      font-size: 0.5rem;
+      text-overflow: ellipsis;
+    }
+
+    .info {
+      display: none;
+    }
+  }
+}
