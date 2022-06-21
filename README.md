@@ -72,14 +72,15 @@
     {
       name:'Footer',
       attributes:{
-        copyright:'',
         record:''
       },
       children:[{
         name:'Item',
         attributes:{
-          title:'Vue3 系统入门与项目实战',
-          link:''
+          title:'个人博客系统',
+          demo:'源代码',
+          demoLink:'',
+          tags:'React',
         },
         children:[]
       }]

@@ -5,12 +5,11 @@ import styles from './style.module.scss'
 
 const Aside = ({ schema }) => {
   // 从Aside组件获取属性
-  const { title, heightCard,  description, imageUrl, tags, icon, link,  } = schema
-  console.log(schema);
+  // const { title, heightCard,  description, imageUrl, tags, icon, link,  } = schema
+  // console.log(schema);
 
   return (
     <div className={styles.aside}>
-    11111111111
       {/* <ul className={styles.list}>
         {
           children.map((item, index) => {
