@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import Banner from './container/Home/components/Banner'
 import Footer from './container/Home/components/Footer'
 import FrontRouter from './container/FrontRouter'
-import styles from './styles.module.scss'
+import styles from './App.module.scss'
 import './global.custom.scss'
 
 // 获取schema数据
@@ -33,6 +33,12 @@ const App = () => {
       <Helmet>
         <title>{title}</title>
       </Helmet>
+
+      {/* <div className={styles.box}>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.poem}>{poem}</div>
+      </div> */}
+
       {/* 单独生成组件(●'◡'●) */}
       <Banner key='0001' schema={navCom} />
       <FrontRouter />

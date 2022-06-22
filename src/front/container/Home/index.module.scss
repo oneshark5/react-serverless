@@ -1,10 +1,4 @@
 @import './styles/base.scss';
-.HomeBox{
-  background-position: center 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: none;
   .box {
     color: $textColor;
     height: $topTitleHeight;
@@ -26,6 +20,9 @@
       font-size: 28px;
     }
   }
+  .body{
+    display: flex;
+  }
 
   @media screen and (max-width: 1240px) {
     .box {
@@ -41,4 +38,3 @@
       }
     }
   }
-}

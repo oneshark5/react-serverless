@@ -7,7 +7,7 @@ import Home from '../Home'
 import Link from '../Link';
 import Resume from '../Resume';
 import Say from '../Say';
-import styles from './index.scss'
+import styles from './index.module.scss'
 
 /**
  * 思路：这个大的
@@ -15,7 +15,7 @@ import styles from './index.scss'
  */
 function Router() {
   return (
-    <div className={styles.main}>
+    <main className={styles.main}>
       <div className={styles.center}>
         <Routes>
           {/* 就这一个最重要 */}
@@ -28,7 +28,7 @@ function Router() {
           <Route path='/resume' element={<Resume/>} />
         </Routes>
       </div>
-    </div>
+    </main>
   )
 }
 export default Router

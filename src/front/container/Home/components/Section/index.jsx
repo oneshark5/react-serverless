@@ -4,7 +4,7 @@ import Card from '../Card'
 import { Pagination } from 'antd';
 import './pagination.custom.scss';
 import styles from './style.module.scss'
-import '../styles.scss'
+
 
 
 
@@ -13,34 +13,30 @@ const Section = ({ schema }) => {
   const { children = [] } = schema
 
   return (
-    <div className='main'>
-      <div className='center'>
 
-        <div className={styles.section} >
-          {
-            children.map((item, index) => {
-              const { attributes = {} } = item
-              const { title, description, tags, createTime, link } = attributes
-              return (
-                <Card className={styles.card} key={index} >
-                  <div className={styles.title}>{title}</div>
-                  <p className={styles.description}>{description}</p>
-                  <div className={styles.info}>
-                    <span className={styles.date}>{dayjs(createTime).format('YYYY-MM-DD')}</span>
-                    <span className={styles.tags}>{tags}</span>
-                  </div>
-                </Card>
-              )
-            })
-          }
+    <div className={styles.section} >
+      {
+        children.map((item, index) => {
+          const { attributes = {} } = item
+          const { title, description, tags, createTime, link } = attributes
+          return (
+            <Card className={styles.card} key={index} >
+              <div className={styles.title}>{title}</div>
+              <p className={styles.description}>{description}</p>
+              <div className={styles.info}>
+                <span className={styles.date}>{dayjs(createTime).format('YYYY-MM-DD')}</span>
+                <span className={styles.tags}>{tags}</span>
+              </div>
+            </Card>
+          )
+        })
+      }
 
-          {/* 分页 */}
-          <div id='myPagination' className={styles.pageBox}>
-            <Pagination defaultCurrent={1} total={50} />
-          </div>
-          
-        </div>
+      {/* 分页 */}
+      <div id='myPagination' className={styles.pageBox}>
+        <Pagination defaultCurrent={1} total={50} />
       </div>
+
     </div>
   )
 }

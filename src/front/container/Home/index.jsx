@@ -4,8 +4,8 @@ import Banner from './components/Banner'
 import Section from './components/Section'
 import Aside from './components/Aside'
 import Footer from './components/Footer'
-import styles from './styles.module.scss'
-import './global.custom.scss'
+import styles from './index.module.scss'
+// import './global.custom.scss'
 
 // 获取schema数据
 const pageSchema = parseJsonByString(window.localStorage.schema, {})
@@ -21,16 +21,14 @@ const render = (item, index) => {
 }
 
 // 把中间组件取出
-const midComs = children.filter(item => item.name!='Banner' && item.name!='Footer')
+const midComs = children.filter(item => item.name != 'Banner' && item.name != 'Footer')
 
 // import React from 'react'
 const Home = () => {
-  const homeBoxStyleObj = {
-    backgroundImage: `url('${backgroundUrl}')`
-  }
+
 
   return (
-    <div className={styles.HomeBox} style={homeBoxStyleObj}>
+    <>
       <Helmet>
         <title>{title}</title>
       </Helmet>
@@ -41,13 +39,14 @@ const Home = () => {
       </div>
 
       {/* 各个组件：筛选组件，把第一个和最后一个去掉===>想渲染特定的组件 */}
-      {
-        midComs.map((index, item) => {
-          return render(index, item)
-        })
-      }
-
-    </div>
+      <div className={styles.body}>
+        {
+          midComs.map((index, item) => {
+            return render(index, item)
+          })
+        }
+      </div>
+    </>
   )
 }
 export default Home
