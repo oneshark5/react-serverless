@@ -12,6 +12,7 @@ const pageSchema = parseJsonByString(window.localStorage.schema, {})
 const { children = [], attributes = {} } = pageSchema
 const { title = '', poem = '', backgroundUrl = '' } = attributes
 
+
 const map = { Banner, Footer, Section, Aside }
 
 const render = (item, index) => {
@@ -19,11 +20,15 @@ const render = (item, index) => {
   return Component ? <Component key={index} schema={item} /> : null;
 }
 
+// 把中间组件取出
+const midComs = children.filter(item => item.name!='Banner' && item.name!='Footer')
+
 // import React from 'react'
 const Home = () => {
   const homeBoxStyleObj = {
     backgroundImage: `url('${backgroundUrl}')`
   }
+
   return (
     <div className={styles.HomeBox} style={homeBoxStyleObj}>
       <Helmet>
@@ -35,12 +40,13 @@ const Home = () => {
         <div className={styles.poem}>{poem}</div>
       </div>
 
-      {/* 各个组件 */}
+      {/* 各个组件：筛选组件，把第一个和最后一个去掉===>想渲染特定的组件 */}
       {
-        children.map((index, item) => {
+        midComs.map((index, item) => {
           return render(index, item)
         })
       }
+
     </div>
   )
 }

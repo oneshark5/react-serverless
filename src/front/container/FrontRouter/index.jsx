@@ -9,6 +9,10 @@ import Resume from '../Resume';
 import Say from '../Say';
 import styles from './index.scss'
 
+/**
+ * 思路：这个大的
+ * 
+ */
 function Router() {
   return (
     <div className={styles.main}>

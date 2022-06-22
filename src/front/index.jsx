@@ -4,10 +4,11 @@ import 'normalize.css'
 import './style.scss'
 import FrontRouter from './container/FrontRouter'
 import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-      <FrontRouter/>
+      <App/>
     </BrowserRouter>
 );
