@@ -70,6 +70,18 @@
       }]
     },
     {
+      name:'Pagination',
+      attributes:{},
+      children:[{
+        name:'Item',
+        attributes:{
+          defaultPageSize:'8',
+          total:'20',
+        },
+        children:[]
+      }]
+    },
+    {
       name:'Footer',
       attributes:{
         record:''
