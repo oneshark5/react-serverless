@@ -2,9 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client';
 import 'normalize.css'
 import './style.scss'
-import Home from './container/Home'
+import FrontRouter from './container/FrontRouter'
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Home/>
+    <BrowserRouter>
+      <FrontRouter/>
+    </BrowserRouter>
 );
