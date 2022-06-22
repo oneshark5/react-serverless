@@ -37,18 +37,23 @@ const Wrapper = () => {
           >
             <Menu.Item key="admin-home">
               <NavLink to='/'>
-                <span className='iconfont'>&#xe69b;</span> 首页内容管理
+                <span className='iconfont'>&#xe69b;</span> 首页管理
               </NavLink>
             </Menu.Item>
             <Menu.Item key="admin-setting">
               <NavLink to='/setting'>
-              <span className='iconfont'>&#xe69b;</span> 基础内容配置
+              <span className='iconfont'>&#xe69b;</span> 基础配置
+              </NavLink>
+            </Menu.Item>
+            <Menu.Item key="admin-articles">
+              <NavLink to='/articles'>
+              <span className='iconfont'>&#xe69b;</span> 文章撰写
               </NavLink>
             </Menu.Item>
             <Menu.Item
               key="admin-back"
               onClick={handleHomePageRedirect}>
-              <span className='iconfont' >&#xe7e5;</span> 返回用户页面
+              <span className='iconfont' >&#xe7e5;</span> 返回前台
             </Menu.Item>
           </Menu>
         </Sider>
