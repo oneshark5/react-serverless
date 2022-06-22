@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import Banner from './components/Banner'
 import Section from './components/Section'
 import Aside from './components/Aside'
-import Pagination from './components/MyPagination'
 import Footer from './components/Footer'
 import styles from './styles.module.scss'
 import './global.custom.scss'
@@ -13,7 +12,7 @@ const pageSchema = parseJsonByString(window.localStorage.schema, {})
 const { children = [], attributes = {} } = pageSchema
 const { title = '', poem = '', backgroundUrl = '' } = attributes
 
-const map = { Banner, Footer, Section, Aside, Pagination }
+const map = { Banner, Footer, Section, Aside }
 
 const render = (item, index) => {
   const Component = map[item.name]

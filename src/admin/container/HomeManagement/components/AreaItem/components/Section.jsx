@@ -38,7 +38,6 @@ const Section = (props) => {
         className={styles.button}
         onClick={addItemToChildren}
       >新增文章</Button>
-      
 
       {/* 页面有几个区块由外部schema里的children决定，由children循环生成 */}
       {

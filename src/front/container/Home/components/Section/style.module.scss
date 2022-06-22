@@ -6,6 +6,16 @@
   padding-right: $space;
   box-sizing: border-box;
 }
+.pageBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  height: 50px;
+  user-select: none;
+  text-align: center;
+  
+}
 
 .tagBase {
   padding: 0 10px;
@@ -114,6 +124,9 @@
       .info {
         display: none;
       }
+    }
+    .pageBox {
+      height: 30rem;
     }
   }
 }

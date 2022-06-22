@@ -2,9 +2,16 @@
 @import '../../styles/style.scss';
 
 #myPagination {
+
   .ant-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
     color: $textColor;
     height: 100%;
+    width: 80%;
+    list-style:none;
   }
 
   .ant-pagination .ant-pagination-prev,
@@ -17,6 +24,8 @@
   .ant-pagination .ant-pagination-item,
   .ant-pagination .ant-pagination-jump-prev,
   .ant-pagination .ant-pagination-jump-next {
+
+
     background-color: $themeColor1;
     border: none;
     border-radius: $midRadius;
