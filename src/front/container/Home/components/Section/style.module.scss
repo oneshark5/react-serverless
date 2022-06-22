@@ -126,7 +126,9 @@
       }
     }
     .pageBox {
-      height: 30rem;
+      height: 5rem;
+      // 不居中，改改右内边距吧
+      padding-right:3rem;
     }
   }
 }
