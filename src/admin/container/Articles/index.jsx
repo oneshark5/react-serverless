@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PageHeader, Steps, Button, Form, Input, Select, message, notification } from 'antd';
 import styles from './style.module.scss'
 import { parseJsonByString } from '../../../common/utils';
-import { getChangeSchemaAction, getChangePageAttributeAction } from '../../store/action';
+import { getChangePageChildAction, getChangeSchemaAction, getChangePageAttributeAction } from '../../store/action';
+import { cloneDeep } from 'lodash' 
 
 const { Step } = Steps;
 
 
-// store中存取数据（把使用store的逻辑放在一起）
+// ⭐store中存取数据（把使用store的逻辑放在一起）
 const useStore = () => {
   const dispatch = useDispatch()
   // 使用redux，采用useSelector拿到仓库的数据
+  const pageChild = useSelector(state => state.common.schema.children || {})
   const schema = useSelector((state) => {
     return state.common.schema
   })
@@ -21,29 +23,40 @@ const useStore = () => {
     // 调用dispatch
     dispatch(getChangeSchemaAction(schema))
   }
+
+  const changePageChild = (tempPageChild) => {
+    dispatch(getChangePageChildAction(tempPageChild))
+  }
+
   const changePageAttribute = (key, value) => {
     dispatch(getChangePageAttributeAction(key, value))
   }
-  return { schema, changeSchema, changePageAttribute }
+
+  return { schema, pageChild, changePageChild, changeSchema, changePageAttribute }
 }
 
-const BasicSetting = () => {
+
+// ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+const Articles = () => {
+  const { pageChild, schema = {}, changeSchema, changePageChild, changePageAttribute } = useStore()
 
   const [current, setCurrent] = useState(0)
+  const [tempPageChild, setTempPageChild] = useState(cloneDeep(pageChild))//临时变量控制着内部弹窗组件选择框的内容
 
-  const { schema = {}, changeSchema, changePageAttribute } = useStore()
+  
   const { attributes = {} } = schema
   const { title = '', poem, backgroundUrl } = attributes
 
   const layout = {
     //label和input在一行所占比例
-    labelCol: { span: 2 },
-    wrapperCol: { span: 22 }
+    labelCol: { span: 4 },
+    wrapperCol: { span: 20 }
   }
 
   const BlogsForm = useRef(null)
 
 
+  // ⭐事件处理函数
   const handleNext = () => {
     // 校验后才能下一步
     if (current === 0) {
@@ -55,8 +68,10 @@ const BasicSetting = () => {
         console.log(error);
       })
     } else {
-        setCurrent(current + 1)
+      setCurrent(current + 1)
     }
+    // 临时保存
+    changePageChild(tempPageChild)
   }
   const handlePrecious = () => {
     setCurrent(current - 1)
@@ -107,9 +122,9 @@ const BasicSetting = () => {
             {...layout} ref={BlogsForm} name="basic"
           >
             <Form.Item
-            ref={BlogsForm}
+              ref={BlogsForm}
               label="文章标题"
-              name="title"
+              name="articleTitle"
               rules={[
                 {
                   required: true,
@@ -117,12 +132,25 @@ const BasicSetting = () => {
                 },
               ]}
             >
-              <Input />
+              <Input  />
             </Form.Item>
 
             <Form.Item
               label="文章标签"
-              name="tabs"
+              name="articleTabs"
+              rules={[
+                {
+                  required: true,
+                  message: '请设置相关标签!',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              label="创建时间"
+              name="createTime"
               rules={[
                 {
                   required: true,
@@ -135,7 +163,6 @@ const BasicSetting = () => {
           </Form>
         </div>
       </div>
-
 
       <div style={{ marginTop: '50px' }}>
         {
@@ -155,4 +182,4 @@ const BasicSetting = () => {
   )
 };
 
-export default BasicSetting
+export default Articles
