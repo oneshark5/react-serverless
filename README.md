@@ -13,6 +13,7 @@
 
 <!-- 自定义的schema结构 -->
 
+```json
 {
 name:'Page',
 attributes:{
@@ -36,6 +37,7 @@ link:''
 }
 ]
 }
+```
 
 设置协议
 
@@ -73,7 +75,6 @@ link:''
           description:'内容描述',
           imageUrl:'',
           link:''
-
         },
         children:[]
       }]
@@ -89,6 +90,34 @@ link:''
         },
         children:[]
       }]
+    },
+    {
+      name:'ArticleDetail',
+      attributes:{},
+      children:[
+        {
+          name:'Content',
+          attributes:{},
+          children:[{
+            name:'Item',
+            attributes:{
+              title:'解决webpack5打包CSS图片路径不正确问题',
+              detail:'内容详情',
+              category:"前端基础",
+              createTime:'2022-06-23',
+              tags:"Webpack5,JavaScript",
+              publishState:"0",
+            },
+            children:[]
+          }]
+        },
+        {
+          // 预留的评论区
+          name:"Message",
+          attributes:{},
+          children:[]
+        }
+      ],
     },
     {
       name:'Footer',
@@ -108,34 +137,8 @@ link:''
     },
   ],
 },
-{
-  name:'Articles',
-  attributes:{},
-  children:[
-    {
-      name:'Content',
-      attributes:{},
-      children:[{
-        name:'Item',
-        attributes:{
-          articleTitle:'解决webpack5打包CSS图片路径不正确问题',
-          articleCategories:"前端基础",
-          createTime:'2022-06-23',
-          articleDetail:'内容详情',
-          articleTags:"Webpack5,JavaScript",
-          publishState:"0",
-        },
-        children:[]
-      }]
-    },
-    {
-      // 预留的评论区
-      name:"Message",
-      attributes:{},
-      children:[]
-    }
-  ],
-}
+
+
 ```
 
 图库地址

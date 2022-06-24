@@ -1,19 +1,12 @@
-@import './container/Home/styles/base.scss';
-.AppBox{
-  background-position: center 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  // background-image: none;
-  
+@import '../Home/styles/base.scss';
   .box {
     color: $textColor;
-    height: $topTitleHeight;
+    height: $articleHeight;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    user-select: none;
+    user-select: text;
     width: $layoutWidth;
     margin: 0 auto;
   
@@ -22,10 +15,9 @@
       font-weight: 700;
       text-shadow: 4px 4px 10px $footerBg;
     }
-  
-    .poem {
-      font-size: 28px;
-    }
+  }
+  .body{
+    display: block;
   }
 
   @media screen and (max-width: 1240px) {
@@ -42,4 +34,3 @@
       }
     }
   }
-}

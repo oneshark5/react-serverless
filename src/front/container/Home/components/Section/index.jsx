@@ -1,9 +1,10 @@
 import React from 'react'
 import dayjs from 'dayjs'
-import Card from '../Card'
+import Card from '../../../Card'
 import { Pagination } from 'antd';
 import './pagination.custom.scss';
 import styles from './style.module.scss'
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -20,7 +21,8 @@ const Section = ({ schema }) => {
           const { attributes = {} } = item
           const { title, description, tags, createTime, link } = attributes
           return (
-            <Card className={styles.card} key={index} >
+            <NavLink  key={index} to={link}>
+            <Card className={styles.card} >
               <div className={styles.title}>{title}</div>
               <p className={styles.description}>{description}</p>
               <div className={styles.info}>
@@ -28,6 +30,7 @@ const Section = ({ schema }) => {
                 <span className={styles.tags}>{tags}</span>
               </div>
             </Card>
+            </NavLink>
           )
         })
       }

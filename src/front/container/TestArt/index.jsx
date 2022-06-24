@@ -1,45 +1,36 @@
 import { parseJsonByString } from "../../../common/utils"
-import { Helmet } from "react-helmet";
-import Banner from './components/Banner'
-import Section from './components/Section'
-import Aside from './components/Aside'
+
+import ArticleDetail from './component/ArticleDetail'
 import styles from './index.module.scss'
 // import './global.custom.scss'
 
 // 获取schema数据
 const pageSchema = parseJsonByString(window.localStorage.schema, {})
-const { children = [], attributes = {} } = pageSchema
-const { title = '', poem = '', backgroundUrl = '' } = attributes
+const { children = [] } = pageSchema
 
-
-const map = { Section, Aside }
-
+const map = { ArticleDetail, }
 const render = (item, index) => {
   const Component = map[item.name]
   return Component ? <Component key={index} schema={item} /> : null;
 }
 
 // 把中间组件取出
-const midComs = children.filter(item => item.name != 'Banner' && item.name != 'Footer')
+const articleComs = children.filter(item => item.name == 'ArticleDetail')
+console.log(articleComs);
+const { title = '', createTime = '', tags = '' } = articleComs[0].children[0].attributes
 
 // import React from 'react'
 const Home = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
-
       <div className={styles.box}>
         <div className={styles.title}>{title}</div>
-        <div className={styles.poem}>{poem}</div>
       </div>
 
-      {/* 各个组件：筛选组件，把第一个和最后一个去掉===>想渲染特定的组件 */}
       <div className={styles.body}>
         {
-          midComs.map((index, item) => {
+          articleComs.map((index, item) => {
             return render(index, item)
           })
         }
