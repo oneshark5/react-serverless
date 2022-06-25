@@ -45,11 +45,19 @@ const Wrapper = () => {
               <span className='iconfont'>&#xe69b;</span> 基础配置
               </NavLink>
             </Menu.Item>
+
             <Menu.Item key="admin-articles">
               <NavLink to='/articles'>
               <span className='iconfont'>&#xe69b;</span> 文章撰写
               </NavLink>
             </Menu.Item>
+
+            <Menu.Item key="admin-about">
+              <NavLink to='/admin/about'>
+              <span className='iconfont'>&#xe69b;</span> 关于
+              </NavLink>
+            </Menu.Item>
+
             <Menu.Item
               key="admin-back"
               onClick={handleHomePageRedirect}>

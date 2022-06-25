@@ -43,7 +43,7 @@ link:''
 
 <!-- 对前面的schema结构进行精简 -->
 <!-- 首页配置化 -->
-
+⭐拖拽：用于导航栏和首页的Aside侧边栏⭐
 ```json
 {
   name:'Page',
@@ -51,6 +51,7 @@ link:''
     title:'鲨鱼小站'
     poem:'',
     backgroundUrl:'',
+
   },
   children:[
     {
@@ -118,6 +119,14 @@ link:''
           children:[]
         }
       ],
+    },
+    {
+      name:'About',
+      attributes:{
+        title:"关于",
+        content:"md语法的内容"
+      },
+      children:[]
     },
     {
       name:'Footer',
