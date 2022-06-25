@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import './index.css';
+import { useNavigate } from 'react-router-dom';
 
 // 自己定义个内容用于测试
 const data = {
@@ -28,6 +29,7 @@ const data = {
 }
 
 function About() {
+  const navigate = useNavigate()
   // 配制marked和highlight
   useEffect(() => {
     // 配置highlight
@@ -47,14 +49,18 @@ function About() {
   }, []);
   // 转到编辑页面
   const turnToAboutEdit = isMe => {
-
+    navigate(`/admin/aboutEdit`)
   };
 
   return (
     <>
       <div className='aboutType'>
         <div className='meType'>
-          <div className='editAboutBtn'>
+          <div className='editAboutBtn'
+            onClick={() => {
+              turnToAboutEdit()
+            }}
+          >
             <Button type="primary">编辑</Button>
           </div>
           <span className="aboutTitle">关于我</span>
