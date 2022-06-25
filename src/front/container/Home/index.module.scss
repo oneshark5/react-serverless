@@ -1,26 +1,34 @@
 @import './styles/base.scss';
-  .box {
-    color: $textColor;
-    height: $topTitleHeight;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    user-select: none;
-    width: $layoutWidth;
-    margin: 0 auto;
+  // .box {
+  //   color: $textColor;
+  //   height: $topTitleHeight;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   flex-direction: column;
+  //   user-select: none;
+  //   width: $layoutWidth;
+  //   margin: 0 auto;
   
-    .title {
-      font-size: 50px;
-      font-weight: 700;
-      text-shadow: 4px 4px 10px $footerBg;
-    }
+  //   .title {
+  //     font-size: 50px;
+  //     font-weight: 700;
+  //     text-shadow: 4px 4px 10px $footerBg;
+  //   }
   
-    .poem {
-      font-size: 28px;
-    }
+  //   .poem {
+  //     font-size: 28px;
+  //   }
+  // }
+  // .body{
+  //   display: flex;
+  // }
+
+  .homeTitle {
+    height: 100vh;
   }
-  .body{
+  
+  .body {
     display: flex;
   }
 
