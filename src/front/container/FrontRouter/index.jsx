@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom';
 import About from '../About';
+import ArtDetail from '../ArtDetail';
 import Camera from '../Camera';
 import Categories from '../Categories';
 import Home from '../Home'
@@ -20,6 +21,7 @@ function Router() {
       <div className={styles.center}>
         <Routes>
           {/* 就这一个最重要 */}
+          <Route path='/artDetail' element={<ArtDetail/>} />
           <Route path='/' element={<Home/>} />
           <Route path='/testArt' element={<TestArt/>} />
           <Route path='/categories' element={<Categories/>} />
