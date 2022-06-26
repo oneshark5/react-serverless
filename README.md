@@ -43,7 +43,9 @@ link:''
 
 <!-- 对前面的schema结构进行精简 -->
 <!-- 首页配置化 -->
-⭐拖拽：用于导航栏和首页的Aside侧边栏⭐
+
+⭐ 拖拽：用于导航栏和首页的 Aside 侧边栏 ⭐
+
 ```json
 {
   name:'Page',
@@ -147,9 +149,21 @@ link:''
       }]
     },
   ],
-  content:[{
-    
-  }]
+  content:[
+    {
+      name:'aboutContent',
+      children:[
+        // 多条内容
+      ]
+    },
+    {
+      name:'artContent',
+      children:[
+        // 多条内容
+      ]
+    },
+
+  ]
 },
 
 
@@ -166,3 +180,26 @@ link:''
 
 Aside 思路
 在大组件下渲染成组件，形成组件后，各自组件自己引用属性去渲染页面。
+
+飞鸟作品数据
+
+```json
+{
+  cover: "https://img.lzxjack.top/img/202203292224441.webp"
+  descr: "使用React写的博客展示页面。"
+  link: "https://github.com/lzxjack/blog-show"
+  name: "个人博客页面"
+  order: "1"
+  _id: "2d44d6c2612a44b90794f8ef729fe486"
+  _openid: "9bf44da2dbb8473da1fcf4f591cb82ff"
+
+
+  cover: "https://img.lzxjack.top/img/202203292224442.webp"
+  descr: "使用React+腾讯云开发写的博客后台管理页面。"
+  link: "https://react-blog-admin-8fo571wf24c87f9-1304393382.ap-shanghai.app.tcloudbase.com/admin/home"
+  name: "个人博客后台管理"
+  order: "2"
+  _id: "14139e12612a4585078cfaf732694261"
+  _openid: "9bf44da2dbb8473da1fcf4f591cb82ff"
+}
+```

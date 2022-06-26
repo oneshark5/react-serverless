@@ -6,7 +6,7 @@ import Camera from '../Camera';
 import Categories from '../Categories';
 import Home from '../Home'
 import Link from '../Link';
-import Resume from '../Resume';
+import Show from '../Show';
 import Say from '../Say';
 import TestArt from '../TestArt';
 import styles from './index.module.scss'
@@ -22,14 +22,14 @@ function Router() {
         <Routes>
           {/* 就这一个最重要 */}
           <Route path='/artDetail' element={<ArtDetail/>} />
-          <Route path='/' element={<Home/>} />
           <Route path='/testArt' element={<TestArt/>} />
           <Route path='/categories' element={<Categories/>} />
           <Route path='/say' element={<Say/>} />
           <Route path='/camera' element={<Camera/>} />
           <Route path='/link' element={<Link/>} />
           <Route path='/about' element={<About/>} />
-          <Route path='/resume' element={<Resume/>} />
+          <Route path='/show' element={<Show/>} />
+          <Route path='/' element={<Home/>} />
         </Routes>
       </div>
     </main>
