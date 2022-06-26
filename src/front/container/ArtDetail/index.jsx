@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../Layout'
-import AboutMe from './AboutMe'
+import ArtContent from './ArtContent'
 
 
 
@@ -67,14 +67,11 @@ const data = {
       
   `
 }
-const tag = {
-  
-}
 
 export default function ArtDetail() {
   return (
     <Layout title='Web Workers：在后台线程执行指定脚本'  >
-      <AboutMe content={data.testContent} />
+      <ArtContent content={data.testContent} />
     </Layout>
   )
 }

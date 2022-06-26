@@ -51,7 +51,9 @@ link:''
     title:'鲨鱼小站'
     poem:'',
     backgroundUrl:'',
-
+    // ⭐⭐⭐临时使用
+    aboutContent:'',
+    artContent:''
   },
   children:[
     {
@@ -145,6 +147,9 @@ link:''
       }]
     },
   ],
+  content:[{
+    
+  }]
 },
 
 

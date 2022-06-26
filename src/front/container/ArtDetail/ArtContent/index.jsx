@@ -1,7 +1,7 @@
 import React from 'react';
 import MarkDown from '../../MarkDown';
 
-const AboutMe = ({ content, className }) => {
+const ArtContent = ({ content, className }) => {
   
   return (
     <div className={className}>
@@ -10,4 +10,4 @@ const AboutMe = ({ content, className }) => {
   );
 };
 
-export default AboutMe;
+export default ArtContent;
