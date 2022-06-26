@@ -34,6 +34,7 @@ const BasicSetting = () => {
   const handleSaveBtnClick = () => {
     window.localStorage.schema = JSON.stringify(schema)
   }
+  // console.log(schema);
   // 要重置的是children
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {

@@ -126,7 +126,7 @@ link:''
         title:"关于",
         content:"md语法的内容"
       },
-      children:[]
+      children:[{md内容？}]
     },
     {
       name:'Footer',

@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
+import { parseJsonByString } from '../../../common/utils';
+import { getChangeSchemaAction, getChangePageAttributeAction } from '../../store/action';
+import { useCallback } from 'react';
 
 // 自己定义个内容用于测试
 const data = {
@@ -27,11 +31,43 @@ const data = {
   `
 }
 
+// store中存取数据（把使用store的逻辑放在一起）
+const useStore = () => {
+  const dispatch = useDispatch()
+  // 使用redux，采用useSelector拿到仓库的数据
+  const schema = useSelector((state) => {
+    return state.common.schema
+  })
+  // dispatch
+  const changeSchema = (schema) => {
+    // 调用dispatch
+    dispatch(getChangeSchemaAction(schema))
+  }
+  const changePageAttribute = (key, value) => {
+    dispatch(getChangePageAttributeAction(key, value))
+  }
+  return { schema, changeSchema, changePageAttribute }
+}
+
 
 function AboutEdit() {
-  const [content, setContent] = useState(data.testContent);
+  // 处理数据
+  const { schema = {}, changeSchema, changePageAttribute } = useStore()
+  const { attributes={} } = schema
+  const { title = '', aboutContent } = attributes
 
+  const [content, setContent] = useState(aboutContent);
   const navigate = useNavigate()
+
+  const handleContentChange = useCallback((e) => {
+    setContent(e.target.innerText)
+    changePageAttribute('aboutContent', e.target.innerText)
+  },[changePageAttribute])
+
+  const handleSaveBtnClick = () => {
+    window.localStorage.schema = JSON.stringify(schema)
+  }
+  console.log(schema);
 
   const turnToAbout = () => {
     navigate(`/admin/about`)
@@ -46,7 +82,7 @@ function AboutEdit() {
           返回
         </div>
         <span className="aboutTitle">关于我</span>
-        <div className="aboutUpdateBtn">
+        <div className="aboutUpdateBtn" onClick={handleSaveBtnClick}>
           更新
         </div>
       </div>
@@ -56,9 +92,7 @@ function AboutEdit() {
           className="inputRegion aboutInput"
           contentEditable="plaintext-only"
           suppressContentEditableWarning
-          onInput={e => {
-            setContent(e.target.innerText);
-          }}
+          onInput={handleContentChange}
         >
           {content}
         </div>

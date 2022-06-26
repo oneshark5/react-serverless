@@ -3,7 +3,7 @@
 import {produce,original} from "immer"
 import { parseJsonByString } from '../../common/utils';
 import { CHANGE_SCHEMA, ADD_PAGE_CHILDREN, CHANGE_PAGE_CHILD, DELETE_PAGE_CHILD,
-  CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE } from './constant'
+  CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE, CHANGE_COM_CHILD_ATTRIBUTE } from './constant'
 
 // ⭐⭐⭐这就是原始数据
 const initialSchema = parseJsonByString(window.localStorage.schema, {
@@ -39,6 +39,14 @@ const reducer = (state = defaultState, action) => produce(state, (draft) => {
       break;
     case CHANGE_PAGE_ATTRIBUTE:
       draft.schema.attributes[action.key] = action.value;
+      break;
+    case CHANGE_COM_CHILD_ATTRIBUTE:
+      // const { children={} } = draft.schema
+      // const aboutAttributes = children.filter(item => item.name === 'About')[0].children[0]
+      // draft.schema.children.filter(item => item.name === 'About')[0].children[0][action.key] = action.value;
+      // draft.schema.aboutAttributes[action.key] = action.value;
+
+      draft.schema.children.filter(item => item.name === 'About')[0].children[0].attributes[action.key] = action.value;
       break;
     default:
       break;
