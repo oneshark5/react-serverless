@@ -122,20 +122,12 @@ link:''
       attributes:{},
       children:[
         {
-          name:'Content',
           attributes:{},
-          children:[{
-            name:'Item',
-            attributes:{
-              title:'解决webpack5打包CSS图片路径不正确问题',
-              detail:'内容详情',
-              category:"前端基础",
-              createTime:'2022-06-23',
-              tags:"Webpack5,JavaScript",
-              publishState:"0",
-            },
-            children:[]
-          }]
+          children:[
+            {
+              articleContent:'md文章内容'
+            }
+          ]
         },
         {
           // 预留的评论区
@@ -146,12 +138,31 @@ link:''
       ],
     },
     {
-      name:'About',
-      attributes:{
-        title:"关于",
-        content:"md语法的内容"
+    name:'About',
+    attributes:{},
+    children:[
+        {
+          name:'关于',
+          attributes:{},
+          children:[
+            {
+              aboutContent:'md内容'
+            }
+          ]
+        }
+      ]
+    },
+    {
+    name:'Categories',
+    attributes:{},
+    children:[
+      {
+        class: "JavaScript 手撕代码",
+        count: 12,
+        _id: "14139e12611f3428060dbba71ed08248",
+        _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
       },
-      children:[{md内容？}]
+    ]
     },
     {
       name:'Footer',
@@ -170,21 +181,6 @@ link:''
       }]
     },
   ],
-  content:[
-    {
-      name:'aboutContent',
-      children:[
-        // 多条内容
-      ]
-    },
-    {
-      name:'artContent',
-      children:[
-        // 多条内容
-      ]
-    },
-
-  ]
 },
 
 
