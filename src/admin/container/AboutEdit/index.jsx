@@ -5,8 +5,9 @@ import hljs from 'highlight.js';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
 import { parseJsonByString } from '../../../common/utils';
-import { getChangeSchemaAction, getChangePageAttributeAction } from '../../store/action';
+import { getChangeSchemaAction, getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
 import { useCallback } from 'react';
+import { cloneDeep } from 'lodash';
 
 // 自己定义个内容用于测试
 const data = {
@@ -32,37 +33,51 @@ const data = {
 }
 
 // store中存取数据（把使用store的逻辑放在一起）
-const useStore = () => {
+const useStore = (index) => {
   const dispatch = useDispatch()
   // 使用redux，采用useSelector拿到仓库的数据
   const schema = useSelector((state) => {
     return state.common.schema
   })
-  // dispatch
-  const changeSchema = (schema) => {
-    // 调用dispatch
-    dispatch(getChangeSchemaAction(schema))
-  }
+  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
+  const changePageChild = (tempPageChild) => {dispatch(getChangePageChildAction(index, tempPageChild))}
   const changePageAttribute = (key, value) => {
     dispatch(getChangePageAttributeAction(key, value))
   }
-  return { schema, changeSchema, changePageAttribute }
+  return { schema, pageChild, changePageAttribute, changePageChild }
 }
 
 
 function AboutEdit() {
-  // 处理数据
-  const { schema = {}, changeSchema, changePageAttribute } = useStore()
-  const { attributes={} } = schema
-  const { title = '', aboutContent } = attributes
+  // 确定About是第几个组件，方便取出
+  const childrenCom = useSelector(state => state.common.schema?.children || [])
+  let index = 0
+  for (let i = 0; i < childrenCom.length; i++) {
+    if (childrenCom[i].name === 'About') index = i
+  }
+  const { schema, changePageAttribute, pageChild = {}, changePageChild } = useStore(index)
+  const {children} = pageChild
 
-  const [content, setContent] = useState(aboutContent);
+  // 处理数据
+  // ⭐临时
+  // const { attributes = {}, children=[] } = schema
+  // const { title = '', aboutContent } = attributes
+
+  const [content, setContent] = useState(children[0].aboutContent);
   const navigate = useNavigate()
 
+  // 改变的是一级schema下的attributes属性
   const handleContentChange = useCallback((e) => {
     setContent(e.target.innerText)
-    changePageAttribute('aboutContent', e.target.innerText)
-  },[changePageAttribute])
+    // 更改内容
+    const item = cloneDeep(pageChild)
+    console.log(item);
+    item.children.splice(0, 1, {
+      aboutContent: e.target.innerText
+    })
+    changePageChild(item)
+    // changePageAttribute('aboutContent', e.target.innerText)
+  }, [changePageAttribute])
 
   const handleSaveBtnClick = () => {
     window.localStorage.schema = JSON.stringify(schema)
@@ -72,8 +87,6 @@ function AboutEdit() {
   const turnToAbout = () => {
     navigate(`/admin/about`)
   }
-
-  // 点击更新保存数据
 
   return (
     <>

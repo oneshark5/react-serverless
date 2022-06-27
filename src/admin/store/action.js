@@ -44,3 +44,6 @@ export const getChangeComChildAttributeAction = (key, value) => {
 }
 
 // 更改每个组件的子元素
+export const getChangeComChildChildrenAction = (index, value) => {
+  return { type:CHANGE_COM_CHILD_ATTRIBUTE, index, value }
+}

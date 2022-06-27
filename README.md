@@ -45,6 +45,27 @@ link:''
 <!-- 首页配置化 -->
 
 ⭐ 拖拽：用于导航栏和首页的 Aside 侧边栏 ⭐
+大的结构
+```json
+{
+  name:'',
+  attributes:{},
+  children:[
+    {
+      name:'About',
+      attributes:{
+        title:"关于",
+        content:"md语法的内容"
+      },
+      children:[
+        {
+          content:'md内容'
+        }
+      ]
+    }
+  ],
+}
+```
 
 ```json
 {

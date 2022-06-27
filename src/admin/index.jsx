@@ -52,9 +52,21 @@ const Wrapper = () => {
               </NavLink>
             </Menu.Item>
 
+            <Menu.Item key="admin-article">
+              <NavLink to='/admin/article'>
+              <span className='iconfont'>&#xe69b;</span> 文章
+              </NavLink>
+            </Menu.Item>
+
             <Menu.Item key="admin-about">
               <NavLink to='/admin/about'>
               <span className='iconfont'>&#xe69b;</span> 关于
+              </NavLink>
+            </Menu.Item>
+
+            <Menu.Item key="admin-test">
+              <NavLink to='/admin/test'>
+              <span className='iconfont'>&#xe69b;</span> 测试
               </NavLink>
             </Menu.Item>
 

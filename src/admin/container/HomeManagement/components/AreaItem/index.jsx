@@ -34,6 +34,7 @@ const AreaItem = (props) => {
   // 等价于
   // const index = props.value
   const { pageChild, changePageChild, removePageChild } = useStore(index)
+  console.log(pageChild);
 
   const [isModalVisible, setIsModalVisible] = useState(false);// 控制弹框是否可见
   const [tempPageChild, setTempPageChild] = useState(cloneDeep(pageChild))//临时变量控制着内部弹窗组件选择框的内容

@@ -10,26 +10,31 @@ import { useDispatch, useSelector } from 'react-redux';
 const data = {
   testContent: `
   ### 👋 Hi I'm one🦈 
-
-  -   🏫 一名**在校学生**
-  -   📚 喜欢**学习** 热爱**技术**
-  -   🤔 喜欢 🏀 📸 💪 
-  -   👨‍🏭 希望成为一名**优秀前端工程师**
-  
-  这是我自己写的**个人博客**，感谢你在茫茫互联网中找到了这里～
-  
-  请多多指教！😝😝😝
-  
-  
-  📖**联系方式**
-  
-  - 🐧QQ：455338206
-  - ✉️邮箱：oneshark5@163.com
-  - 💻GitHub：https://github.com/oneshark5
   `
 }
 
-function About() {
+// store中存取数据（把使用store的逻辑放在一起）
+const useStore = (index) => {
+  const dispatch = useDispatch()
+  // 使用redux，采用useSelector拿到仓库的数据---获取children里面的内容（子节点）
+  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
+  return { pageChild }
+}
+
+
+function PageTest() {
+  // 确定About是第几个组件，方便取出
+  const children = useSelector(state => state.common.schema?.children || [])
+
+  let index = 0
+  for(let i=0; i<children.length; i++){
+    if(children[i].name === 'About') index = i
+  }
+
+  const { pageChild } = useStore(index)
+  console.log(pageChild);
+
+
   const navigate = useNavigate()
   // 配制marked和highlight
   useEffect(() => {
@@ -64,7 +69,7 @@ function About() {
           >
             <Button type="primary">编辑</Button>
           </div>
-          <span className="aboutTitle">关于我</span>
+          <span className="aboutTitle">最近文章</span>
         </div>
       </div>
       <div className='aboutContent'>
@@ -79,4 +84,4 @@ function About() {
     </>
   )
 }
-export default About
+export default PageTest
