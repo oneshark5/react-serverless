@@ -4,15 +4,16 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
-
-// 自己定义个内容用于测试
-const data = {
-  testContent: `
-  ### 👋 Hi I'm one🦈 
-  `
-}
+import { useSelector } from 'react-redux';
 
 function Article() {
+  // 获取数据
+  const children = useSelector(state => state.common.schema?.children || [])
+  const childrenArticle = children.filter(element => (element.name === 'ArticleDetail'))
+  console.log(childrenArticle);
+
+  const articleContent = childrenArticle[0].children.at(-1).articleContent
+
   const navigate = useNavigate()
   // 配制marked和highlight
   useEffect(() => {
@@ -33,7 +34,7 @@ function Article() {
   }, []);
   // 转到编辑页面
   const turnToAboutEdit = isMe => {
-    navigate(`/admin/aboutEdit`)
+    navigate(`/admin/AddArticle`)
   };
 
   return (
@@ -47,14 +48,14 @@ function Article() {
           >
             <Button type="primary">编辑</Button>
           </div>
-          <span className="aboutTitle">最近文章</span>
+          <span className="aboutTitle">关于我</span>
         </div>
       </div>
       <div className='aboutContent'>
         <div
           className="meContent markdownStyle"
           dangerouslySetInnerHTML={{
-            __html: marked(data.testContent || '').replace(/<pre>/g, "<pre id='hljs'>")
+            __html: marked(articleContent || '').replace(/<pre>/g, "<pre id='hljs'>")
           }}
         ></div>
 
