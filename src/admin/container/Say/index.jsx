@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cloneDeep } from 'lodash';
-import { Modal, notification, Table, Space, Button, Popconfirm, message, Popover } from 'antd';
-import { FormOutlined, MessageOutlined, DeleteOutlined } from '@ant-design/icons';
-import { getChangeSchemaAction, getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
+import { Modal, Table, Space, Button, Popconfirm, message, Popover } from 'antd';
+import { getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
 import moment from 'moment';
 
 import {
@@ -12,8 +11,6 @@ import {
   emojiObj,
   emojiPlace,
   emojiSymbol,
-  visitorText,
-  adminUid,
 } from '../.././../common/constant';
 import './index.css';
 import '../index.css'
@@ -104,14 +101,9 @@ const Say = props => {
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
 
-
-  // 事件处理函数
-  // 采用防抖，当一段时间内，输入内容，我们重新及时，不做更新
-
   const handleContentChange = useCallback((e) => {
     setContent(e.target.value)
   }, [changePageChild])
-
 
   // 显示对话框
   const showAddSay = () => {
@@ -182,17 +174,6 @@ const Say = props => {
     const item = cloneDeep(pageChild)
     console.log(item.children[0].sayContent);
     setContent(item.children[0].sayContent)
-
-    // item.children.splice(editId, 1,{
-    //   id:editId,
-    //   date:Date.now(),
-    //   sayContent: content
-    // });
-    // item.children.splice(0, 1, {
-    //   id: Math.trunc(Date.now() * Math.random()),
-    //   date: Date.now(),
-    //   articleContent: content
-    // })
   };
   // 删除说说
   const deleteSay = ID => {
