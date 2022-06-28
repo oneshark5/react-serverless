@@ -1,5 +1,5 @@
 import { CHANGE_SCHEMA, ADD_PAGE_CHILDREN, CHANGE_PAGE_CHILD, DELETE_PAGE_CHILD,
-  CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE, CHANGE_COM_CHILD_ATTRIBUTE } from "./constant"
+  CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE, CHANGE_COM_CHILD_ATTRIBUTE, DELETE_PAGE_CHILD_CHILDREN } from "./constant"
 
 export const getChangeSchemaAction = (schema) => {
   return {
@@ -46,4 +46,9 @@ export const getChangeComChildAttributeAction = (key, value) => {
 // 更改每个组件的子元素
 export const getChangeComChildChildrenAction = (index, value) => {
   return { type:CHANGE_COM_CHILD_ATTRIBUTE, index, value }
+}
+
+// 更改每个组件的子元素
+export const getDeletePageChildChildrenAction = (index, value) => {
+  return { type:DELETE_PAGE_CHILD_CHILDREN, index, value }
 }

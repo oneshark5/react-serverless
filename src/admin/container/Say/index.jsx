@@ -35,20 +35,20 @@ const useStore = (index) => {
 }
 
 
-const data = [
-  {
-    content: "根据 GitHub 仓库上每次提交的的 commit 记录，编写建站日志...✔️",
-    date: 1629726026409,
-    id: "2d44d6c26123a54b069aaa0f651448e2",
-    _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
-  },
-  {
-    content: "移动端适配这两天写好📱",
-    date: 1630628115571,
-    id: "2d44d6c26131691309305f475a8b1e83",
-    _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
-  }
-]
+// const data = [
+//   {
+//     content: "根据 GitHub 仓库上每次提交的的 commit 记录，编写建站日志...✔️",
+//     date: 1629726026409,
+//     id: "2d44d6c26123a54b069aaa0f651448e2",
+//     _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
+//   },
+//   {
+//     content: "移动端适配这两天写好📱",
+//     date: 1630628115571,
+//     id: "2d44d6c26131691309305f475a8b1e83",
+//     _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
+//   }
+// ]
 
 const Say = props => {
   // 获取数据
@@ -58,6 +58,7 @@ const Say = props => {
     if (childrenCom[i].name === 'Say') index = i
   }
   const { schema, changePageAttribute, pageChild = {}, changePageChild } = useStore(index)
+  const sayData = pageChild.children
   console.log(pageChild.children);
   console.log(schema);
 
@@ -68,7 +69,7 @@ const Say = props => {
   const columns = [
     {
       title: '说说内容',
-      dataIndex: 'articleContent',
+      dataIndex: 'sayContent',
       key: 'id',
       width: '1200px',
       render: text => <p className="msgs-content">{text}</p>,
@@ -117,7 +118,6 @@ const Say = props => {
   const [id, setId] = useState('');
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
-  console.log(content);
 
 
   // 事件处理函数
@@ -125,7 +125,7 @@ const Say = props => {
 
   const handleContentChange = useCallback((e) => {
     setContent(e.target.value)
-  },[changePageChild])
+  }, [changePageChild])
 
 
   // 显示对话框
@@ -146,7 +146,7 @@ const Say = props => {
       item.children.push({
         id: Math.trunc(Date.now() * Math.random()),
         date: Date.now(),
-        articleContent: content
+        sayContent: content
       })
       // item.children.splice(0, 1, {
       //   id: Math.trunc(Date.now() * Math.random()),
@@ -169,23 +169,43 @@ const Say = props => {
   // ————————————————————————————添加/编辑说说对话框end————————————————————————————
 
   // ——————————————————————————————对说说的操作————————————————————————————
-  // 说说添加或更新后的操作
-  const afterSayChange = isEdit => {
-  };
-  // 发送添加说说请求
-  const addSay = () => {
-  };
-  // 发送更新说说请求
-  const updateSay = () => {
-  };
   // 点击编辑，根据ID获得说说详情
   const editSay = ID => {
+    let editId;
+    sayData.filter((ele, index) => {
+      if (ele.id === ID) editId = index
+    })
+    // 更改内容
+    const item = cloneDeep(pageChild)
+    item.children.splice(editId, 1,{
+      id:editId,
+      date:Date.now(),
+      sayContent: content
+    });
+    // item.children.splice(0, 1, {
+    //   id: Math.trunc(Date.now() * Math.random()),
+    //   date: Date.now(),
+    //   articleContent: content
+    // })
+
 
   };
   // 删除说说
   const deleteSay = ID => {
-    console.log(ID);
+    // 确定删除第几个
+    let delId;
+    sayData.filter((ele, index) => {
+      if (ele.id === ID) delId = index
+    })
+    // 更改内容
+    const item = cloneDeep(pageChild)
+    item.children.splice(delId, 1);//⭐这个可以
+
+    changePageChild(item)
+    message.info('请再次确认是否删除哦😄')
+    setAddSayVisible(false)
   };
+  console.log(schema);
   // ——————————————————————————————对说说的操作end————————————————————————————
 
   return (
@@ -194,7 +214,7 @@ const Say = props => {
         <div type="primary" className="addLinkBtn" onClick={showAddSay}>
           发表说说
         </div>
-        <div type="primary" className='okBtn' onClick={addOk}>确认发表</div>
+        <div type="primary" className='okBtn' onClick={addOk}>确认保存</div>
         <Modal
           title={isEdit ? '更新说说' : '发表说说'}
           visible={addSayVisible}
@@ -274,7 +294,7 @@ const Say = props => {
         }}
         columns={columns}
         // 数据是一个数组的形式
-        dataSource={pageChild.children}
+        dataSource={sayData}
         rowKey={columns => columns.id}
         showSorterTooltip={false}
       />
