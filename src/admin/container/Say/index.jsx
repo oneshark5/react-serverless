@@ -35,21 +35,6 @@ const useStore = (index) => {
 }
 
 
-// const data = [
-//   {
-//     content: "根据 GitHub 仓库上每次提交的的 commit 记录，编写建站日志...✔️",
-//     date: 1629726026409,
-//     id: "2d44d6c26123a54b069aaa0f651448e2",
-//     _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
-//   },
-//   {
-//     content: "移动端适配这两天写好📱",
-//     date: 1630628115571,
-//     id: "2d44d6c26131691309305f475a8b1e83",
-//     _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
-//   }
-// ]
-
 const Say = props => {
   // 获取数据
   const childrenCom = useSelector(state => state.common.schema?.children || [])
@@ -134,12 +119,18 @@ const Say = props => {
   };
   // 清空输入框
   const clearSayInput = () => {
-
+    setId('');
+    setDate('');
+    setContent('');
   };
   // 对话框确认
   const addSayOK = () => {
     if (!content) {
       message.info('今天发生了什么呢？')
+    }
+    if (isEdit) {
+      // 更新说说
+      updateSay();
     } else {
       // 更改内容
       const item = cloneDeep(pageChild)
@@ -148,11 +139,6 @@ const Say = props => {
         date: Date.now(),
         sayContent: content
       })
-      // item.children.splice(0, 1, {
-      //   id: Math.trunc(Date.now() * Math.random()),
-      //   date: Date.now(),
-      //   articleContent: content
-      // })
       changePageChild(item)
       message.info('请再次确认是否发表哦😄')
       setAddSayVisible(false)
@@ -162,33 +148,51 @@ const Say = props => {
     window.localStorage.schema = JSON.stringify(schema)
     message.info('发表成功😄')
   }
+  const updateSay = () => {
+    // console.log(id);
+    // const item = cloneDeep(pageChild)
+    // item.children.splice(id, 1, {
+    //   id: id,
+    //   date: Date.now(),
+    //   sayContent: content
+    // });
+    // changePageChild(item)
+    // message.info('修改成功😄')
+    setAddSayVisible(false)
+  };
   // 对话框取消
   const addSayCancel = () => {
-    setAddSayVisible(false)
+    setAddSayVisible(false);
+    clearSayInput();
+    setIsEdit(false);
   };
   // ————————————————————————————添加/编辑说说对话框end————————————————————————————
 
   // ——————————————————————————————对说说的操作————————————————————————————
   // 点击编辑，根据ID获得说说详情
   const editSay = ID => {
+    setId(ID);
+    setIsEdit(true);
+    setAddSayVisible(true);
     let editId;
     sayData.filter((ele, index) => {
       if (ele.id === ID) editId = index
     })
     // 更改内容
     const item = cloneDeep(pageChild)
-    item.children.splice(editId, 1,{
-      id:editId,
-      date:Date.now(),
-      sayContent: content
-    });
+    console.log(item.children[0].sayContent);
+    setContent(item.children[0].sayContent)
+
+    // item.children.splice(editId, 1,{
+    //   id:editId,
+    //   date:Date.now(),
+    //   sayContent: content
+    // });
     // item.children.splice(0, 1, {
     //   id: Math.trunc(Date.now() * Math.random()),
     //   date: Date.now(),
     //   articleContent: content
     // })
-
-
   };
   // 删除说说
   const deleteSay = ID => {
