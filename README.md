@@ -138,9 +138,9 @@ link:''
       ],
     },
     {
-    name:'About',
-    attributes:{},
-    children:[
+      name:'About',
+      attributes:{},
+      children:[
         {
           name:'关于',
           attributes:{},
@@ -153,16 +153,17 @@ link:''
       ]
     },
     {
-    name:'Categories',
-    attributes:{},
-    children:[
-      {
-        class: "JavaScript 手撕代码",
-        count: 12,
-        _id: "14139e12611f3428060dbba71ed08248",
-        _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
+      name:'Categories',
+      attributes:{
+        name:'Item',
+        attributes:{
+          categoryTitle: "JavaScript 手撕代码",
+          _id: "14139e12611f3428060dbba71ed08248",
+          _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
+        },
+        children:[]
       },
-    ]
+      children:[]
     },
     {
       name:'Footer',
