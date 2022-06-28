@@ -58,17 +58,24 @@ const Wrapper = () => {
               </NavLink>
             </Menu.Item>
 
+            <Menu.Item key="admin-say">
+              <NavLink to='/admin/say'>
+              <span className='iconfont'>&#xe69b;</span> 记录
+              </NavLink>
+            </Menu.Item>
+
+            <Menu.Item key="admin-link">
+              <NavLink to='/admin/link'>
+              <span className='iconfont'>&#xe69b;</span> 友链
+              </NavLink>
+            </Menu.Item>
+
             <Menu.Item key="admin-about">
               <NavLink to='/admin/about'>
               <span className='iconfont'>&#xe69b;</span> 关于
               </NavLink>
             </Menu.Item>
 
-            <Menu.Item key="admin-say">
-              <NavLink to='/admin/say'>
-              <span className='iconfont'>&#xe69b;</span> 记录
-              </NavLink>
-            </Menu.Item>
 
             <Menu.Item key="admin-test">
               <NavLink to='/admin/test'>

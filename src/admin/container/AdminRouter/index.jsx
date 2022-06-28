@@ -8,12 +8,14 @@ import Say from "../Say";
 import BasicSetting from "../BasicSetting"
 import HomeManagement from "../HomeManagement"
 import PageTest from "../PageTest";
+import Link from "../Link";
 import './index.css'
 
 const AdminRouter = () => {
   return (
     <Routes>
       <Route path='/admin/test' element={<PageTest/>} />
+      <Route path='/admin/link' element={<Link/>} />
       <Route path='/admin/say' element={<Say/>} />
       <Route path='/admin/AddArticle' element={<AddArticle/>} />
       <Route path='/admin/article' element={<Article/>} />
