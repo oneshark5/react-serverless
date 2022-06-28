@@ -39,14 +39,14 @@ const Say = props => {
   for (let i = 0; i < childrenCom.length; i++) {
     if (childrenCom[i].name === 'Say') index = i
   }
-  const { schema, changePageAttribute, pageChild = {}, changePageChild } = useStore(index)
+  const { schema, pageChild = {}, changePageChild } = useStore(index)
   const sayData = pageChild.children
   console.log(pageChild.children);
   console.log(schema);
 
 
   // ————————————————————渲染说说表格————————————————————
-  const [tableLoading, setTableLoading] = useState(false);
+  // const [tableLoading, setTableLoading] = useState(false);
   // 表头
   const columns = [
     {
