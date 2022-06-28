@@ -4,6 +4,7 @@ import AboutEdit from "../AboutEdit";
 import AddArticle from "../AddArticle";
 import Article from "../Article";
 import Articles from "../Articles";
+import Say from "../Say";
 import BasicSetting from "../BasicSetting"
 import HomeManagement from "../HomeManagement"
 import PageTest from "../PageTest";
@@ -13,6 +14,7 @@ const AdminRouter = () => {
   return (
     <Routes>
       <Route path='/admin/test' element={<PageTest/>} />
+      <Route path='/admin/say' element={<Say/>} />
       <Route path='/admin/AddArticle' element={<AddArticle/>} />
       <Route path='/admin/article' element={<Article/>} />
       <Route path='/admin/aboutEdit' element={<AboutEdit/>} />
