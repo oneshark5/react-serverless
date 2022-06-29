@@ -12,7 +12,7 @@ const Link = (props) => {
     const newChildren = [...children]
     newChildren.push({
       name: 'Item',
-      attributes: { title: '', navIcon: '', name:'', avatar:'', descr:'', link:'', id:(Math.trunc(Math.random()+Date.now())) },
+      attributes: { navIcon: '', name:'', avatar:'', descr:'', link:'', id:(Math.trunc(Math.random()+Date.now())) },
       children: []
     })
     changeChildren(newChildren)
@@ -43,7 +43,7 @@ const Link = (props) => {
         onClick={addItemToChildren}
       >新增友链</Button>
       {
-        children.map(({ attributes: { title, name, avatar, descr, link, } }, index) => (
+        children.map(({ attributes: { name, avatar, descr, link, } }, index) => (
           <div className={styles.area} key={index} >
             <div className={styles.delete} onClick={() => deleteItemFromChildren(index)}>X</div>
             <div className={styles['area-row']}>

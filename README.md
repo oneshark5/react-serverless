@@ -185,12 +185,17 @@ link:''
         attributes:{},
         children:[
           {
-            date: 1656424439329,
-            id: 674044419800,
-            avatar:'',
-            descr:'描述',
-            link:"https://www.oneshark.cn/",
-            name:"oneshark",
+            name:'Item',
+            attributes:'',
+            children:[
+              {
+                id: Math.trunc(Math.random()+Date.now()),
+                avatar:'',
+                descr:'描述',
+                link:"https://www.oneshark.cn/",
+                name:"oneshark",
+              }
+            ]
           }
         ]
       },

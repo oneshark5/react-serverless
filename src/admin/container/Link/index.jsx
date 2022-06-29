@@ -46,9 +46,6 @@ const Link = props => {
   const linkArr = pageChild.children
   const linkData = []
   linkArr.map(item => linkData.push(item.attributes))
-  console.log(pageChild.children);
-  console.log(schema);
-
 
   // ——————————————————————————————渲染友链表格————————————————————————————
   const [tableLoading, setTableLoading] = useState(false);
