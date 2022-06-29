@@ -166,6 +166,37 @@ link:''
       children:[]
     },
     {
+      name:'Say',
+      attributes:{
+        attributes:{},
+        children:[
+          {
+            date: 1656424439329,
+            id: 674044419800,
+            sayContent: "不管怎样，都要好好努力💪"
+          }
+        ]
+      },
+      children:[]
+    },
+    {
+      name:'Link',
+      attributes:{
+        attributes:{},
+        children:[
+          {
+            date: 1656424439329,
+            id: 674044419800,
+            avatar:'',
+            descr:'描述',
+            link:"https://www.oneshark.cn/",
+            name:"oneshark",
+          }
+        ]
+      },
+      children:[]
+    },
+    {
       name:'Footer',
       attributes:{
         record:''
