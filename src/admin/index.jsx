@@ -42,6 +42,7 @@ const Wrapper = () => {
   const handleHomePageRedirect = () => { window.location.href = "/" }
   const { changeSchema } = useStore()
 
+  // 请求数据
   useEffect(() => {
     axios.get('/api/schema/getLatestOne').then((response) => {
       const data = response?.data?.data;
@@ -65,7 +66,7 @@ const Wrapper = () => {
             </Menu.Item>
             <Menu.Item key="admin-setting">
               <NavLink to='/setting'>
-              <span className='iconfont'>&#xe69b;</span> 基础内容配置
+                <span className='iconfont'>&#xe69b;</span> 基础内容配置
               </NavLink>
             </Menu.Item>
             <Menu.Item

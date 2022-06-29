@@ -33,6 +33,7 @@ const BasicSetting = () => {
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
+    // 保存到数据库
     axios.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     }).then(() => {})
