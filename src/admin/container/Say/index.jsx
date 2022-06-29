@@ -126,7 +126,7 @@ const Say = props => {
     } else {
       // 更改内容
       const item = cloneDeep(pageChild)
-      item.children.push({
+      item.children.unshift({
         id: Math.trunc(Date.now() * Math.random()),
         date: Date.now(),
         sayContent: content
