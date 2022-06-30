@@ -1,5 +1,4 @@
 import React from 'react'
-import { parseJsonByString } from '../../../common/utils'
 import Layout from '../Layout'
 import AboutMe from './AboutMe'
 

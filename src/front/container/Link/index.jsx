@@ -5,7 +5,7 @@ import s from './index.module.scss';
 
 export default function Link(props) {
   const { pageSchema } = props
-  const { children = [], attributes = {} } = pageSchema
+  const { children = [] } = pageSchema
   let linkArr = []
   children.map(item => { item.name === 'Link' && linkArr.push(item) })
   const linkData = []
