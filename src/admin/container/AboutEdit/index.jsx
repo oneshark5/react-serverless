@@ -8,6 +8,7 @@ import { parseJsonByString } from '../../../common/utils';
 import { getChangeSchemaAction, getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
 import { useCallback } from 'react';
 import { cloneDeep } from 'lodash';
+import axios from 'axios';
 
 
 // store中存取数据（把使用store的逻辑放在一起）
@@ -58,7 +59,13 @@ function AboutEdit() {
   }, [changePageAttribute])
 
   const handleSaveBtnClick = () => {
-    window.localStorage.schema = JSON.stringify(schema)
+    axios.post('/api/schema/save', {
+      schema: JSON.stringify(schema)
+    },{
+      headers: {
+        'Content-Type': 'application/json;charset=utf8mb4'
+      },
+    }).then(() => { })
   }
   console.log(schema);
 

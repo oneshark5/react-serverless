@@ -6,6 +6,7 @@ import styles from './style.module.scss'
 import { parseJsonByString } from '../../../common/utils';
 import { getChangePageChildAction, getChangeSchemaAction, getChangePageAttributeAction } from '../../store/action';
 import { cloneDeep } from 'lodash' 
+import axios from 'axios';
 
 const { Step } = Steps;
 
@@ -79,13 +80,21 @@ const Articles = () => {
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
-    window.localStorage.schema = JSON.stringify(schema)
+    axios.post('/api/schema/save', {
+      schema: JSON.stringify(schema)
+    },{
+      headers: {
+        'Content-Type': 'application/json;charset=utf8mb4'
+      },
+    }).then(() => { })
   }
   // 要重置的是children
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
-    const newSchema = parseJsonByString(window.localStorage.schema, {})
-    changeSchema(newSchema)//action
+    axios.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data?.data;
+      data && changeSchema(parseJsonByString(data[0].schema))
+    })
   }
 
   // 事件处理函数

@@ -24,9 +24,7 @@ const useStore = () => {
 
 const HomeManagement = () => {
   const { schema, changeSchema } = useStore()
-  // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
-    // window.localStorage.schema = JSON.stringify(schema)
     axios.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     }).then(() => {})
@@ -34,8 +32,6 @@ const HomeManagement = () => {
   // 要重置的是children
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
-    // const newSchema = parseJsonByString(window.localStorage.schema, {})
-    // changeSchema(newSchema)//action
     axios.get('/api/schema/getLatestOne').then((response) => {
       const data = response?.data?.data;
       data && changeSchema(parseJsonByString(data[0].schema))

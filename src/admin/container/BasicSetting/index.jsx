@@ -33,7 +33,6 @@ const BasicSetting = () => {
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
-    // window.localStorage.schema = JSON.stringify(schema)
     // ⭐post
     axios.post('/api/schema/save', {
       schema: JSON.stringify(schema)
@@ -45,10 +44,6 @@ const BasicSetting = () => {
   }
 
   const handleResetBtnClick = () => {
-    // const newSchema = parseJsonByString(window.localStorage.schema, {})
-    // changeSchema(newSchema)//action
-    // console.log(newSchema);
-
     // ⭐get
     axios.get('/api/schema/getLatestOne').then((response) => {
       const data = response?.data?.data;

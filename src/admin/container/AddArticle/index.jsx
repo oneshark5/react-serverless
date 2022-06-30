@@ -8,6 +8,7 @@ import { parseJsonByString } from '../../../common/utils';
 import { getChangeSchemaAction, getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
 import { useCallback } from 'react';
 import { cloneDeep } from 'lodash';
+import axios from 'axios';
 
 // 自己定义个内容用于测试
 const data = {
@@ -78,7 +79,13 @@ function AddArticle() {
   }, [changePageAttribute])
 
   const handleSaveBtnClick = () => {
-    window.localStorage.schema = JSON.stringify(schema)
+    axios.post('/api/schema/save', {
+      schema: JSON.stringify(schema)
+    },{
+      headers: {
+        'Content-Type': 'application/json;charset=utf8mb4'
+      },
+    }).then(() => { })
   }
   console.log(schema);
 

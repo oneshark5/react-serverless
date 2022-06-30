@@ -22,7 +22,10 @@ const { title = '', backgroundUrl = '' } = attributes
 const navCom = children[0]
 const footerCom = children.at(-1)
 
-const App = () => {
+const App = (props) => {
+  console.log("获取数据",props);
+  const { pageSchema = {} } = props
+
   // 背景图片
   const homeBoxStyleObj = {
     backgroundImage: `url('${backgroundUrl}')`

@@ -14,6 +14,7 @@ import {
 } from '../.././../common/constant';
 import './index.css';
 import '../index.css'
+import axios from 'axios';
 
 
 // store中存取数据（把使用store的逻辑放在一起）
@@ -137,7 +138,13 @@ const Say = props => {
     }
   };
   const addOk = () => {
-    window.localStorage.schema = JSON.stringify(schema)
+    axios.post('/api/schema/save', {
+      schema: JSON.stringify(schema)
+    },{
+      headers: {
+        'Content-Type': 'application/json;charset=utf8mb4'
+      },
+    }).then(() => { })
     message.info('发表成功😄')
   }
   const updateSay = () => {
