@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Layout from '../Layout'
 import ArtContent from './ArtContent'
-import { parseJsonByString } from '../../../common/utils'
 import { useSearchParams } from 'react-router-dom'
 
 
-export default function ArtDetail() {
+const ArtDetail = (props) => {
   // 获取id
   const [searchParams, setSearchParams] = useSearchParams()
   let id = searchParams.get('id')
 
   // 根据id获取schema数据
-  const pageSchema = parseJsonByString(window.localStorage.schema, {})
+  const { pageSchema } = props
   const { children = [] } = pageSchema;
   const childrenAbout = children.filter(element => (element.name === 'ArticleDetail'))
   const content = childrenAbout[0].children.filter(item => item.id === Number(id))
@@ -23,3 +22,4 @@ export default function ArtDetail() {
     </Layout>
   )
 }
+export default ArtDetail

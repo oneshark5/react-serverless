@@ -4,8 +4,12 @@ import ArticleDetail from './component/ArticleDetail'
 import styles from './index.module.scss'
 // import './global.custom.scss'
 
-// 获取schema数据
-const pageSchema = parseJsonByString(window.localStorage.schema, {})
+
+
+// import React from 'react'
+const Home = (props) => {
+  // 获取schema数据
+const { pageSchema } = props
 const { children = [] } = pageSchema
 
 const map = { ArticleDetail, }
@@ -18,9 +22,6 @@ const render = (item, index) => {
 const articleComs = children.filter(item => item.name == 'ArticleDetail')
 console.log(articleComs);
 const { title = '', createTime = '', tags = '' } = articleComs[0].children[0].attributes
-
-// import React from 'react'
-const Home = () => {
 
   return (
     <>
