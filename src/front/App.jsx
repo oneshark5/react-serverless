@@ -25,7 +25,7 @@ const App = (props) => {
 
       {/* 单独生成组件(●'◡'●) */}
       <Banner key='0001' schema={navCom} />
-      <FrontRouter />
+      <FrontRouter pageSchema={pageSchema}/>
       <Footer key='1110' schema={footerCom} />
     </div>
   )
