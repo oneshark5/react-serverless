@@ -258,4 +258,9 @@ Aside 思路
 }
 ```
 
+
+```json
+{"name":"Page","attributes":{"title":"鲨鱼小站(●'◡'●)"},"children":[{"name":"Banner","attributes":{"title":"oneshark","description":"this is desc area","showSmallPic":true,"smallPicUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/avatar.jpeg","backgroundUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/bg.jpeg","backgroundHeight":"300"},"children":[]},{"name":"List","attributes":{},"children":[{"attributes":{"title":"React系统入门与项目实战","description":"基础语法，到基基础语法，到组件原理、动画、代码设计","imageUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/vue3.png","link":"https://www.baidu.com/"}},{"name":"Item","attributes":{"title":"新增一个区块","description":"就新增加的一个区块","imageUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/vue3.png","link":"https://www.baidu.com/"},"children":[]},{"name":"Item","attributes":{"title":"测试","description":"测试下优化后的内容","imageUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/vue3.png","link":"https://www.baidu.com/"},"children":[]}]},{"name":"Footer","attributes":{"copyright":"Copyright© 2021 imooc.com","record":"京ICP备 12003892号-11"},"children":[{"name":"Item","attributes":{"title":"后台管理页面","link":"http://localhost:3000/admin.html"},"children":[]}]},{"name":"Footer","attributes":{"copyright":"test","record":"1"},"children":[]}]}
+```
+
 🦈希望未来的你可以独当一面
