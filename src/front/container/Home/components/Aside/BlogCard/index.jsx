@@ -6,19 +6,16 @@ import styles from './index.module.scss'
 
 const Aside = ({ schema }) => {
   // 从Aside组件获取属性
-  const { title, heightCard,  description, imageUrl, tags, icon, link,  } = schema
+  const { imageUrl  } = schema
   console.log(schema);
 
   return (
     <Card className={styles.card}>
       <p className={styles.text}>
-        晚上好<br />
-        我叫<span className={styles.color}>飞鸟</span>，<br />
-        欢迎来到
-        <br />
-        我的<span className={styles.color}>个人博客</span>。
+        晚上好<br />欢迎<br/>来到<br />
+        <span className={styles.color}>本站</span>。
       </p>
-      <img src={imageUrl} className={styles.avatar} />
+      <img src={imageUrl} className={styles.avatar} alt='' />
     </Card>
   )
 }

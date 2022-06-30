@@ -1,23 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import dayjs from 'dayjs'
 import Card from '../../../Card'
 import { Pagination } from 'antd';
 import './pagination.custom.scss';
 import styles from './style.module.scss'
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Section = ({ schema }) => {
   // 从后台获取属性
   const { children = [] } = schema
 
   // 定义路由
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  const linkToDetail = (id) => {
-    // navigate(`/artDetail?id=${id}`)
-    navigate(`/artDetail`)
-  }
-
+  // const linkToDetail = (id) => {
+  //   // navigate(`/artDetail?id=${id}`)
+  //   navigate(`/artDetail`)
+  // }
 
   return (
     <div className={styles.section} >
