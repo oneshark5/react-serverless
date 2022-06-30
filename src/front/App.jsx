@@ -1,4 +1,3 @@
-import { parseJsonByString } from "../common/utils"
 import { Helmet } from "react-helmet";
 import Banner from './container/Home/components/Banner'
 import Footer from './container/Home/components/Footer'
@@ -6,25 +5,13 @@ import FrontRouter from './container/FrontRouter'
 import styles from './App.module.scss'
 import './global.custom.scss'
 
-// 获取schema数据
-const pageSchema = parseJsonByString(window.localStorage.schema, {})
-const { children = [], attributes = {} } = pageSchema
-const { title = '', backgroundUrl = '' } = attributes
-
-// const map = { Banner, Footer }
-
-// const render = (item, index) => {
-//   const Component = map[item.name]
-//   return Component ? <Component key={index} schema={item} /> : null;
-// }
-
-// 要单独生成的两个组件
-const navCom = children[0]
-const footerCom = children.at(-1)
-
 const App = (props) => {
-  console.log("获取数据",props);
   const { pageSchema = {} } = props
+  const { children = [], attributes = {} } = pageSchema
+  const { title = '', backgroundUrl = '' } = attributes
+
+  const navCom = children[0]
+  const footerCom = children.at(-1)
 
   // 背景图片
   const homeBoxStyleObj = {

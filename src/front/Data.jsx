@@ -5,16 +5,22 @@ import App from './App'
 
 function Data() {
   const [pageSchema, setPageSchema] = useState({})
+  const [flag, setFlag] = useState(false)
   useEffect(() => {
     axios.get('/api/schema/getLatestOne').then((response) => {
       const data = response?.data?.data;
-      data && setPageSchema(parseJsonByString(data[0].schema))
+      if(data){
+        setPageSchema(parseJsonByString(data[0].schema))
+        setFlag(true)
+      } 
     })
   }, [])
-  console.log('数据', pageSchema);
+  
   return (
     <>
-      <App pageSchema={pageSchema} />
+      {
+        flag && <App pageSchema={pageSchema} />
+      }
     </>
   )
 }
