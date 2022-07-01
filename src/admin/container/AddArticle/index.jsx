@@ -69,9 +69,9 @@ function AddArticle() {
     // 更改内容
     const item = cloneDeep(pageChild)
     console.log(item);
-    // 这里先设置为1，因为引入post的时候，post是自增长的
+    // 这里先设置为1，因为引入post的时候，post是自增长的-->自己随机定义id
     item.children.push({
-      id:1,
+      id:Math.trunc(Math.random()+Date.now()),
       articleContent: e.target.innerText
     })
     changePageChild(item)
@@ -90,7 +90,7 @@ function AddArticle() {
   console.log(schema);
 
   const turnToAbout = () => {
-    navigate(`/admin/about`)
+    navigate(`/admin/article`)
   }
 
   return (
