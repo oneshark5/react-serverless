@@ -1,10 +1,8 @@
 import { Input, Button } from 'antd'
 import styles from './style.module.scss'
 
-const { TextArea } = Input;
-
 const Show = (props) => {
-  const { children, changeAttributes, changeChildren } = props
+  const { children, changeChildren } = props
 
   // 事件处理函数
   const addItemToChildren = () => {
