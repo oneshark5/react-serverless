@@ -4,12 +4,18 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
+
+const aboutContents = {
+  aboutContent: "\n  ### 👋 Hi I'm one🦈 \n\n  -   🏫 一名**在校学生**\n  -   📚 喜欢**学习** 热爱**技术**\n  -   🤔 喜欢 🏀 📸 💪 \n  -   👨‍🏭 希望成为一名**优秀前端工程师**\n  \n  这是我自己写的**个人博客**，感谢你在茫茫互联网中找到了这里～\n  \n\n   "
+}
+
 
 function About() {
   // 获取数据
   const children = useSelector(state => state.common.schema?.children || [])
-  const childrenAbout = children.filter(element => (element.name === 'About'))
+  const childrenAbout = children?.filter(element => (element.name === 'About'))
   const aboutContent = childrenAbout[0].children[0].aboutContent
 
   const navigate = useNavigate()

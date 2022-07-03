@@ -5,35 +5,62 @@ import moment from 'moment';
 import { visitorText, adminUid } from '../../../common/constant';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
 
+// 给定初始数据，
+const articlesData = [
+  {
+    classes: ["前端基础","基础前端"],
+    content: "# 1. 实现效果\n\n点击`点击`按钮，弹出对话框。\n按住对话框顶部并移动，实现拖动效果。",
+    date: 1603671734000,
+    tags: ["JavaScript","ES6"],
+    title: "JavaScript 拖动元素",
+    titleEng: "move",
+    url: "https://lzxjack.top/post?title=move",
+    id: "7323456789",
+    _openid: "dbee9976b3c14448a06f2006a4795cf2",
+  }
+]
 
-// const articlesData = [
-//   {
-//     classes: ["前端基础","基础前端"],
-//     content: "# 1. 实现效果\n\n点击`点击`按钮，弹出对话框。\n按住对话框顶部并移动，实现拖动效果。",
-//     date: 1603671734000,
-//     tags: ["JavaScript","ES6"],
-//     title: "JavaScript 拖动元素",
-//     titleEng: "move",
-//     url: "https://lzxjack.top/post?title=move",
-//     id: "7323456789",
-//     _openid: "dbee9976b3c14448a06f2006a4795cf2",
-//   }
-// ]
+// store中存取数据（把使用store的逻辑放在一起）
+const useStore = (index) => {
+  const dispatch = useDispatch()
+  // 使用redux，采用useSelector拿到仓库的数据
+  const schema = useSelector((state) => {
+    return state.common.schema
+  })
+  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
+  const changePageChild = (tempPageChild) => { dispatch(getChangePageChildAction(index, tempPageChild)) }
+  const changePageAttribute = (key, value) => {
+    dispatch(getChangePageAttributeAction(key, value))
+  }
+  return { schema, pageChild, changePageAttribute, changePageChild }
+}
 
 const { Option } = Select;
 const Articles = () => {
   // 获取数据
-  const children = useSelector(state => state.common.schema?.children || [])
-  const childrenAbout = children.filter(element => (element.name === 'ArticleDetail'))
-  const articlesDatas = childrenAbout[0].children.filter(item => !item.attributes)
-  console.log(articlesDatas);
+  // const children = useSelector(state => state.common.schema?.children || [])
+  // const childrenAbout = children.filter(element => (element.name === 'ArticleDetail'))
+  // const articlesDatas = childrenAbout[0].children.filter(item => !item.attributes)
+  // console.log(articlesDatas);
+
+
+  // 获取数据
+  const childrenCom = useSelector(state => state.common.schema?.children || [])
+  let index = 0
+  for (let i = 0; i < childrenCom.length; i++) {
+    if (childrenCom[i].name === 'ArticleDetail') index = i
+  }
+  const { schema, pageChild = {}, changePageChild } = useStore(index)
+  const articlesDatas = pageChild.children?.filter(item => !item.attributes)
+
 
 
   const navigate = useNavigate()
 
-  const { tags, classes, articles} = articlesDatas[0]
+  const { tags=[], classes=[], articles=''} = articlesData?.[0]
   // ——————————————————————搜索框——————————————————————
   const searchWords = useRef();
   const [searchClass, setSearchClass] = useState(null);
@@ -94,7 +121,7 @@ const Articles = () => {
       key: 'id',
       render: tags => (
         <>
-          {tags.map(tag => {
+          {tags?.map(tag => {
             let color = tag.length > 5 ? 'geekblue' : 'green';
             return (
               <Tag color={color} key={tag}>
@@ -230,7 +257,7 @@ const Articles = () => {
             setSearchTag(value);
           }}
         >
-          {tags.map(item => (
+          {tags?.map(item => (
             <Option key={item}>{item}</Option>
           ))}
         </Select>
