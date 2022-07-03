@@ -1,59 +1,48 @@
 import { useState, useEffect, useRef } from 'react';
-import { Table,Tag,Space,Button,Popconfirm,Select,message} from 'antd';
+import { Table, Tag, Space, Button, Popconfirm, Select, message } from 'antd';
 import { DeleteOutlined, RedoOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import { visitorText, adminUid } from '../../../common/constant';
 import './index.css';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const articlesData = [
   {
-    classes: ["前端基础"],
+    classes: ["前端基础","基础前端"],
     content: "# 1. 实现效果\n\n点击`点击`按钮，弹出对话框。\n按住对话框顶部并移动，实现拖动效果。",
     date: 1603671734000,
-    tags: ["JavaScript"],
+    tags: ["JavaScript","ES6"],
     title: "JavaScript 拖动元素",
     titleEng: "move",
     url: "https://lzxjack.top/post?title=move",
-    _id: "9e7190f1619b3245073df098577bd92c",
+    id: "7323456789",
     _openid: "dbee9976b3c14448a06f2006a4795cf2",
   }
 ]
 
 const { Option } = Select;
 const Articles = () => {
-  const {tags,classes,articles,getClasses,getArticles,getMsgs,history} = articlesData[0]
+  // 获取数据
+  const children = useSelector(state => state.common.schema?.children || [])
+  const childrenAbout = children.filter(element => (element.name === 'ArticleDetail'))
+  const articlesDatas = childrenAbout[0].children.filter(item => !item.attributes)
+  console.log(articlesDatas);
+
+
+  const navigate = useNavigate()
+
+  const { tags, classes, articles} = articlesData[0]
   // ——————————————————————搜索框——————————————————————
   const searchWords = useRef();
   const [searchClass, setSearchClass] = useState(null);
   const [searchTag, setSearchTag] = useState([]);
   // 通过输入文字搜索
   const searchByWords = () => {
-    setSearchClass(null);
-    setSearchTag([]);
-    const keyWords = searchWords.current.value.toLowerCase();
-    // 如果输入框内容为空，则展示所有文章
-    if (!keyWords) {
-      setArticlesShow(articles);
-      return;
-    }
-    // 过滤出搜索到的文章
-    const newArticlesShow = articles.filter(
-      item => item.title.toLowerCase().indexOf(keyWords) !== -1
-    );
-    // 将搜索到的文章，放入要显示的state
-    setArticlesShow(newArticlesShow);
   };
   // 通过选择分类搜索
   const searchByClass = classesName => {
-    searchWords.current.value = '';
-    setSearchTag([]);
-    if (!classesName) {
-      setArticlesShow(articles);
-      return;
-    }
-    const newArticlesShow = articles.filter(item => item.classes === classesName);
-    setArticlesShow(newArticlesShow);
   };
   // 通过选择标签搜索
   const searchByTag = tagsArr => {
@@ -77,13 +66,13 @@ const Articles = () => {
     {
       title: '标题',
       dataIndex: 'title',
-      key: '_id',
+      key: 'id',
       render: text => <strong>{text}</strong>
     },
     {
       title: '发布日期',
       dataIndex: 'date',
-      key: '_id',
+      key: 'id',
       sorter: (a, b) => a.date - b.date,
       render: text => <>{moment(text).format('YYYY-MM-DD HH:mm:ss')}</>,
       sortDirections: ['descend'],
@@ -92,7 +81,7 @@ const Articles = () => {
     {
       title: '分类',
       dataIndex: 'classes',
-      key: '_id',
+      key: 'id',
       render: text => (
         <>
           <Tag color='#2db7f5'>{text}</Tag>
@@ -102,7 +91,7 @@ const Articles = () => {
     {
       title: '标签',
       dataIndex: 'tags',
-      key: '_id',
+      key: 'id',
       render: tags => (
         <>
           {tags.map(tag => {
@@ -119,7 +108,7 @@ const Articles = () => {
     {
       title: 'URL',
       dataIndex: 'url',
-      key: '_id',
+      key: 'id',
       render: text => (
         <a href={text} target='_blank' rel='noreferrer'>
           {text}
@@ -128,10 +117,10 @@ const Articles = () => {
     },
     {
       title: '操作',
-      key: '_id',
+      key: 'id',
       render: record => (
         <Space size='middle'>
-          <Button type='primary' onClick={() => editArticle(record._id)}>
+          <Button type='primary' onClick={() => editArticle(record.id)}>
             修改
           </Button>
 
@@ -139,7 +128,7 @@ const Articles = () => {
             placement='topRight'
             title='确定要删除该文章吗？'
             onConfirm={() => {
-              deleteArticle(record._id);
+              deleteArticle(record.id);
               classMinOne(record.classes);
               deleteMsgs(record.titleEng);
             }}
@@ -182,7 +171,7 @@ const Articles = () => {
   };
   // 添加文章：转到新建文章页面
   const turnAddPage = () => {
-    history.push('/admin/addArticle');
+    navigate('/admin/addArticles');
   };
   // ———————————————————————对文章的操作end—————————————————————————
 
@@ -223,7 +212,7 @@ const Articles = () => {
           }}
         >
           {classes.map(item => (
-            <Option key={item.class}>{item.class}</Option>
+            <Option key={item}>{item}</Option>
           ))}
         </Select>
         <Select
@@ -242,7 +231,7 @@ const Articles = () => {
           }}
         >
           {tags.map(item => (
-            <Option key={item.tag}>{item.tag}</Option>
+            <Option key={item}>{item}</Option>
           ))}
         </Select>
       </div>
@@ -259,8 +248,8 @@ const Articles = () => {
           size: ['small']
         }}
         columns={columns}
-        dataSource={articlesShow}
-        rowKey={columns => columns._id}
+        dataSource={articlesDatas}
+        rowKey={columns => columns.id}
         showSorterTooltip={false}
       />
     </>
