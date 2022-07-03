@@ -8,19 +8,19 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
-const articlesData = [
-  {
-    classes: ["前端基础","基础前端"],
-    content: "# 1. 实现效果\n\n点击`点击`按钮，弹出对话框。\n按住对话框顶部并移动，实现拖动效果。",
-    date: 1603671734000,
-    tags: ["JavaScript","ES6"],
-    title: "JavaScript 拖动元素",
-    titleEng: "move",
-    url: "https://lzxjack.top/post?title=move",
-    id: "7323456789",
-    _openid: "dbee9976b3c14448a06f2006a4795cf2",
-  }
-]
+// const articlesData = [
+//   {
+//     classes: ["前端基础","基础前端"],
+//     content: "# 1. 实现效果\n\n点击`点击`按钮，弹出对话框。\n按住对话框顶部并移动，实现拖动效果。",
+//     date: 1603671734000,
+//     tags: ["JavaScript","ES6"],
+//     title: "JavaScript 拖动元素",
+//     titleEng: "move",
+//     url: "https://lzxjack.top/post?title=move",
+//     id: "7323456789",
+//     _openid: "dbee9976b3c14448a06f2006a4795cf2",
+//   }
+// ]
 
 const { Option } = Select;
 const Articles = () => {
@@ -33,7 +33,7 @@ const Articles = () => {
 
   const navigate = useNavigate()
 
-  const { tags, classes, articles} = articlesData[0]
+  const { tags, classes, articles} = articlesDatas[0]
   // ——————————————————————搜索框——————————————————————
   const searchWords = useRef();
   const [searchClass, setSearchClass] = useState(null);
