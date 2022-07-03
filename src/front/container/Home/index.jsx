@@ -9,6 +9,7 @@ const Home = (props) => {
   const { pageSchema } = props
   const { children = [], attributes = {} } = pageSchema
   const { title = '', poem = '' } = attributes
+  console.log(pageSchema);
 
   const map = { Section, Aside }
   const render = (item, index) => {
@@ -30,8 +31,8 @@ const Home = (props) => {
       {/* 各个组件：筛选组件，把第一个和最后一个去掉===>想渲染特定的组件 */}
       <div className={styles.body}>
         {
-          midComs.map((index, item) => {
-            return render(index, item)
+          midComs.map((item, index) => {
+            return render(item, index)
           })
         }
       </div>

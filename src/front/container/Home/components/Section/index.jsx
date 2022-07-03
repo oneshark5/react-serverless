@@ -26,7 +26,7 @@ const Section = ({ schema }) => {
           const { attributes = {} } = item
           const { title, description, tags, createTime, link } = attributes
           return (
-            <NavLink key={index} to={{pathname:`/artDetail?id=${link}`}}>
+            <NavLink key={index} to={{pathname:`/artDetail?id=${Number(link)}`}}>
               <Card className={styles.card} >
                 <div className={styles.title}>{title}</div>
                 <p className={styles.description}>{description}</p>

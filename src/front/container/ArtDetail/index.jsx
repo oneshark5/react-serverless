@@ -13,12 +13,12 @@ const ArtDetail = (props) => {
   const { pageSchema } = props
   const { children = [] } = pageSchema;
   const childrenAbout = children.filter(element => (element.name === 'ArticleDetail'))
-  const content = childrenAbout[0].children.filter(item => item.id === Number(id))
-  const articleContent = content.at(-1).articleContent
+  const articleContent = childrenAbout[0].children.filter(item => item.id === Number(id))
+  const {classes=[], content='', date='', tags=[], title='', url=''} = articleContent[0]
   
   return (
-    <Layout title='Web Workers：在后台线程执行指定脚本'  >
-      <ArtContent content={articleContent} />
+    <Layout title={title}  >
+      <ArtContent content={content} />
     </Layout>
   )
 }
