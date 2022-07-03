@@ -1,0 +1,32 @@
+@import '../Home/styles/base.scss';
+@import '../Home/styles/style.scss';
+
+.card {
+  margin-bottom: $space;
+  border-radius: $bigRadius;
+  overflow: hidden;
+  user-select: none;
+  background-color: $themeColor1;
+  color: $textColor;
+  padding: $space;
+  @extend .trans;
+}
+
+.active:hover {
+  transform: scale(1.04);
+}
+
+.center {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+
+@media screen and (max-width: 1240px) {
+  .card {
+    margin-bottom: 1rem;
+    border-radius: 1.5rem;
+    padding: 1rem;
+  }
+}

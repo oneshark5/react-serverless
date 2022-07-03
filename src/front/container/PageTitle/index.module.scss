@@ -1,0 +1,39 @@
+@import '../Home/styles/base.scss';
+
+.box {
+  color: $textColor;
+  height: $topTitleHeight;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+  width: $layoutWidth;
+  margin: 0 auto;
+
+  .title {
+    font-size: 45px;
+    font-weight: 600;
+    text-shadow: 4px 4px 10px $footerBg;
+  }
+
+  .desc {
+    font-size: 28px;
+    margin-top: 8px;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .box {
+    width: 100vw;
+
+    .title {
+      font-size: 1.5rem;
+      text-shadow: 1rem 1rem 2rem $footerBg;
+    }
+
+    .desc {
+      font-size: 1rem;
+    }
+  }
+}

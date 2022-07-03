@@ -5,7 +5,7 @@ import styles from './style.module.scss'
 import { parseJsonByString } from '../../../common/utils';
 import { getChangeSchemaAction, getChangePageAttributeAction } from '../../store/action';
 import { useCallback } from 'react';
-import axios from 'axios';
+import axios from 'axios'
 
 // store中存取数据（把使用store的逻辑放在一起）
 const useStore = () => {
@@ -28,28 +28,42 @@ const useStore = () => {
 const BasicSetting = () => {
 
   const { schema = {}, changeSchema, changePageAttribute } = useStore()
-  const { attributes={} } = schema
-  const { title = '' } = attributes
+  const { attributes = {} } = schema
+  const { title = '', poem, backgroundUrl } = attributes
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
+    // ⭐post
     axios.post('/api/schema/save', {
       schema: JSON.stringify(schema)
-    }).then(() => {})
+    },{
+      headers: {
+        'Content-Type': 'application/json;charset=utf8mb4'
+      },
+    }).then(() => { })
   }
-  // 要重置的是children
-  // 改变props，子组件跟着渲染就可以
+
   const handleResetBtnClick = () => {
+    // ⭐get
     axios.get('/api/schema/getLatestOne').then((response) => {
       const data = response?.data?.data;
       data && changeSchema(parseJsonByString(data[0].schema))
     })
   }
 
+  // 事件处理函数
   // 每次BasicSetting组件重新渲染的时候都会重新生成该方法，浪费性能；采用useCallback优化/useMemo也可以
   const handleTitleChange = useCallback((e) => {
     changePageAttribute('title', e.target.value)
-  },[changePageAttribute])
+  }, [changePageAttribute])
+
+  const handlePoemChange = useCallback((e) => {
+    changePageAttribute('poem', e.target.value)
+  }, [changePageAttribute])
+
+  const handleBackgroundChange = useCallback((e) => {
+    changePageAttribute('backgroundUrl', e.target.value)
+  }, [changePageAttribute])
 
   return (
     <div>
@@ -61,6 +75,26 @@ const BasicSetting = () => {
           <Input value={title} onChange={handleTitleChange} />
         </div>
       </div>
+
+      <div className={styles.row}>
+        <div className={styles.title}>
+          每日诗句
+        </div>
+        <div className={styles.content}>
+          <Input value={poem} onChange={handlePoemChange} />
+        </div>
+      </div>
+
+      <div className={styles.row}>
+        <div className={styles.title}>
+          背景图片
+        </div>
+        <div className={styles.content}>
+          <Input value={backgroundUrl} onChange={handleBackgroundChange} />
+        </div>
+      </div>
+
+
       <div className={styles.buttons}>
         <Button type="primary" onClick={handleSaveBtnClick}>
           保存基础配置

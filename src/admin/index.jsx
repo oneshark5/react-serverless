@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, NavLink } from 'react-router-dom'
 import { Layout, Menu } from 'antd';
-import { useDispatch, Provider } from 'react-redux';
-import { parseJsonByString } from '../common/utils';
+import { Provider, useDispatch } from 'react-redux';
 import store from './store'
-import { getChangeSchemaAction } from './store/action';
 import styles from './style.module.scss'
 import 'normalize.css' // 页面样式标准化
-// import 'antd/dist/antd.css'
 import 'antd/dist/antd.min.css';
 import './style.scss';
 import AdminRouter from './container/AdminRouter';
+import { getChangeSchemaAction } from './store/action';
 import axios from 'axios';
+import { parseJsonByString } from '../common/utils';
 
 const { Header, Sider, Content } = Layout;
 
@@ -24,6 +23,7 @@ const useCollapsed = () => {
   }
   return { collapsed, toggleCollapsed }
 }
+
 
 // store中存取数据（把使用store的逻辑放在一起）
 const useStore = () => {
@@ -38,10 +38,11 @@ const useStore = () => {
 
 const Wrapper = () => {
 
-  const { collapsed, toggleCollapsed } = useCollapsed()
   const handleHomePageRedirect = () => { window.location.href = "/" }
+  const { collapsed, toggleCollapsed } = useCollapsed()
   const { changeSchema } = useStore()
 
+  // 请求数据
   useEffect(() => {
     axios.get('/api/schema/getLatestOne').then((response) => {
       const data = response?.data?.data;
@@ -60,18 +61,56 @@ const Wrapper = () => {
           >
             <Menu.Item key="admin-home">
               <NavLink to='/'>
-                <span className='iconfont'>&#xe69b;</span> 首页内容管理
+                <span className='iconfont'>&#xe69b;</span> 首页管理
               </NavLink>
             </Menu.Item>
             <Menu.Item key="admin-setting">
               <NavLink to='/setting'>
-              <span className='iconfont'>&#xe69b;</span> 基础内容配置
+              <span className='iconfont'>&#xe69b;</span> 基础配置
               </NavLink>
             </Menu.Item>
+
+            <Menu.Item key="admin-articles">
+              <NavLink to='/articles'>
+              <span className='iconfont'>&#xe69b;</span> 文章撰写
+              </NavLink>
+            </Menu.Item>
+
+            <Menu.Item key="admin-article">
+              <NavLink to='/admin/article'>
+              <span className='iconfont'>&#xe69b;</span> 文章
+              </NavLink>
+            </Menu.Item>
+
+            <Menu.Item key="admin-say">
+              <NavLink to='/admin/say'>
+              <span className='iconfont'>&#xe69b;</span> 记录
+              </NavLink>
+            </Menu.Item>
+
+            <Menu.Item key="admin-link">
+              <NavLink to='/admin/link'>
+              <span className='iconfont'>&#xe69b;</span> 友链
+              </NavLink>
+            </Menu.Item>
+
+            <Menu.Item key="admin-about">
+              <NavLink to='/admin/about'>
+              <span className='iconfont'>&#xe69b;</span> 关于
+              </NavLink>
+            </Menu.Item>
+
+
+            <Menu.Item key="admin-test">
+              <NavLink to='/admin/test'>
+              <span className='iconfont'>&#xe69b;</span> 测试
+              </NavLink>
+            </Menu.Item>
+
             <Menu.Item
               key="admin-back"
               onClick={handleHomePageRedirect}>
-              <span className='iconfont' >&#xe7e5;</span> 返回用户页面
+              <span className='iconfont' >&#xe7e5;</span> 返回前台
             </Menu.Item>
           </Menu>
         </Sider>

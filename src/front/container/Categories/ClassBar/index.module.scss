@@ -1,0 +1,39 @@
+@import '../../Home/styles/base.scss';
+@import '../../Home/styles/style.scss';
+.classBar {
+  position: relative;
+  background-color: $themeColor2;
+  height: 50px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  @extend .hover;
+  cursor: pointer;
+
+  .classNum {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .classBar {
+    height: 4rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+
+    .classNum {
+      right: 1rem;
+      width: 3rem;
+      font-size: 1.5rem;
+    }
+  }
+}

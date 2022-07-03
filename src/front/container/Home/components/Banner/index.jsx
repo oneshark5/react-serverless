@@ -1,31 +1,84 @@
-import React from 'react'
-import { parseJsonByString } from '../../../../../common/utils'
+import React, { useState } from 'react'
+import './index.custom.scss';
 import styles from './style.module.scss'
+import { Drawer } from 'antd';
+import { MenuOutlined, HomeOutlined, BgColorsOutlined, SettingOutlined } from '@ant-design/icons';
+import { NavLink, useNavigate } from 'react-router-dom';
+import classNames from 'classnames'
+import { useEventListener } from 'ahooks';
 
 const Banner = ({ schema }) => {
   // 从后台获取属性
-  const { attributes = {} } = schema
-  const { title, description, showSmallPic, smallPicUrl, backgroundUrl, backgroundHeight } = attributes
+  const { children = [] } = schema
+  // 路由，编程式导航;只需要在navigate()里添加要跳转的页面即可
+  const navigate = useNavigate()
 
-  const wrapperStyleObj = backgroundUrl ? { 
-    backgroundImage:`url('${backgroundUrl}')`
-   } : {}
+  // 移动端按钮
+  const [visible, setVisible] = useState(false)
+  // 导航栏显示与隐藏
+  const [navShow, setNavShow] = useState(true)
 
-  backgroundHeight && (wrapperStyleObj.height = parseInt(backgroundHeight, 10))
+  // 引入ahooks实现导航栏的显示与隐藏
+  useEventListener(
+    'mousewheel',
+    event => {
+      event = event || window.event;
+      setNavShow(event.wheelDeltaY > 0);
+    },
+    { target: document.body }
+  );
+
   return (
-    <div className='wrapper'>
-      <div className={styles.banner} style={wrapperStyleObj}>
-        <div className={styles.person}>
-          {
-            (showSmallPic && smallPicUrl) ? <img className={styles.avatar} src={smallPicUrl} alt='oneshark' /> : null
-          }
-          <div className={styles.content}>
-            <div className={styles.title}>{title}</div>
-            <div className={styles.description}>{description}</div>
+    <div className='Nav'>
+      <nav className={classNames(styles.nav, { [styles.hiddenNav]: !navShow })}>
+        <div className={styles.navContent}>
+
+          <div className={styles.homeBtn} onClick={() => navigate('/')}>
+            <HomeOutlined />
           </div>
 
+          {/* 中间部分 */}
+          {
+            children.map(({ attributes: { title, link } }, index) =>
+              <NavLink 
+                className={styles.navBtn}
+                to={link}
+                key={index}
+              >
+                {title}
+              </NavLink>
+            )
+          }
+
+          {/* 黑白模式切换 */}
+          <div className={styles.modeBtn}>
+            <BgColorsOutlined />
+            <div className={styles.modeOptions}>
+            </div>
+          </div>
+
+          {/* 后台管理 */}
+          <a className={styles.adminBtn} href='#' >
+            <SettingOutlined />
+          </a>
         </div>
+      </nav>
+
+      {/* 移动端 */}
+      <div className={styles.mobileNavBtn} onClick={() => setVisible(true)}>
+        <MenuOutlined />
       </div>
+      <Drawer placement="left" onClose={() => setVisible(false)}
+        visible={visible} className='mobile-nav-box'>
+        <div className={styles.mobileNavBox}>
+          {
+            children.map(({ attributes: { title } }, index) =>
+              <div key={index} className={styles.mobileNavItem}>
+                {title}
+              </div>)
+          }
+        </div>
+      </Drawer>
     </div>
   )
 }

@@ -1,42 +1,42 @@
-import { useEffect, useState } from 'react'
-import { parseJsonByString } from "../../../common/utils"
 import { Helmet } from "react-helmet";
-import axios from 'axios'
-import Banner from './components/Banner'
-import Footer from './components/Footer'
-import List from './components/List'
+import Section from './components/Section'
+import Aside from './components/Aside'
+import styles from './index.module.scss'
+import PageTitle from "../PageTitle";
 
-const map = { Banner, Footer, List }
 
-const render = (item, index) => {
-  const Component = map[item.name]
-  return Component ? <Component key={index} schema={item} /> : null;
-}
+const Home = (props) => {
+  const { pageSchema } = props
+  const { children = [], attributes = {} } = pageSchema
+  const { title = '', poem = '' } = attributes
+  console.log(pageSchema);
 
-// import React from 'react'
-const Home = () => {
-  const [pageSchema, setPageSchema] = useState({})
-  const { children = [], attributes = {} } = pageSchema // 解构
+  const map = { Section, Aside }
+  const render = (item, index) => {
+    const Component = map[item.name]
+    return Component ? <Component key={index} schema={item} /> : null;
+  }
 
-  useEffect(() => {
-    axios.get('/api/schema/getLatestOne').then((response) => {
-      const data = response?.data?.data;
-      data && setPageSchema(parseJsonByString(data[0].schema))
-    })
-  },[])
+  // // 把中间组件取出
+  const midComs = children.filter(item => item.name !== 'Banner' && item.name !== 'Footer')
 
   return (
-    <div>
+    <>
       <Helmet>
-        <title>{attributes?.title || ''}</title>
+        <title>{title}</title>
       </Helmet>
-      {
-        children.map((index, item) => {
-          console.log(index, item)
-          return render(index, item)
-        })
-      }
-    </div>
+
+      <PageTitle title={title} desc={poem} className={styles.homeTitle} />
+
+      {/* 各个组件：筛选组件，把第一个和最后一个去掉===>想渲染特定的组件 */}
+      <div className={styles.body}>
+        {
+          midComs.map((item, index) => {
+            return render(item, index)
+          })
+        }
+      </div>
+    </>
   )
 }
 export default Home

@@ -1,15 +1,18 @@
 import { Input, Button } from 'antd'
 import styles from './style.module.scss'
 
-const List = (props) => {
-  console.log(props);
-  const { children = [], changeChildren } = props // 给一个空对象，避免外部传的时候边界没处理
+const { TextArea } = Input;
 
+const Link = (props) => {
+  console.log(props);
+  const { children, changeAttributes, changeChildren } = props
+
+  // 事件处理函数
   const addItemToChildren = () => {
     const newChildren = [...children]
     newChildren.push({
       name: 'Item',
-      attributes: { title: '', description: '', imageUrl: '', link: '' },
+      attributes: { navIcon: '', name:'', avatar:'', descr:'', link:'', id:(Math.trunc(Math.random()+Date.now())) },
       children: []
     })
     changeChildren(newChildren)
@@ -24,7 +27,7 @@ const List = (props) => {
   // 内容变化时，改变里面的属性---该方法存在一些问题⭐⭐⭐---添加了个分号解决了。。。😅
   const changeChildrenItem = (index, key, value) => {
     const originItem = children[index];
-    const item = {...originItem};
+    const item = { ...originItem };
     item.attributes[key] = value;
     const newChildren = [...children];
     newChildren.splice(index, 1, item);
@@ -32,44 +35,42 @@ const List = (props) => {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} >
+      {/* 添加导航标题 */}
       <Button
         type='primary'
         className={styles.button}
         onClick={addItemToChildren}
-      >新增列表项</Button>
-
-      {/* 页面有几个区块由外部schema里的children决定，由children循环生成 */}
+      >新增友链</Button>
       {
-        children.map(({ attributes: {title, description, imageUrl, link} }, index) => (
+        children.map(({ attributes: { name, avatar, descr, link, } }, index) => (
           <div className={styles.area} key={index} >
             <div className={styles.delete} onClick={() => deleteItemFromChildren(index)}>X</div>
-
             <div className={styles['area-row']}>
-              <span className={styles.label}>标题</span>
+              <span className={styles.label}>名字</span>
               <Input
-                value={title}
+                value={name}
                 className={styles.content}
-                placeholder='请输入标题'
-                onChange={(e) => { changeChildrenItem(index, 'title', e.target.value) }}
+                placeholder='请输入名字'
+                onChange={(e) => { changeChildrenItem(index, 'name', e.target.value) }}
+              />
+            </div>
+            <div className={styles['area-row']}>
+              <span className={styles.label}>头像</span>
+              <Input
+                value={avatar}
+                className={styles.content}
+                placeholder='请输入头像'
+                onChange={(e) => { changeChildrenItem(index, 'avatar', e.target.value) }}
               />
             </div>
             <div className={styles['area-row']}>
               <span className={styles.label}>描述</span>
               <Input
-                value={description}
+                value={descr}
                 className={styles.content}
                 placeholder='请输入描述'
-                onChange={(e) => { changeChildrenItem(index, 'description', e.target.value) }}
-              />
-            </div>
-            <div className={styles['area-row']}>
-              <span className={styles.label}>图片</span>
-              <Input
-                value={imageUrl}
-                className={styles.content}
-                placeholder='请输入图片地址'
-                onChange={(e) => { changeChildrenItem(index, 'imageUrl', e.target.value) }}
+                onChange={(e) => { changeChildrenItem(index, 'descr', e.target.value) }}
               />
             </div>
             <div className={styles['area-row']}>
@@ -77,7 +78,7 @@ const List = (props) => {
               <Input
                 value={link}
                 className={styles.content}
-                placeholder='请输入跳转链接'
+                placeholder='请输入链接'
                 onChange={(e) => { changeChildrenItem(index, 'link', e.target.value) }}
               />
             </div>
@@ -85,8 +86,7 @@ const List = (props) => {
         ))
       }
 
-
     </div>
   )
 }
-export default List
+export default Link

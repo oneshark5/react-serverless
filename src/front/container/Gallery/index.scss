@@ -1,0 +1,8 @@
+@import '../Home/styles/base.scss';
+@import '../Home/styles/style.scss';
+
+.imgBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

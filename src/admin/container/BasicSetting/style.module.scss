@@ -1,6 +1,7 @@
 // 技巧：如果把:global卸载外面会影响全局样式，但是写在一个组件里面，影响的仅仅是该组件所有的样式
 .row{
   display: flex;
+  margin: 10px 0;
   .title{
     width: 100px;
     line-height: 32px;

@@ -5,7 +5,14 @@ import { SortableElement } from 'react-sortable-hoc';
 import { cloneDeep } from 'lodash' 
 import { getChangePageChildAction, getDeletePageChildAction } from '../../../../store/action';
 import Banner from './components/Banner';
-import List from './components/List';
+import Section from './components/Section';
+import Aside from './components/Aside';
+import About from './components/About';
+import Show from './components/Show';
+import ArticleDetail from './components/ArticleDetail';
+import Say from './components/Say';
+import Link from './components/Link';
+import Categories from './components/Categories';
 import Footer from './components/Footer';
 import styles from './style.module.scss'
 
@@ -13,7 +20,7 @@ import styles from './style.module.scss'
 const { Option } = Select// 选择组件，下拉列表选择器
 // 定义一个变量做临时存储---放在外层的原因：内部每次渲染时都会重新生成该变量；本身和render没有关系，放在里面会降低性能。
 
-const map = {Banner, List, Footer}
+const map = {Banner, Section, Aside,ArticleDetail, Say, Link, Categories, Show, About, Footer }
 
 // store中存取数据（把使用store的逻辑放在一起）
 const useStore = (index) => {
@@ -31,6 +38,7 @@ const AreaItem = (props) => {
   // 等价于
   // const index = props.value
   const { pageChild, changePageChild, removePageChild } = useStore(index)
+  console.log(pageChild);
 
   const [isModalVisible, setIsModalVisible] = useState(false);// 控制弹框是否可见
   const [tempPageChild, setTempPageChild] = useState(cloneDeep(pageChild))//临时变量控制着内部弹窗组件选择框的内容
@@ -108,7 +116,14 @@ const AreaItem = (props) => {
             onChange={handleSelectorChange}
           >
             <Option value='Banner'>Banner 组件</Option>
-            <Option value='List'>List 组件</Option>
+            <Option value='Section'>Section 组件</Option>
+            <Option value='Aside'>Aside 组件</Option>
+            <Option value='ArticleDetail'>ArticleDetail 组件</Option>
+            <Option value='Say'>Say 组件</Option>
+            <Option value='Link'>Link 组件</Option>
+            <Option value='Categories'>Categories 组件</Option>
+            <Option value='Show'>Show 组件</Option>
+            <Option value='About'>About 组件</Option>
             <Option value='Footer'>Footer 组件</Option>
           </Select>
 

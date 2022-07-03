@@ -1,0 +1,58 @@
+@import '../Home/styles/base.scss';
+@import '../Home/styles/style.scss';
+
+.articleInfo {
+  display: inline-block;
+  font-size: 18px;
+  padding: 0 10px;
+  line-height: 40px;
+  margin-right: $space;
+  border-radius: 14px;
+  user-select: none;
+  background-color: $themeColor;
+  @extend .hover;
+}
+
+.postTitle {
+  align-items: flex-start;
+  user-select: text;
+
+  .articleClass {
+    @extend .articleInfo;
+  }
+  .articleDate {
+    @extend .articleInfo;
+  }
+}
+
+.layoutCard {
+  margin: auto;
+  width: $layoutWidth;
+  padding: 2 * $space;
+  font-size: 20px;
+  line-height: 1.6em;
+  user-select: text;
+  word-break: break-all;
+}
+
+@media screen and (max-width: 1240px) {
+  .articleInfo {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    line-height: 3rem;
+    margin-right: 1rem;
+    border-radius: 0.1rem;
+  }
+
+  .postTitle {
+    padding: 0 1rem;
+    align-items: center;
+  }
+
+  .layoutCard {
+    width: 100vw;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5em;
+  }
+}

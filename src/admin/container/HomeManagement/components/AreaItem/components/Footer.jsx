@@ -6,13 +6,13 @@ const Footer = (props) => {
   const {
     attributes = {}, changeAttributes, children = [], changeChildren
   } = props
-  const { copyright, record } = attributes;
+  const { record } = attributes;
 
   const addItemToChildren = () => {
     const newChildren = [...children]
     newChildren.push({
       name: 'Item',
-      attributes: { title: '', link: '' },
+      attributes: { title: '', demo:'', demoLink: '', tags:'' },
       children: []
     })
     changeChildren(newChildren)
@@ -38,15 +38,6 @@ const Footer = (props) => {
   return (
     <div className={styles.wrapper} >
       <div className={styles['attribute-row']}>
-        <span className={styles.label}>版权信息</span>
-        <Input
-          value={copyright}
-          className={styles.content}
-          placeholder='请输入版权信息'
-          onChange={(e) => { changeAttributes({ copyright: e.target.value }) }}
-        />
-      </div>
-      <div className={styles['attribute-row']}>
         <span className={styles.label}>备案信息</span>
         <Input
           value={record}
@@ -60,9 +51,8 @@ const Footer = (props) => {
         className={styles.button}
         onClick={addItemToChildren}
       >新增列表项</Button>
-
       {
-        children.map(({ attributes: { title, link } }, index) => (
+        children.map(({ attributes: { title,demo, demoLink, tags } }, index) => (
           <div className={styles.area} key={index} >
             <div className={styles.delete} onClick={() => deleteItemFromChildren(index)}>X</div>
             <div className={styles['area-row']}>
@@ -74,21 +64,36 @@ const Footer = (props) => {
                 onChange={(e) => { changeChildrenItem(index, 'title', e.target.value) }}
               />
             </div>
-
+            <div className={styles['area-row']}>
+              <span className={styles.label}>源码</span>
+              <Input
+                value={demo}
+                className={styles.content}
+                placeholder='请输入提示'
+                onChange={(e) => { changeChildrenItem(index, 'demo', e.target.value) }}
+              />
+            </div>
             <div className={styles['area-row']}>
               <span className={styles.label}>链接</span>
               <Input
-                value={link}
+                value={demoLink}
                 className={styles.content}
-                placeholder='请输入链接'
-                onChange={(e) => { changeChildrenItem(index, 'link', e.target.value) }}
+                placeholder='请输入源码链接'
+                onChange={(e) => { changeChildrenItem(index, 'demoLink', e.target.value) }}
+              />
+            </div>
+            <div className={styles['area-row']}>
+              <span className={styles.label}>标签</span>
+              <Input
+                value={tags}
+                className={styles.content}
+                placeholder='请输入标签'
+                onChange={(e) => { changeChildrenItem(index, 'tags', e.target.value) }}
               />
             </div>
           </div>
         ))
       }
-
-
     </div>
   )
 }

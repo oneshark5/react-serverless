@@ -23,11 +23,7 @@ const useStore = () => {
 }
 
 const HomeManagement = () => {
-
   const { schema, changeSchema } = useStore()
-
-
-  // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
     axios.post('/api/schema/save', {
       schema: JSON.stringify(schema)
