@@ -9,7 +9,7 @@ export default function Say(props) {
   const sayContents = childrenSay[0].children
 
   return (
-    <Layout title='记录'>
+    <Layout title='关于你呀👼'>
       {
         sayContents.map(({ id, sayContent, date }) => (
         <SayPop key={id} content={sayContent} date={date} />
