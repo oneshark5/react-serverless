@@ -135,20 +135,20 @@
 
 @media screen and (max-width: 1240px) {
   #hljs {
-    padding: 5rem 10rem;
-    border-radius: 12rem;
+    padding: 0.2rem 0.1rem;
+    border-radius: 0.5rem;
 
     // 代码片段
     code {
-      font-size: 14rem;
+      font-size: 0.5rem;
     }
   }
 
   #hljs::-webkit-scrollbar {
-    height: 8rem;
+    height: 2rem;
   }
   #hljs::-webkit-scrollbar-thumb {
-    border-bottom-left-radius: 8rem;
-    border-bottom-right-radius: 8rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 1rem;
   }
 }
