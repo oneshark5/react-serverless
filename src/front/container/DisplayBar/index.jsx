@@ -4,7 +4,6 @@ import React from 'react';
 import s from './index.module.scss';
 
 const DisplayBar = ({ content = '', right = '' }) => {
-  console.log(content);
   return (
     <div className={s.displayBar}>
       <div className={s.content}>{content}</div>

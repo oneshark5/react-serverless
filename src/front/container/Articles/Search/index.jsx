@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { ArrowRightOutlined, RedoOutlined } from '@ant-design/icons';
 import { useKeyPress, useMemoizedFn, useSafeState } from 'ahooks';
+import { message } from 'antd';
 import s from './index.module.scss';
 
 // 可以手写防抖节流实现
@@ -8,11 +9,21 @@ function Search() {
   const inputRef = useRef(null);
   const [input, setInput] = useSafeState('');
   const search = useMemoizedFn(() => {
-
+    if (!input) {
+      message.info('请输入关键词再搜索!');
+      return;
+    }
   })
   const reset = useMemoizedFn(() => {
   });
 
+  useKeyPress(13, search, {
+    target: inputRef
+  });
+
+  useKeyPress(27, reset, {
+    target: inputRef
+  });
 
   return (
     <div className={s.searchBox}>
