@@ -59,6 +59,7 @@ const Banner = ({ schema }) => {
           <div className={styles.modeBtn} >
             <BgColorsOutlined />
             <div className={styles.modeOptions}>
+            
             </div>
           </div>
 
