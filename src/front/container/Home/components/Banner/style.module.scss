@@ -54,9 +54,15 @@
       // 开启定位后，设置偏移量，此时是相对于navContent定位
       left: 0px;
     }
+    
     .adminBtn {
       @extend .homeAndAdmin;
       margin-right: 0;
+    }
+    .searchBtn{
+      @extend .homeAndAdmin;
+      margin-right: 0;
+      right: 160px
     }
     .navBtn {
       @extend .baseBtn;

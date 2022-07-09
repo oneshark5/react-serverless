@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './index.custom.scss';
 import styles from './style.module.scss'
 import { Drawer } from 'antd';
-import { MenuOutlined, HomeOutlined, BgColorsOutlined, SettingOutlined } from '@ant-design/icons';
+import { MenuOutlined, HomeOutlined, SearchOutlined, BgColorsOutlined, SettingOutlined } from '@ant-design/icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames'
 import { useEventListener } from 'ahooks';
@@ -36,11 +36,12 @@ const Banner = ({ schema }) => {
           <div className={styles.homeBtn} onClick={() => navigate('/')}>
             <HomeOutlined />
           </div>
+          
 
           {/* 中间部分 */}
           {
             children.map(({ attributes: { title, link } }, index) =>
-              <NavLink 
+              <NavLink
                 className={styles.navBtn}
                 to={link}
                 key={index}
@@ -50,8 +51,12 @@ const Banner = ({ schema }) => {
             )
           }
 
+          <div className={styles.searchBtn} onClick={() => navigate('/articles')}>
+            <SearchOutlined />
+          </div>
+
           {/* 黑白模式切换 */}
-          <div className={styles.modeBtn}>
+          <div className={styles.modeBtn} >
             <BgColorsOutlined />
             <div className={styles.modeOptions}>
             </div>
@@ -59,7 +64,7 @@ const Banner = ({ schema }) => {
 
           {/* 后台管理 */}
           <a className={styles.adminBtn} href='#' >
-            <SettingOutlined />
+            <NavLink to='/admin.html'/><SettingOutlined />
           </a>
         </div>
       </nav>
