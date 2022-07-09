@@ -1,3 +1,4 @@
+import { useSafeState } from 'ahooks';
 import React, { useState } from 'react'
 import Layout from '../Layout';
 import MyPagination from '../MyPagination';
@@ -29,17 +30,24 @@ const data = [
   }
 ]
 
+// 
+
 function Articles() {
   const [page, setPage] = useState(1);
+  // 设置状态，初始时是全部数据，等待点击
+  const [where, setWhere] = useSafeState(data)
 
+  console.log(where);
   return (
     <Layout titlt="所有文章">
       <Search
         page={page}
         setPage={setPage}
+        where={where}
+        setWhere={setWhere}
       >
-      </Search>
-      <ArtList articles={data}></ArtList>
+      </Search >
+      <ArtList articles={where}></ArtList>
       {/* <MyPagination></MyPagination> */}
     </Layout>
   )
