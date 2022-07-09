@@ -9,7 +9,7 @@ const Section = (props) => {
     const newChildren = [...children]
     newChildren.push({
       name: 'Item',
-      attributes: { title: '', description: '', tags: '', createTime:'', link: '' },
+      attributes: { title: '', description: '', tags: '', classes:'', createTime:'', link: '', titleEng:'', id:'' },
       children: []
     })
     changeChildren(newChildren)
@@ -41,7 +41,7 @@ const Section = (props) => {
 
       {/* 页面有几个区块由外部schema里的children决定，由children循环生成 */}
       {
-        children.map(({ attributes: {title, description, tags, createTime, link} }, index) => (
+        children.map(({ attributes: {title, description, tags, classes, createTime, link, id} }, index) => (
           <div className={styles.area} key={index} >
             <div className={styles.delete} onClick={() => deleteItemFromChildren(index)}>X</div>
 
@@ -68,10 +68,20 @@ const Section = (props) => {
               <Input
                 value={tags}
                 className={styles.content}
-                placeholder='请输入图片地址'
+                placeholder='请输入文章标签'
                 onChange={(e) => { changeChildrenItem(index, 'tags', e.target.value) }}
               />
             </div>
+            <div className={styles['area-row']}>
+              <span className={styles.label}>分类</span>
+              <Input
+                value={classes}
+                className={styles.content}
+                placeholder='请输入文章分类'
+                onChange={(e) => { changeChildrenItem(index, 'classes', e.target.value) }}
+              />
+            </div>
+
             <div className={styles['area-row']}>
               <span className={styles.label}>时间</span>
               <Input
@@ -82,12 +92,12 @@ const Section = (props) => {
               />
             </div>
             <div className={styles['area-row']}>
-              <span className={styles.label}>链接</span>
+              <span className={styles.label}>id值</span>
               <Input
-                value={link}
+                value={id}
                 className={styles.content}
-                placeholder='请输入跳转链接'
-                onChange={(e) => { changeChildrenItem(index, 'link', e.target.value) }}
+                placeholder='请输入跳转链接(id值)'
+                onChange={(e) => { changeChildrenItem(index, 'id', e.target.value) }}
               />
             </div>
           </div>

@@ -9,7 +9,6 @@ const Home = (props) => {
   const { pageSchema } = props
   const { children = [], attributes = {} } = pageSchema
   const { title = '', poem = '' } = attributes
-  console.log(pageSchema);
 
   const map = { Section, Aside }
   const render = (item, index) => {

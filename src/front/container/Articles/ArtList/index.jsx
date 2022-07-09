@@ -7,7 +7,6 @@ import DisplayBar from '../../DisplayBar';
 const ArtList = ({articles}) => {
 
   console.log(articles);
-  
 
   return (
     <>
@@ -15,9 +14,9 @@ const ArtList = ({articles}) => {
         articles?.length ? (
           articles?.map((item) => 
             <DisplayBar
-              key={item._id}
-              content={item.title}
-              right={dayjs(item.date).format('YYYY-MM-DD')}
+              key={item.attributes.id}
+              content={item.attributes.title}
+              right={dayjs(item.attributes.createTime).format('YYYY-MM-DD')}
             />
           )
         ) : (

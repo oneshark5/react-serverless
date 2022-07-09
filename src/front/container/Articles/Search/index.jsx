@@ -15,7 +15,7 @@ const Search = ({where, setWhere}) => {
       return;
     }
     let regex = new RegExp(input, 'gi')
-    const changeTitle = where.filter(item => regex.test(item.title))
+    const changeTitle = where.filter(item => regex.test(item.attributes.title))
     setWhere(changeTitle)
   })
   const reset = useMemoizedFn(() => {
