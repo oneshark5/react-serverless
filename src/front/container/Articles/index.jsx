@@ -38,11 +38,6 @@ function Articles(props) {
   const childrenSection = children.filter(element => (element.name === 'Section'))
   const sectionData = childrenSection[0].children
 
-  console.log(childrenSection[0].children);
-  console.log(sectionData);
-  
-
-
   const [page, setPage] = useState(1);
   // 设置状态，初始时是全部数据，等待点击
   const [where, setWhere] = useSafeState(sectionData)

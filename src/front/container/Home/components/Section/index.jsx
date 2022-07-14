@@ -9,7 +9,6 @@ import { NavLink } from 'react-router-dom';
 const Section = ({ schema }) => {
   // 从后台获取属性
   const { children = [] } = schema
-  console.log(schema);
 
   // 定义路由
   // const navigate = useNavigate()

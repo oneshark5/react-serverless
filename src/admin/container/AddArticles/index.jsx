@@ -53,8 +53,6 @@ const AddArticles = props => {
   }
   const { schema, pageChild = {}, changePageChild } = useStore(index)
   const articleData = pageChild.children
-  console.log(articleData);
-  console.log(schema);
 
   const { tags, classes, articles, getClasses, getArticles, getMsgs, history } = articlesData[0]
 

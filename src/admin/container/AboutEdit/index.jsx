@@ -50,7 +50,6 @@ function AboutEdit() {
     setContent(e.target.innerText)
     // 更改内容
     const item = cloneDeep(pageChild)
-    console.log(item);
     item.children.splice(0, 1, {
       aboutContent: e.target.innerText
     })

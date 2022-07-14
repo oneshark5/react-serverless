@@ -58,7 +58,6 @@ function AddArticle() {
   }
   const { schema, changePageAttribute, pageChild = {}, changePageChild } = useStore(index)
   const {children} = pageChild
-  console.log(children.at(-1).articleContent);
 
   const [content, setContent] = useState(children.at(-1).articleContent);
   // const [content, setContent] = useState(data.testContent);
@@ -87,7 +86,6 @@ function AddArticle() {
       },
     }).then(() => { })
   }
-  console.log(schema);
 
   const turnToAbout = () => {
     navigate(`/admin/article`)

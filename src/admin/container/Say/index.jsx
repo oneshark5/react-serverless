@@ -179,7 +179,6 @@ const Say = props => {
     })
     // 更改内容
     const item = cloneDeep(pageChild)
-    console.log(item.children[0].sayContent);
     setContent(item.children[0].sayContent)
   };
   // 删除说说
@@ -197,7 +196,6 @@ const Say = props => {
     message.info('请再次确认是否删除哦😄')
     setAddSayVisible(false)
   };
-  console.log(schema);
   // ——————————————————————————————对说说的操作end————————————————————————————
 
   return (

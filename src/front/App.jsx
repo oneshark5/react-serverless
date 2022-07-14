@@ -10,7 +10,6 @@ import BackToTop from "./container/BackToTop";
 
 const App = (props) => {
   const { pageSchema = {}, mode } = props
-  console.log(mode);
   const { children = [], attributes = {} } = pageSchema
   const { title = '', backgroundUrl = '', backgroundUrl02 = '', backgroundUrl03 = '' } = attributes
 

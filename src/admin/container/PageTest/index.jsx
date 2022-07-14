@@ -32,8 +32,6 @@ function PageTest() {
   }
 
   const { pageChild } = useStore(index)
-  console.log(pageChild);
-
 
   const navigate = useNavigate()
   // 配制marked和highlight
