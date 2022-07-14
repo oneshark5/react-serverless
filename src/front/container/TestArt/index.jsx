@@ -1,5 +1,3 @@
-import { parseJsonByString } from "../../../common/utils"
-
 import ArticleDetail from './component/ArticleDetail'
 import styles from './index.module.scss'
 // import './global.custom.scss'
