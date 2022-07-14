@@ -10,8 +10,9 @@ import { setMode } from './redux/action'
 
 const App = (props) => {
   const { pageSchema = {}, mode, setMode } = props
+  console.log(mode);
   const { children = [], attributes = {} } = pageSchema
-  const { title = '', backgroundUrl = '' } = attributes
+  const { title = '', backgroundUrl = '', backgroundUrl02 = '', backgroundUrl03 = '' } = attributes
 
   const navCom = children[0]
   const footerCom = children.at(-1)
@@ -26,10 +27,10 @@ const App = (props) => {
       backgroundImage: `url('${backgroundUrl}')`
     },
     {
-      backgroundImage: `url('${backgroundUrl}')`
+      backgroundImage: `url('${backgroundUrl02}')`
     },
     {
-      backgroundImage: `url('${backgroundUrl}')`
+      backgroundImage: `url('${backgroundUrl03}')`
     },
 
   ]

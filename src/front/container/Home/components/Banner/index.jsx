@@ -20,7 +20,7 @@ const Banner = ({ schema, mode, setMode }) => {
   // 导航栏显示与隐藏
   const [navShow, setNavShow] = useState(true)
 
-  const modeOptions = ['rgb(19, 38, 36)', 'rgb(110, 180, 214)', 'rgb(171, 194, 208)'];
+  const modeOptions = ['rgb(215, 225, 225)', 'rgb(200, 150, 155)', 'rgb(1, 43, 85)'];
 
   // 引入ahooks实现导航栏的显示与隐藏
   useEventListener(
