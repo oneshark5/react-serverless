@@ -5,9 +5,13 @@ import { Drawer } from 'antd';
 import { MenuOutlined, HomeOutlined, SearchOutlined, BgColorsOutlined, SettingOutlined, CheckOutlined } from '@ant-design/icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames'
-import { useEventListener } from 'ahooks';
+import { useEventListener, useUpdateEffect } from 'ahooks';
 import { connect } from 'react-redux';
 import { setMode } from '../../../../redux/action';
+import { modeMap, modeMapArr } from '../../../utils/modeMap';
+
+
+const bodyStyle = window.document.getElementsByTagName('body')[0].style;
 
 const Banner = ({ schema, mode, setMode }) => {
   // 从后台获取属性
@@ -31,6 +35,13 @@ const Banner = ({ schema, mode, setMode }) => {
     },
     { target: document.body }
   );
+
+  useUpdateEffect(() => {
+    // setLocalMode(mode);
+    for (const type of modeMapArr) {
+      bodyStyle.setProperty(type, modeMap[type][mode]);
+    }
+  }, [mode]);
 
   return (
     // <div className='Nav'>
