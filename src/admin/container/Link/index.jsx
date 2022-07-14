@@ -158,7 +158,6 @@ const Link = props => {
   const addLink = () => {
     // 更改内容
     const item = cloneDeep(pageChild)
-    console.log(item);
     changePageChild(item)
     message.info('请再次确认是否发表哦😄')
     setAddLinkVisible(false)

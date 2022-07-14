@@ -10,7 +10,6 @@ const ArticleDetail = ({ schema }) => {
   // 从后台获取属性
   const { children = [] } = schema
   const { title = '', detail = '', category = '', createTime = '', tags = '', } = children[0].attributes
-  console.log(createTime);
 
   return (
 

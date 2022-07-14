@@ -30,11 +30,8 @@ function PageTest() {
   for(let i=0; i<children.length; i++){
     if(children[i].name === 'About') index = i
   }
-
   const { pageChild } = useStore(index)
-  console.log(pageChild);
-
-
+  
   const navigate = useNavigate()
   // 配制marked和highlight
   useEffect(() => {

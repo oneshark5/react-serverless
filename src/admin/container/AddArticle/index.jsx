@@ -57,7 +57,6 @@ function AddArticle() {
   }
   const { schema, changePageAttribute, pageChild = {}, changePageChild } = useStore(index)
   const {children} = pageChild
-  console.log(children.at(-1).articleContent);
 
   const [content, setContent] = useState(children.at(-1).articleContent);
   // const [content, setContent] = useState(data.testContent);
@@ -67,7 +66,6 @@ function AddArticle() {
     setContent(e.target.innerText)
     // 更改内容
     const item = cloneDeep(pageChild)
-    console.log(item);
     // 这里先设置为1，因为引入post的时候，post是自增长的
     item.children.push({
       id:1,
@@ -80,7 +78,6 @@ function AddArticle() {
   const handleSaveBtnClick = () => {
     window.localStorage.schema = JSON.stringify(schema)
   }
-  console.log(schema);
 
   const turnToAbout = () => {
     navigate(`/admin/about`)

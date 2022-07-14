@@ -4,7 +4,6 @@ import styles from './style.module.scss'
 const { TextArea } = Input;
 
 const Banner = (props) => {
-  console.log(props);
   const { children, changeAttributes, changeChildren } = props
 
   // 事件处理函数

@@ -10,8 +10,6 @@ const pageSchema = parseJsonByString(window.localStorage.schema, {})
 const { children = [] } = pageSchema;
 const childrenCategoory = children.filter(element => (element.name === 'Categories'))
 const attributesCategory = childrenCategoory[0].children
-console.log(attributesCategory);
-
 
 export default function Categories() {
   const navigate = useNavigate();

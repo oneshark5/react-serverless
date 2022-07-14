@@ -62,7 +62,6 @@ const Articles = () => {
     if (current === 0) {
       BlogsForm.current.validateFields().then(res => {
         // 分类信息
-        console.log(res);
         setCurrent(current + 1)
       }).catch(error => {
         console.log(error);

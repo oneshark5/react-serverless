@@ -10,7 +10,6 @@ function Article() {
   // 获取数据
   const children = useSelector(state => state.common.schema?.children || [])
   const childrenArticle = children.filter(element => (element.name === 'ArticleDetail'))
-  console.log(childrenArticle);
 
   const articleContent = childrenArticle[0].children.at(-1).articleContent
 
