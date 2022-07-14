@@ -1,0 +1,34 @@
+@import '../Home/styles/base.scss';
+@import '../Home/styles/style.scss';
+
+.backTop {
+  height: 50px;
+  width: 50px;
+  border-radius: 14px;
+  color: $textColor;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $themeColor1;
+  @extend .hover;
+}
+
+.antBackTop {
+  font-feature-settings: "tnum";
+  bottom: 50px;
+  box-sizing: border-box;
+  color: rgba(0,0,0,.85);
+  cursor: pointer;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  height: 40px;
+  line-height: 1.5715;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  right: 100px;
+  width: 40px;
+  z-index: 10;
+}
