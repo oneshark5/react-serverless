@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import './index.custom.scss';
 import styles from './style.module.scss'
 import { Drawer } from 'antd';
-import { MenuOutlined, HomeOutlined, SearchOutlined, BgColorsOutlined, SettingOutlined } from '@ant-design/icons';
+import { MenuOutlined, HomeOutlined, SearchOutlined, BgColorsOutlined, SettingOutlined, CheckOutlined } from '@ant-design/icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames'
 import { useEventListener } from 'ahooks';
+import { connect } from 'react-redux';
+import { setMode } from '../../../../redux/action';
 
-const Banner = ({ schema }) => {
+const Banner = ({ schema, mode, setMode }) => {
   // 从后台获取属性
   const { children = [] } = schema
   // 路由，编程式导航;只需要在navigate()里添加要跳转的页面即可
@@ -17,6 +19,8 @@ const Banner = ({ schema }) => {
   const [visible, setVisible] = useState(false)
   // 导航栏显示与隐藏
   const [navShow, setNavShow] = useState(true)
+
+  const modeOptions = ['rgb(19, 38, 36)', 'rgb(110, 180, 214)', 'rgb(171, 194, 208)'];
 
   // 引入ahooks实现导航栏的显示与隐藏
   useEventListener(
@@ -29,14 +33,15 @@ const Banner = ({ schema }) => {
   );
 
   return (
-    <div className='Nav'>
+    // <div className='Nav'>
+    <>
       <nav className={classNames(styles.nav, { [styles.hiddenNav]: !navShow })}>
         <div className={styles.navContent}>
 
           <div className={styles.homeBtn} onClick={() => navigate('/')}>
             <HomeOutlined />
           </div>
-          
+
 
           {/* 中间部分 */}
           {
@@ -59,13 +64,24 @@ const Banner = ({ schema }) => {
           <div className={styles.modeBtn} >
             <BgColorsOutlined />
             <div className={styles.modeOptions}>
-            
+              {
+                modeOptions.map((backgroundColor, index) => (
+                  <div
+                    key={index}
+                    style={{ backgroundColor }}
+                    className={classNames(styles.modeItem, styles[`modeItem${index}`])}
+                    onClick={() => setMode?.(index)}
+                  >
+                    <CheckOutlined style={{ display: mode === index ? 'block' : 'none' }} />
+                  </div>
+                ))
+              }
             </div>
           </div>
 
           {/* 后台管理 */}
           <a className={styles.adminBtn} href='#' >
-            <NavLink to='/admin.html'/><SettingOutlined />
+            <NavLink to='/admin.html' /><SettingOutlined />
           </a>
         </div>
       </nav>
@@ -85,7 +101,13 @@ const Banner = ({ schema }) => {
           }
         </div>
       </Drawer>
-    </div>
+    {/* </div> */}
+    </>
   )
 }
-export default Banner
+export default connect(
+  (state) => ({
+    mode:state.mode
+  }),
+  { setMode }
+)(Banner)
