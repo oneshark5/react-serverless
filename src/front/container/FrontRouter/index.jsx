@@ -10,6 +10,7 @@ import Show from '../Show';
 import Say from '../Say';
 import TestArt from '../TestArt';
 import styles from './index.module.scss'
+import Articles from '../Articles';
 
 /**
  * 思路：这个大的
@@ -22,6 +23,7 @@ const Router = (props) =>  {
       <div className={styles.center}>
         <Routes>
           {/* 就这一个最重要 */}
+          <Route path='/articles' element={<Articles pageSchema={pageSchema}/>} />
           <Route path='/artDetail' element={<ArtDetail pageSchema={pageSchema}/>} />
           <Route path='/testArt' element={<TestArt pageSchema={pageSchema}/>} />
           <Route path='/categories' element={<Categories pageSchema={pageSchema}/>} />

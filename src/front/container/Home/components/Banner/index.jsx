@@ -2,12 +2,18 @@ import React, { useState } from 'react'
 import './index.custom.scss';
 import styles from './style.module.scss'
 import { Drawer } from 'antd';
-import { MenuOutlined, HomeOutlined, BgColorsOutlined, SettingOutlined } from '@ant-design/icons';
+import { MenuOutlined, HomeOutlined, SearchOutlined, BgColorsOutlined, SettingOutlined, CheckOutlined } from '@ant-design/icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames'
-import { useEventListener } from 'ahooks';
+import { useEventListener, useUpdateEffect } from 'ahooks';
+import { connect } from 'react-redux';
+import { setMode } from '../../../../redux/action';
+import { modeMap, modeMapArr } from '../../../utils/modeMap';
 
-const Banner = ({ schema }) => {
+
+const bodyStyle = window.document.getElementsByTagName('body')[0].style;
+
+const Banner = ({ schema, mode, setMode }) => {
   // 从后台获取属性
   const { children = [] } = schema
   // 路由，编程式导航;只需要在navigate()里添加要跳转的页面即可
@@ -17,6 +23,8 @@ const Banner = ({ schema }) => {
   const [visible, setVisible] = useState(false)
   // 导航栏显示与隐藏
   const [navShow, setNavShow] = useState(true)
+
+  const modeOptions = ['rgb(215, 225, 225)', 'rgb(200, 150, 155)', 'rgb(1, 43, 85)'];
 
   // 引入ahooks实现导航栏的显示与隐藏
   useEventListener(
@@ -28,8 +36,16 @@ const Banner = ({ schema }) => {
     { target: document.body }
   );
 
+  useUpdateEffect(() => {
+    // setLocalMode(mode);
+    for (const type of modeMapArr) {
+      bodyStyle.setProperty(type, modeMap[type][mode]);
+    }
+  }, [mode]);
+
   return (
-    <div className='Nav'>
+    // <div className='Nav'>
+    <>
       <nav className={classNames(styles.nav, { [styles.hiddenNav]: !navShow })}>
         <div className={styles.navContent}>
 
@@ -37,10 +53,11 @@ const Banner = ({ schema }) => {
             <HomeOutlined />
           </div>
 
+
           {/* 中间部分 */}
           {
             children.map(({ attributes: { title, link } }, index) =>
-              <NavLink 
+              <NavLink
                 className={styles.navBtn}
                 to={link}
                 key={index}
@@ -50,16 +67,32 @@ const Banner = ({ schema }) => {
             )
           }
 
+          <div className={styles.searchBtn} onClick={() => navigate('/articles')}>
+            <SearchOutlined />
+          </div>
+
           {/* 黑白模式切换 */}
-          <div className={styles.modeBtn}>
+          <div className={styles.modeBtn} >
             <BgColorsOutlined />
             <div className={styles.modeOptions}>
+              {
+                modeOptions.map((backgroundColor, index) => (
+                  <div
+                    key={index}
+                    style={{ backgroundColor }}
+                    className={classNames(styles.modeItem, styles[`modeItem${index}`])}
+                    onClick={() => setMode?.(index)}
+                  >
+                    <CheckOutlined style={{ display: mode === index ? 'block' : 'none' }} />
+                  </div>
+                ))
+              }
             </div>
           </div>
 
           {/* 后台管理 */}
           <a className={styles.adminBtn} href='#' >
-            <SettingOutlined />
+            <NavLink to='/admin.html' /><SettingOutlined />
           </a>
         </div>
       </nav>
@@ -79,7 +112,13 @@ const Banner = ({ schema }) => {
           }
         </div>
       </Drawer>
-    </div>
+    {/* </div> */}
+    </>
   )
 }
-export default Banner
+export default connect(
+  (state) => ({
+    mode:state.mode
+  }),
+  { setMode }
+)(Banner)

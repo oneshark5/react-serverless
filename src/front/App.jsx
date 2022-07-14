@@ -4,21 +4,39 @@ import Footer from './container/Home/components/Footer'
 import FrontRouter from './container/FrontRouter'
 import styles from './App.module.scss'
 import './global.custom.scss'
+import { connect } from "react-redux";
+import { setMode } from './redux/action'
+// import { useLocalStorageState, useMount } from 'ahooks';
 
 const App = (props) => {
-  const { pageSchema = {} } = props
+  const { pageSchema = {}, mode, setMode } = props
+  console.log(mode);
   const { children = [], attributes = {} } = pageSchema
-  const { title = '', backgroundUrl = '' } = attributes
+  const { title = '', backgroundUrl = '', backgroundUrl02 = '', backgroundUrl03 = '' } = attributes
 
   const navCom = children[0]
   const footerCom = children.at(-1)
 
   // 背景图片
-  const homeBoxStyleObj = {
-    backgroundImage: `url('${backgroundUrl}')`
-  }
+  // const homeBoxStyleObj = {
+  //   backgroundImage: `url('${backgroundUrl}')`
+  // }
+
+  const selectBackground = [
+    {
+      backgroundImage: `url('${backgroundUrl}')`
+    },
+    {
+      backgroundImage: `url('${backgroundUrl02}')`
+    },
+    {
+      backgroundImage: `url('${backgroundUrl03}')`
+    },
+
+  ]
+
   return (
-    <div className={styles.AppBox} style={homeBoxStyleObj}>
+    <div className={styles.AppBox} style={selectBackground[mode]}>
       <Helmet>
         <title>{title}</title>
       </Helmet>
@@ -30,4 +48,9 @@ const App = (props) => {
     </div>
   )
 }
-export default App
+export default connect(
+  (state) => ({
+    mode:state.mode
+  }),
+  { setMode }
+)(App)

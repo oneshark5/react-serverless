@@ -29,7 +29,7 @@ const BasicSetting = () => {
 
   const { schema = {}, changeSchema, changePageAttribute } = useStore()
   const { attributes = {} } = schema
-  const { title = '', poem, backgroundUrl } = attributes
+  const { title = '', poem, backgroundUrl, backgroundUrl02, backgroundUrl03 } = attributes
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
@@ -64,6 +64,12 @@ const BasicSetting = () => {
   const handleBackgroundChange = useCallback((e) => {
     changePageAttribute('backgroundUrl', e.target.value)
   }, [changePageAttribute])
+  const handleBackground02Change = useCallback((e) => {
+    changePageAttribute('backgroundUrl02', e.target.value)
+  }, [changePageAttribute])
+  const handleBackground03Change = useCallback((e) => {
+    changePageAttribute('backgroundUrl03', e.target.value)
+  }, [changePageAttribute])
 
   return (
     <div>
@@ -87,12 +93,29 @@ const BasicSetting = () => {
 
       <div className={styles.row}>
         <div className={styles.title}>
-          背景图片
+          背景图片1
         </div>
         <div className={styles.content}>
           <Input value={backgroundUrl} onChange={handleBackgroundChange} />
         </div>
       </div>
+      <div className={styles.row}>
+        <div className={styles.title}>
+          背景图片2
+        </div>
+        <div className={styles.content}>
+          <Input value={backgroundUrl02} onChange={handleBackground02Change} />
+        </div>
+      </div>
+      <div className={styles.row}>
+        <div className={styles.title}>
+          背景图片3
+        </div>
+        <div className={styles.content}>
+          <Input value={backgroundUrl03} onChange={handleBackground03Change} />
+        </div>
+      </div>
+
 
 
       <div className={styles.buttons}>
