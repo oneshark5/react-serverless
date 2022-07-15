@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './index.custom.scss';
 import styles from './style.module.scss'
 import { Drawer } from 'antd';
-import { MenuOutlined, HomeOutlined, SearchOutlined, BgColorsOutlined, CheckOutlined } from '@ant-design/icons';
+import { MenuOutlined, HomeOutlined, SearchOutlined, BgColorsOutlined, SettingOutlined, CheckOutlined } from '@ant-design/icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames'
 import { useEventListener, useUpdateEffect } from 'ahooks';
@@ -91,9 +91,9 @@ const Banner = ({ schema, mode, setMode }) => {
           </div>
 
           {/* 后台管理 */}
-          {/* <a className={styles.adminBtn} href='#' >
+          <div className={styles.adminBtn} >
             <NavLink to='/admin.html' /><SettingOutlined />
-          </a> */}
+          </div>
         </div>
       </nav>
 
