@@ -42,7 +42,7 @@ const Wrapper = () => {
   const handleHomePageRedirect = () => { window.location.href = "/" }
   const { collapsed, toggleCollapsed } = useCollapsed()
   const { changeSchema } = useStore()
-  const token = window.localStorage._authing_token;
+  const token = window.localStorage.token;
 
   // 请求数据
   useEffect(() => {
