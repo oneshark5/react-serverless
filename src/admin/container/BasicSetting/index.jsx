@@ -3,7 +3,7 @@ import { Button, Input } from 'antd';
 import styles from './style.module.scss'
 import { parseJsonByString } from '../../../common/utils';
 import { useCallback } from 'react';
-import axios from 'axios'
+import request from '../../../common/request'
 import { useSchemaData } from '../../hook/useSchemaData';
 
 const BasicSetting = () => {
@@ -14,23 +14,20 @@ const BasicSetting = () => {
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
-    // 获取token
-    const { token } = window.localStorage;
     // ⭐post
-    axios.post('/api/schema/save', {
+    request.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     },{
       headers: {
         'Content-Type': 'application/json;charset=utf8mb4',
-        token
       },
     }).then(() => { })
   }
 
   const handleResetBtnClick = () => {
     // ⭐get
-    axios.get('/api/schema/getLatestOne').then((response) => {
-      const data = response?.data?.data;
+    request.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data;
       data && changeSchema(parseJsonByString(data[0].schema))
     })
   }

@@ -10,7 +10,7 @@ import 'normalize.css' // 页面样式标准化
 import 'antd/dist/antd.min.css';
 import './style.scss';
 import AdminRouter from './container/AdminRouter';
-import axios from 'axios';
+import request from '../common/request'
 import { parseJsonByString } from '../common/utils';
 import Login from './container/Login';
 
@@ -34,11 +34,11 @@ const Wrapper = () => {
 
   // 请求数据
   useEffect(() => {
-    axios.get('/api/schema/getLatestOne').then((response) => {
-      const data = response?.data?.data;
+    request.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data;
       data && changeSchema(parseJsonByString(data[0].schema))
     })
-  }, [changeSchema])
+  }, [])
 
   return token ? (
     <HashRouter>

@@ -14,7 +14,7 @@ import {
 } from '../.././../common/constant';
 import './index.css';
 import '../index.css'
-import axios from 'axios';
+import request from '../../../common/request'
 
 const Say = props => {
   // 获取数据
@@ -121,7 +121,7 @@ const Say = props => {
     }
   };
   const addOk = () => {
-    axios.post('/api/schema/save', {
+    request.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     },{
       headers: {

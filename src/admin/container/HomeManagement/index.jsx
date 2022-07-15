@@ -2,29 +2,25 @@ import { Button } from 'antd';
 import styles from './style.module.scss'
 import AreaList from './components/AreaList';
 import { parseJsonByString } from '../../../common/utils';
-import axios from 'axios';
+import request from '../../../common/request'
 import { useSchemaData } from '../../hook/useSchemaData';
 
 const HomeManagement = () => {
   const { schema, changeSchema } = useSchemaData()
   const handleSaveBtnClick = () => {
-    // 获取token
-    const { token } = window.localStorage;
-
-    axios.post('/api/schema/save', {
+    request.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     },{
       headers: {
         'Content-Type': 'application/json;charset=utf8mb4',
-        token
       },
     }).then(() => { })
   }
   // 要重置的是children
   // 改变props，子组件跟着渲染就可以
   const handleResetBtnClick = () => {
-    axios.get('/api/schema/getLatestOne').then((response) => {
-      const data = response?.data?.data;
+    request.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data;
       data && changeSchema(parseJsonByString(data[0].schema))
     })
   }

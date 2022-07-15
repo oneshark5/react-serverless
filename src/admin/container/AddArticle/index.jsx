@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { parseJsonByString } from '../../../common/utils';
 import { useCallback } from 'react';
 import { cloneDeep } from 'lodash';
-import axios from 'axios';
+import request from '../../../common/request'
 import { useSchemaData } from '../../hook/useSchemaData';
 
 // 自己定义个内容用于测试
@@ -63,7 +63,7 @@ function AddArticle() {
   }, [changePageAttribute])
 
   const handleSaveBtnClick = () => {
-    axios.post('/api/schema/save', {
+    request.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     },{
       headers: {
