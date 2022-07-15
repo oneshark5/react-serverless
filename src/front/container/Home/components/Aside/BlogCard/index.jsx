@@ -7,7 +7,6 @@ import styles from './index.module.scss'
 const Aside = ({ schema }) => {
   // 从Aside组件获取属性
   const { imageUrl  } = schema
-  console.log(schema);
 
   return (
     <Card className={styles.card}>

@@ -6,11 +6,10 @@ import styles from './App.module.scss'
 import './global.custom.scss'
 import { connect } from "react-redux";
 import { setMode } from './redux/action'
-// import { useLocalStorageState, useMount } from 'ahooks';
+import BackToTop from "./container/BackToTop";
 
 const App = (props) => {
-  const { pageSchema = {}, mode, setMode } = props
-  console.log(mode);
+  const { pageSchema = {}, mode } = props
   const { children = [], attributes = {} } = pageSchema
   const { title = '', backgroundUrl = '', backgroundUrl02 = '', backgroundUrl03 = '' } = attributes
 
@@ -45,6 +44,7 @@ const App = (props) => {
       <Banner key='0001' schema={navCom} />
       <FrontRouter pageSchema={pageSchema}/>
       <Footer key='1110' schema={footerCom} />
+      <BackToTop/>
     </div>
   )
 }

@@ -1,52 +1,33 @@
 
-import { useDispatch, useSelector } from 'react-redux';
 import { Button, Input } from 'antd';
 import styles from './style.module.scss'
 import { parseJsonByString } from '../../../common/utils';
-import { getChangeSchemaAction, getChangePageAttributeAction } from '../../store/action';
 import { useCallback } from 'react';
-import axios from 'axios'
-
-// store中存取数据（把使用store的逻辑放在一起）
-const useStore = () => {
-  const dispatch = useDispatch()
-  // 使用redux，采用useSelector拿到仓库的数据
-  const schema = useSelector((state) => {
-    return state.common.schema
-  })
-  // dispatch
-  const changeSchema = (schema) => {
-    // 调用dispatch
-    dispatch(getChangeSchemaAction(schema))
-  }
-  const changePageAttribute = (key, value) => {
-    dispatch(getChangePageAttributeAction(key, value))
-  }
-  return { schema, changeSchema, changePageAttribute }
-}
+import request from '../../../common/request'
+import { useSchemaData } from '../../hook/useSchemaData';
 
 const BasicSetting = () => {
 
-  const { schema = {}, changeSchema, changePageAttribute } = useStore()
+  const { schema = {}, changeSchema, changePageAttribute } = useSchemaData()
   const { attributes = {} } = schema
   const { title = '', poem, backgroundUrl, backgroundUrl02, backgroundUrl03 } = attributes
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
     // ⭐post
-    axios.post('/api/schema/save', {
+    request.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     },{
       headers: {
-        'Content-Type': 'application/json;charset=utf8mb4'
+        'Content-Type': 'application/json;charset=utf8mb4',
       },
     }).then(() => { })
   }
 
   const handleResetBtnClick = () => {
     // ⭐get
-    axios.get('/api/schema/getLatestOne').then((response) => {
-      const data = response?.data?.data;
+    request.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data;
       data && changeSchema(parseJsonByString(data[0].schema))
     })
   }

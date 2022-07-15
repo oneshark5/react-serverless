@@ -1,5 +1,3 @@
-import { parseJsonByString } from "../../../common/utils"
-
 import ArticleDetail from './component/ArticleDetail'
 import styles from './index.module.scss'
 // import './global.custom.scss'
@@ -20,7 +18,6 @@ const render = (item, index) => {
 
 // 把中间组件取出
 const articleComs = children.filter(item => item.name == 'ArticleDetail')
-console.log(articleComs);
 const { title = '', createTime = '', tags = '' } = articleComs[0].children[0].attributes
 
   return (

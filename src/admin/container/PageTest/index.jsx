@@ -5,6 +5,7 @@ import hljs from 'highlight.js';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSchemaData } from '../../hook/useSchemaData';
 
 // 自己定义个内容用于测试
 const data = {
@@ -12,15 +13,6 @@ const data = {
   ### 👋 Hi I'm one🦈 
   `
 }
-
-// store中存取数据（把使用store的逻辑放在一起）
-const useStore = (index) => {
-  const dispatch = useDispatch()
-  // 使用redux，采用useSelector拿到仓库的数据---获取children里面的内容（子节点）
-  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
-  return { pageChild }
-}
-
 
 function PageTest() {
   // 确定About是第几个组件，方便取出
@@ -31,9 +23,7 @@ function PageTest() {
     if(children[i].name === 'About') index = i
   }
 
-  const { pageChild } = useStore(index)
-  console.log(pageChild);
-
+  const { pageChild } = useSchemaData(index)
 
   const navigate = useNavigate()
   // 配制marked和highlight

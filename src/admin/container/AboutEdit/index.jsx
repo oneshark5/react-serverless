@@ -5,26 +5,10 @@ import hljs from 'highlight.js';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
 import { parseJsonByString } from '../../../common/utils';
-import { getChangeSchemaAction, getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
 import { useCallback } from 'react';
 import { cloneDeep } from 'lodash';
-import axios from 'axios';
-
-
-// store中存取数据（把使用store的逻辑放在一起）
-const useStore = (index) => {
-  const dispatch = useDispatch()
-  // 使用redux，采用useSelector拿到仓库的数据
-  const schema = useSelector((state) => {
-    return state.common.schema
-  })
-  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
-  const changePageChild = (tempPageChild) => {dispatch(getChangePageChildAction(index, tempPageChild))}
-  const changePageAttribute = (key, value) => {
-    dispatch(getChangePageAttributeAction(key, value))
-  }
-  return { schema, pageChild, changePageAttribute, changePageChild }
-}
+import request from '../../../common/request'
+import { useSchemaData } from '../../hook/useSchemaData'
 
 
 function AboutEdit() {
@@ -34,7 +18,7 @@ function AboutEdit() {
   for (let i = 0; i < childrenCom.length; i++) {
     if (childrenCom[i].name === 'About') index = i
   }
-  const { schema, changePageAttribute, pageChild = {}, changePageChild } = useStore(index)
+  const { schema, changePageAttribute, pageChild = {}, changePageChild } = useSchemaData(index)
   const {children} = pageChild
 
   // 处理数据
@@ -50,7 +34,6 @@ function AboutEdit() {
     setContent(e.target.innerText)
     // 更改内容
     const item = cloneDeep(pageChild)
-    console.log(item);
     item.children.splice(0, 1, {
       aboutContent: e.target.innerText
     })
@@ -59,7 +42,7 @@ function AboutEdit() {
   }, [changePageAttribute])
 
   const handleSaveBtnClick = () => {
-    axios.post('/api/schema/save', {
+    request.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     },{
       headers: {
@@ -67,7 +50,6 @@ function AboutEdit() {
       },
     }).then(() => { })
   }
-  console.log(schema);
 
   const turnToAbout = () => {
     navigate(`/admin/about`)

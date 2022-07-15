@@ -91,9 +91,9 @@ const Banner = ({ schema, mode, setMode }) => {
           </div>
 
           {/* 后台管理 */}
-          <a className={styles.adminBtn} href='#' >
+          <div className={styles.adminBtn} >
             <NavLink to='/admin.html' /><SettingOutlined />
-          </a>
+          </div>
         </div>
       </nav>
 

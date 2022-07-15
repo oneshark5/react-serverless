@@ -1,10 +1,8 @@
-import { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { cloneDeep } from 'lodash';
-import { Modal, notification, Table, Space, Button, Popconfirm, message } from 'antd';
-import { UserOutlined, DeleteOutlined, UserSwitchOutlined } from '@ant-design/icons';
-import { getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
-import { visitorText, adminUid } from '../.././../common/constant';
+import { Modal, Table, Space, Button, Popconfirm, message } from 'antd';
+import { useSchemaData } from '../../hook/useSchemaData';
 import './index.css';
 
 const linkData = [
@@ -18,22 +16,6 @@ const linkData = [
   }
 ]
 
-
-// store中存取数据（把使用store的逻辑放在一起）
-const useStore = (index) => {
-  const dispatch = useDispatch()
-  // 使用redux，采用useSelector拿到仓库的数据
-  const schema = useSelector((state) => {
-    return state.common.schema
-  })
-  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
-  const changePageChild = (tempPageChild) => { dispatch(getChangePageChildAction(index, tempPageChild)) }
-  const changePageAttribute = (key, value) => {
-    dispatch(getChangePageAttributeAction(key, value))
-  }
-  return { schema, pageChild, changePageAttribute, changePageChild }
-}
-
 const Link = props => {
 
   // 获取数据
@@ -42,7 +24,7 @@ const Link = props => {
   for (let i = 0; i < childrenCom.length; i++) {
     if (childrenCom[i].name === 'Link') index = i
   }
-  const { schema, pageChild = {}, changePageChild } = useStore(index)
+  const { schema, pageChild = {}, changePageChild } = useSchemaData(index)
   const linkArr = pageChild.children
   const linkData = []
   linkArr.map(item => linkData.push(item.attributes))
@@ -158,7 +140,6 @@ const Link = props => {
   const addLink = () => {
     // 更改内容
     const item = cloneDeep(pageChild)
-    console.log(item);
     changePageChild(item)
     message.info('请再次确认是否发表哦😄')
     setAddLinkVisible(false)

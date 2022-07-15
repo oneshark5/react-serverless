@@ -2,7 +2,6 @@ import { Input, Button } from 'antd'
 import styles from './style.module.scss'
 
 const Footer = (props) => {
-  console.log(props);
   const {
     attributes = {}, changeAttributes, children = [], changeChildren
   } = props

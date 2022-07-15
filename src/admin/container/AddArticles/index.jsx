@@ -1,5 +1,5 @@
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { message, Select, Popconfirm, Button } from 'antd';
 import marked from 'marked';
 import hljs from 'highlight.js';
@@ -9,8 +9,8 @@ import moment from 'moment'
 import './github-dark.css';
 import './index.css';
 import { cloneDeep } from 'lodash';
-import { getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
-import axios from 'axios';
+import request from '../../../common/request'
+import { useSchemaData } from '../../hook/useSchemaData';
 
 // 初始数据
 const articlesData = [
@@ -27,21 +27,6 @@ const articlesData = [
   }
 ]
 
-// store中存取数据（把使用store的逻辑放在一起）
-const useStore = (index) => {
-  const dispatch = useDispatch()
-  // 使用redux，采用useSelector拿到仓库的数据
-  const schema = useSelector((state) => {
-    return state.common.schema
-  })
-  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
-  const changePageChild = (tempPageChild) => { dispatch(getChangePageChildAction(index, tempPageChild)) }
-  const changePageAttribute = (key, value) => {
-    dispatch(getChangePageAttributeAction(key, value))
-  }
-  return { schema, pageChild, changePageAttribute, changePageChild }
-}
-
 const { Option } = Select;
 const AddArticles = props => {
 
@@ -51,10 +36,8 @@ const AddArticles = props => {
   for (let i = 0; i < childrenCom.length; i++) {
     if (childrenCom[i].name === 'ArticleDetail') index = i
   }
-  const { schema, pageChild = {}, changePageChild } = useStore(index)
+  const { schema, pageChild = {}, changePageChild } = useSchemaData(index)
   const articleData = pageChild.children
-  console.log(articleData);
-  console.log(schema);
 
   const { tags, classes, articles, getClasses, getArticles, getMsgs, history } = articlesData[0]
 
@@ -170,7 +153,7 @@ const AddArticles = props => {
   };
 
   const articleOk = () => {
-    axios.post('/api/schema/save', {
+    request.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     },{
       headers: {

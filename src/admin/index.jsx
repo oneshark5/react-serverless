@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { HashRouter, NavLink } from 'react-router-dom'
 import { Layout, Menu } from 'antd';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store'
+import { useSchemaData } from './hook/useSchemaData';
 import styles from './style.module.scss'
 import 'normalize.css' // 页面样式标准化
 import 'antd/dist/antd.min.css';
 import './style.scss';
 import AdminRouter from './container/AdminRouter';
-import { getChangeSchemaAction } from './store/action';
-import axios from 'axios';
+import request from '../common/request'
 import { parseJsonByString } from '../common/utils';
+import Login from './container/Login';
 
 const { Header, Sider, Content } = Layout;
 
@@ -24,33 +25,22 @@ const useCollapsed = () => {
   return { collapsed, toggleCollapsed }
 }
 
-
-// store中存取数据（把使用store的逻辑放在一起）
-const useStore = () => {
-  const dispatch = useDispatch()
-  // dispatch
-  const changeSchema = (schema) => {
-    // 调用dispatch
-    dispatch(getChangeSchemaAction(schema))
-  }
-  return { changeSchema }
-}
-
 const Wrapper = () => {
 
   const handleHomePageRedirect = () => { window.location.href = "/" }
   const { collapsed, toggleCollapsed } = useCollapsed()
-  const { changeSchema } = useStore()
+  const { changeSchema } = useSchemaData()
+  const token = window.localStorage.token;
 
   // 请求数据
   useEffect(() => {
-    axios.get('/api/schema/getLatestOne').then((response) => {
-      const data = response?.data?.data;
+    request.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data;
       data && changeSchema(parseJsonByString(data[0].schema))
     })
-  }, [changeSchema])
+  }, [])
 
-  return (
+  return token ? (
     <HashRouter>
       <Layout>
         <Sider className={styles.sidebar} trigger={null} collapsible collapsed={collapsed}>
@@ -128,12 +118,19 @@ const Wrapper = () => {
         </Layout>
       </Layout>
     </HashRouter>
-  )
+  ) : <Login/>
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+// const root = ReactDOM.render(document.getElementById('root'));
+// root.render(
+//   <Provider store={store}>
+//     <Wrapper />
+//   </Provider>
+// );
+
+ReactDOM.render(
   <Provider store={store}>
     <Wrapper />
-  </Provider>
+  </Provider>,
+  document.getElementById('root')
 );

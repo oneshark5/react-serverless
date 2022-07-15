@@ -6,8 +6,6 @@ import DisplayBar from '../../DisplayBar';
 
 const ArtList = ({articles}) => {
 
-  console.log(articles);
-
   return (
     <>
       {

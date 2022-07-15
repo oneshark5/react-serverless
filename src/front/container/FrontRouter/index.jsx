@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import About from '../About';
 import ArtDetail from '../ArtDetail';
 import Camera from '../Camera';
@@ -12,10 +12,6 @@ import TestArt from '../TestArt';
 import styles from './index.module.scss'
 import Articles from '../Articles';
 
-/**
- * 思路：这个大的
- * 
- */
 const Router = (props) =>  {
   const { pageSchema } = props
   return (
