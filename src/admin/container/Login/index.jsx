@@ -11,7 +11,7 @@ const Login = () => {
     // Authing会自动保存_authing_token
     // 自己定义保存token
     window.localStorage.token = userInfo.token;
-    window.location.tokenExpiredAt = userInfo.tokenExpiredAt;
+    window.localStorage.tokenExpiredAt = userInfo.tokenExpiredAt;
     window.location.reload()
   };
 
