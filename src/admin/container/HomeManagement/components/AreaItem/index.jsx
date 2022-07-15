@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
 import { Button, Modal, Select } from 'antd';
 import { SortableElement } from 'react-sortable-hoc';
 import { cloneDeep } from 'lodash' 
-import { getChangePageChildAction, getDeletePageChildAction } from '../../../../store/action';
+import { useSchemaData } from '../../../../hook/useSchemaData';
 import Banner from './components/Banner';
 import Section from './components/Section';
 import Aside from './components/Aside';
@@ -23,21 +22,21 @@ const { Option } = Select// 选择组件，下拉列表选择器
 const map = {Banner, Section, Aside,ArticleDetail, Say, Link, Categories, Show, About, Footer }
 
 // store中存取数据（把使用store的逻辑放在一起）
-const useStore = (index) => {
-  const dispatch = useDispatch()
-  // 使用redux，采用useSelector拿到仓库的数据---获取children里面的内容（子节点）
-  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
-  const changePageChild = (tempPageChild) => {dispatch(getChangePageChildAction(index, tempPageChild))}
-  const removePageChild = () => { dispatch(getDeletePageChildAction(index)) }
-  return { pageChild, changePageChild, removePageChild }
-}
+// const useStore = (index) => {
+//   const dispatch = useDispatch()
+//   // 使用redux，采用useSelector拿到仓库的数据---获取children里面的内容（子节点）
+//   const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
+//   const changePageChild = (tempPageChild) => {dispatch(getChangePageChildAction(index, tempPageChild))}
+//   const removePageChild = () => { dispatch(getDeletePageChildAction(index)) }
+//   return { pageChild, changePageChild, removePageChild }
+// }
 
 
 const AreaItem = (props) => {
   const { value: index } = props;
   // 等价于
   // const index = props.value
-  const { pageChild, changePageChild, removePageChild } = useStore(index)
+  const { pageChild, changePageChild, removePageChild } = useSchemaData(index)
   console.log(pageChild);
 
   const [isModalVisible, setIsModalVisible] = useState(false);// 控制弹框是否可见

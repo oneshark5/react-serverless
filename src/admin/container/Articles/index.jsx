@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Table, Tag, Space, Button, Popconfirm, Select, message } from 'antd';
-import { DeleteOutlined, RedoOutlined } from '@ant-design/icons';
+import { RedoOutlined } from '@ant-design/icons';
 import moment from 'moment';
-import { visitorText, adminUid } from '../../../common/constant';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
+import { useSelector } from 'react-redux';
+import { useSchemaData } from '../../hook/useSchemaData';
 
 // 给定初始数据，
 const articlesData = [
@@ -23,37 +22,15 @@ const articlesData = [
   }
 ]
 
-// store中存取数据（把使用store的逻辑放在一起）
-const useStore = (index) => {
-  const dispatch = useDispatch()
-  // 使用redux，采用useSelector拿到仓库的数据
-  const schema = useSelector((state) => {
-    return state.common.schema
-  })
-  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
-  const changePageChild = (tempPageChild) => { dispatch(getChangePageChildAction(index, tempPageChild)) }
-  const changePageAttribute = (key, value) => {
-    dispatch(getChangePageAttributeAction(key, value))
-  }
-  return { schema, pageChild, changePageAttribute, changePageChild }
-}
-
 const { Option } = Select;
 const Articles = () => {
-  // 获取数据
-  // const children = useSelector(state => state.common.schema?.children || [])
-  // const childrenAbout = children.filter(element => (element.name === 'ArticleDetail'))
-  // const articlesDatas = childrenAbout[0].children.filter(item => !item.attributes)
-  // console.log(articlesDatas);
-
-
   // 获取数据
   const childrenCom = useSelector(state => state.common.schema?.children || [])
   let index = 0
   for (let i = 0; i < childrenCom.length; i++) {
     if (childrenCom[i].name === 'ArticleDetail') index = i
   }
-  const { schema, pageChild = {}, changePageChild } = useStore(index)
+  const { schema, pageChild = {}, changePageChild } = useSchemaData(index)
   const articlesDatas = pageChild.children?.filter(item => !item.attributes)
 
 

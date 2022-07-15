@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { cloneDeep } from 'lodash';
 import { Modal, Table, Space, Button, Popconfirm, message, Popover } from 'antd';
-import { getChangePageAttributeAction, getChangePageChildAction } from '../../store/action';
 import moment from 'moment';
+import { useSchemaData } from '../../hook/useSchemaData';
 
 import {
   emojiPeople,
@@ -16,23 +16,6 @@ import './index.css';
 import '../index.css'
 import axios from 'axios';
 
-
-// store中存取数据（把使用store的逻辑放在一起）
-const useStore = (index) => {
-  const dispatch = useDispatch()
-  // 使用redux，采用useSelector拿到仓库的数据
-  const schema = useSelector((state) => {
-    return state.common.schema
-  })
-  const pageChild = useSelector(state => state.common.schema.children?.[index] || {})
-  const changePageChild = (tempPageChild) => { dispatch(getChangePageChildAction(index, tempPageChild)) }
-  const changePageAttribute = (key, value) => {
-    dispatch(getChangePageAttributeAction(key, value))
-  }
-  return { schema, pageChild, changePageAttribute, changePageChild }
-}
-
-
 const Say = props => {
   // 获取数据
   const childrenCom = useSelector(state => state.common.schema?.children || [])
@@ -40,7 +23,7 @@ const Say = props => {
   for (let i = 0; i < childrenCom.length; i++) {
     if (childrenCom[i].name === 'Say') index = i
   }
-  const { schema, pageChild = {}, changePageChild } = useStore(index)
+  const { schema, pageChild = {}, changePageChild } = useSchemaData(index)
   const sayData = pageChild.children
   console.log(pageChild.children);
   console.log(schema);
