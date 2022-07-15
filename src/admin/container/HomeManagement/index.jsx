@@ -25,9 +25,17 @@ const useStore = () => {
 const HomeManagement = () => {
   const { schema, changeSchema } = useStore()
   const handleSaveBtnClick = () => {
+    // 获取token
+    const { token } = window.localStorage;
+
     axios.post('/api/schema/save', {
       schema: JSON.stringify(schema)
-    }).then(() => {})
+    },{
+      headers: {
+        'Content-Type': 'application/json;charset=utf8mb4',
+        token
+      },
+    }).then(() => { })
   }
   // 要重置的是children
   // 改变props，子组件跟着渲染就可以

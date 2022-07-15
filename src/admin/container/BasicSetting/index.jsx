@@ -33,12 +33,15 @@ const BasicSetting = () => {
 
   // 获取子组件AreaList的children
   const handleSaveBtnClick = () => {
+    // 获取token
+    const { token } = window.localStorage;
     // ⭐post
     axios.post('/api/schema/save', {
       schema: JSON.stringify(schema)
     },{
       headers: {
-        'Content-Type': 'application/json;charset=utf8mb4'
+        'Content-Type': 'application/json;charset=utf8mb4',
+        token
       },
     }).then(() => { })
   }
