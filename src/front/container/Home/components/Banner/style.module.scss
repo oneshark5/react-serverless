@@ -59,6 +59,9 @@
     .adminBtn {
       @extend .homeAndAdmin;
       margin-right: 0;
+      .link{
+        color: $textColor
+      }
     }
     .searchBtn{
       @extend .homeAndAdmin;
