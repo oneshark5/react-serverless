@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { HashRouter, NavLink } from 'react-router-dom'
 import { Layout, Menu } from 'antd';
 import { Provider, useDispatch } from 'react-redux';
@@ -12,6 +12,7 @@ import AdminRouter from './container/AdminRouter';
 import { getChangeSchemaAction } from './store/action';
 import axios from 'axios';
 import { parseJsonByString } from '../common/utils';
+import Login from './container/Login';
 
 const { Header, Sider, Content } = Layout;
 
@@ -41,6 +42,7 @@ const Wrapper = () => {
   const handleHomePageRedirect = () => { window.location.href = "/" }
   const { collapsed, toggleCollapsed } = useCollapsed()
   const { changeSchema } = useStore()
+  const token = window.localStorage._authing_token;
 
   // 请求数据
   useEffect(() => {
@@ -50,7 +52,7 @@ const Wrapper = () => {
     })
   }, [changeSchema])
 
-  return (
+  return token ? (
     <HashRouter>
       <Layout>
         <Sider className={styles.sidebar} trigger={null} collapsible collapsed={collapsed}>
@@ -128,12 +130,19 @@ const Wrapper = () => {
         </Layout>
       </Layout>
     </HashRouter>
-  )
+  ) : <Login/>
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+// const root = ReactDOM.render(document.getElementById('root'));
+// root.render(
+//   <Provider store={store}>
+//     <Wrapper />
+//   </Provider>
+// );
+
+ReactDOM.render(
   <Provider store={store}>
     <Wrapper />
-  </Provider>
+  </Provider>,
+  document.getElementById('root')
 );

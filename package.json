@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@authing/react-ui-components": "^3.1.28",
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
@@ -17,6 +18,7 @@
     "camelcase": "^6.2.1",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "classnames": "^2.3.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dayjs": "^1.11.3",
@@ -43,10 +45,10 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
     "prompts": "^2.4.2",
-    "react": "18.2.0",
+    "react": "^17.0.2",
     "react-app-polyfill": "^3.0.0",
     "react-dev-utils": "^12.0.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-redux": "^8.0.2",
     "react-refresh": "^0.11.0",
@@ -71,7 +73,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js"
+    "build": "cross-env PUBLIC_URL=http://statics.oneshark.cn/code/ node scripts/build.js"
   },
   "eslintConfig": {
     "extends": [
