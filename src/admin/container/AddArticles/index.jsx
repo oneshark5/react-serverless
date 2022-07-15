@@ -39,7 +39,7 @@ const AddArticles = props => {
   const { schema, pageChild = {}, changePageChild } = useSchemaData(index)
   const articleData = pageChild.children
 
-  const { tags, classes, articles, getClasses, getArticles, getMsgs, history } = articlesData[0]
+  const { tags, classes, articles, getClasses, getArticles, getMsgs, history } = articleData[0]
 
 
   // ————————————————————判断是否是编辑模式、是否是草稿————————————————————————————

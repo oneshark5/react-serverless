@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, NavLink } from 'react-router-dom'
 import { Layout, Menu, Popconfirm } from 'antd';
-import { EnterOutlined, HomeOutlined, LoginOutlined } from '@ant-design/icons';
+import { HomeOutlined, LoginOutlined } from '@ant-design/icons';
 import { Provider } from 'react-redux';
 import store from './store'
 import { useSchemaData } from './hook/useSchemaData';
@@ -15,12 +15,6 @@ import request from '../common/request'
 import { parseJsonByString } from '../common/utils';
 import Login from './container/Login';
 import { cleanLoginData, getLoginStatus } from './util/login';
-import {
-  AuthClientProvider,
-  Guard,
-  GuardMode,
-  User,
-} from "@authing/react-ui-components";
 import { AuthenticationClient } from "authing-js-sdk";
 
 const { Header, Sider, Content } = Layout;
@@ -46,7 +40,6 @@ const Wrapper = () => {
   const { changeSchema } = useSchemaData()
 
   const login = getLoginStatus()
-  const photo = window.localStorage.photo;
 
   // 请求数据
   useEffect(() => {
@@ -133,7 +126,6 @@ const Wrapper = () => {
                 ? <span className='iconfont' onClick={toggleCollapsed} >&#xe62c;</span>
                 : <span className='iconfont' onClick={toggleCollapsed} >&#xe629;</span>
             }
-            {/* <img className={styles.avatar} src={photo} alt="avatar" onClick={handleLogout} /> */}
             <div className={styles.HeaderBox}>
               <div className={styles.blogBtn}>
                 <HomeOutlined />

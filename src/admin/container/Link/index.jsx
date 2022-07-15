@@ -24,7 +24,7 @@ const Link = props => {
   for (let i = 0; i < childrenCom.length; i++) {
     if (childrenCom[i].name === 'Link') index = i
   }
-  const { schema, pageChild = {}, changePageChild } = useSchemaData(index)
+  const { pageChild = {}, changePageChild } = useSchemaData(index)
   const linkArr = pageChild.children
   const linkData = []
   linkArr.map(item => linkData.push(item.attributes))
@@ -84,8 +84,8 @@ const Link = props => {
     },
   ];
   // 获取所有友链数据，放入redux
-  const getLinksData = () => {
-  };
+  // const getLinksData = () => {
+  // };
   // ——————————————————————————————渲染友链表格end————————————————————————————
 
   // ————————————————————————————添加/编辑友链对话框————————————————————————————
@@ -134,8 +134,8 @@ const Link = props => {
   // ——————————————————————————————对友链的操作————————————————————————————
 
   // 友链添加或更新后的操作
-  const afterLinkChange = isEdit => {
-  };
+  // const afterLinkChange = isEdit => {
+  // };
   // 发送添加友链请求
   const addLink = () => {
     // 更改内容
