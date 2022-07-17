@@ -7,6 +7,7 @@ import AreaItem from '../AreaItem';
 import styles from './style.module.scss'
 
 const SortableList = SortableContainer(({list}) => {
+  console.log(list);
   return (
     <ul className={styles.list}>
         {

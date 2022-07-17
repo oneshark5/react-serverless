@@ -4,7 +4,7 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import './index.css';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useSchemaData } from '../../hook/useSchemaData';
 
 // 自己定义个内容用于测试

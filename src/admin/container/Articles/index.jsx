@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Table, Tag, Space, Button, Popconfirm, Select, message } from 'antd';
+import { Table, Tag, Space, Button, Popconfirm, Select } from 'antd';
 import { RedoOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import './index.css';
@@ -30,7 +30,7 @@ const Articles = () => {
   for (let i = 0; i < childrenCom.length; i++) {
     if (childrenCom[i].name === 'ArticleDetail') index = i
   }
-  const { schema, pageChild = {}, changePageChild } = useSchemaData(index)
+  const { pageChild = {} } = useSchemaData(index)
   const articlesDatas = pageChild.children?.filter(item => !item.attributes)
 
 
@@ -147,10 +147,10 @@ const Articles = () => {
       )
     }
   ];
-  // 获取最新所有文章，并放入redux
-  const getNewArticles = () => {
+  // // 获取最新所有文章，并放入redux
+  // const getNewArticles = () => {
 
-  };
+  // };
   // redux中文章数据更新，当前页面的state更新
   useEffect(() => {
     // 用作展示的state
@@ -183,8 +183,8 @@ const Articles = () => {
   const deleteMsgs = titleEng => {
   };
 
-  const getAllMsgs = () => {
-  };
+  // const getAllMsgs = () => {
+  // };
 
   return (
     <>

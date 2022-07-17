@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import Section from './components/Section'
 import Aside from './components/Aside'
+import Asides from './components/Asides'
 import styles from './index.module.scss'
 import PageTitle from "../PageTitle";
 
@@ -10,7 +11,7 @@ const Home = (props) => {
   const { children = [], attributes = {} } = pageSchema
   const { title = '', poem = '' } = attributes
 
-  const map = { Section, Aside }
+  const map = { Section, Aside, Asides }
   const render = (item, index) => {
     const Component = map[item.name]
     return Component ? <Component key={index} schema={item} /> : null;
