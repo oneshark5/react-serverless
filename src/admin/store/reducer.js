@@ -3,11 +3,12 @@
 import { produce, original } from "immer"
 import {
   CHANGE_SCHEMA, ADD_PAGE_CHILDREN, CHANGE_PAGE_CHILD, DELETE_PAGE_CHILD,
-  CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE, CHANGE_COM_CHILD_ATTRIBUTE, DELETE_PAGE_CHILD_CHILDREN
+  CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE, CHANGE_COM_CHILD_ATTRIBUTE,
+  DELETE_PAGE_CHILD_CHILDREN, CHANGE_ASIDE_CHILD_POSITION
 } from './constant'
 
 // ⭐⭐⭐这就是原始数据
-const initialSchema =  {
+const initialSchema = {
   name: 'Page',
   attributes: {},
   children: []
@@ -35,8 +36,20 @@ const reducer = (state = defaultState, action) => produce(state, (draft) => {
       break;
     case CHANGE_PAGE_CHILD_POSITION:
       const copy = original(draft.schema.children);
+      console.log(copy);
       draft.schema.children.splice(action.oldIndex, 1);
       draft.schema.children.splice(action.newIndex, 0, copy[action.oldIndex]);
+      break;
+    case CHANGE_ASIDE_CHILD_POSITION:
+      const copy2 = original(draft.schema.children);
+      const asidesCopySchema = copy2.filter(item => item.name === 'Asides')
+      const changeCopy = asidesCopySchema[0].children
+
+      const asideSchema = draft.schema.children.filter(item => item.name === 'Asides')
+      console.log(asideSchema);
+
+      asideSchema.children?.splice(action.oldIndex, 1);
+      asideSchema.children?.splice(action.newIndex, 0, changeCopy.children[action.oldIndex]);
       break;
     case CHANGE_PAGE_ATTRIBUTE:
       draft.schema.attributes[action.key] = action.value;

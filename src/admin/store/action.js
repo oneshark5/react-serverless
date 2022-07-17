@@ -1,5 +1,6 @@
 import { CHANGE_SCHEMA, ADD_PAGE_CHILDREN, CHANGE_PAGE_CHILD, DELETE_PAGE_CHILD,
-  CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE, CHANGE_COM_CHILD_ATTRIBUTE, DELETE_PAGE_CHILD_CHILDREN } from "./constant"
+  CHANGE_PAGE_CHILD_POSITION, CHANGE_PAGE_ATTRIBUTE, CHANGE_COM_CHILD_ATTRIBUTE,
+   DELETE_PAGE_CHILD_CHILDREN, CHANGE_ASIDE_CHILD_POSITION } from "./constant"
 
 export const getChangeSchemaAction = (schema) => {
   return {
@@ -29,6 +30,13 @@ export const getDeletePageChildAction = (index) => {
 export const getChangePageChildPositionAction = (oldIndex, newIndex) => {
   return {
     type:CHANGE_PAGE_CHILD_POSITION,
+    oldIndex,
+    newIndex
+  }
+}
+export const getChangeAsideChildPositionAction = (oldIndex, newIndex) => {
+  return {
+    type:CHANGE_ASIDE_CHILD_POSITION,
     oldIndex,
     newIndex
   }
