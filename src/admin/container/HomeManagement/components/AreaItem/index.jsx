@@ -6,7 +6,6 @@ import { useSchemaData } from '../../../../hook/useSchemaData';
 import Banner from './components/Banner';
 import Section from './components/Section';
 import Aside from './components/Aside';
-import Asides from './components/Asides';
 import About from './components/About';
 import Show from './components/Show';
 import ArticleDetail from './components/ArticleDetail';
@@ -20,7 +19,7 @@ import styles from './style.module.scss'
 const { Option } = Select// 选择组件，下拉列表选择器
 // 定义一个变量做临时存储---放在外层的原因：内部每次渲染时都会重新生成该变量；本身和render没有关系，放在里面会降低性能。
 
-const map = {Banner, Section, Aside, Asides, ArticleDetail, Say, Link, Categories, Show, About, Footer }
+const map = {Banner, Section, Aside, ArticleDetail, Say, Link, Categories, Show, About, Footer }
 
 // store中存取数据（把使用store的逻辑放在一起）
 // const useStore = (index) => {
@@ -117,7 +116,6 @@ const AreaItem = (props) => {
             <Option value='Banner'>Banner 组件</Option>
             <Option value='Section'>Section 组件</Option>
             <Option value='Aside'>Aside 组件</Option>
-            <Option value='Asides'>Asides 组件</Option>
             <Option value='ArticleDetail'>ArticleDetail 组件</Option>
             <Option value='Say'>Say 组件</Option>
             <Option value='Link'>Link 组件</Option>

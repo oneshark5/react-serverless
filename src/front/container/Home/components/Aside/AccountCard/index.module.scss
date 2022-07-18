@@ -1,0 +1,9 @@
+@import '../../../styles/base.scss';
+@import '../../../styles/style.scss';
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+}

@@ -24,6 +24,7 @@ const AreaList = () => {
   const dispatch = useDispatch()
   // 使用redux，采用useSelector拿到仓库的数据
   const children = useSelector(state => state.common.schema?.children || [])
+  console.log(children);
 
   const addPageChildren = () => {
     dispatch(getAddPageChildrenAction())
