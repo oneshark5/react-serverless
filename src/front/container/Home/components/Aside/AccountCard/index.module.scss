@@ -1,0 +1,18 @@
+@import '../../../styles/base.scss';
+
+// .card {
+//   height: 80px;
+//   position: relative;
+
+//   .color {
+//     font-weight: 700;
+//     color: $hoverColor;
+//   }
+// }
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+}
