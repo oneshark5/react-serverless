@@ -11,7 +11,7 @@ const Footer = ({ schema }) => {
         {
           children.map((item, index) => {
             const { attributes = {} } = item
-            const { title, demo, demoLink, tags } = attributes
+            const { title, demo, demoLink, tags, beiLink } = attributes
             const tagsArr = tags.split(',')
 
             return (
@@ -23,7 +23,7 @@ const Footer = ({ schema }) => {
                   </a>
                 </span>
                 <span>
-                  <a href={demoLink} target='_blank' rel='noreferrer' className={styles.text}>
+                  <a href={beiLink} target='_blank' rel='noreferrer' className={styles.text}>
                     {record}
                   </a>
                 </span>

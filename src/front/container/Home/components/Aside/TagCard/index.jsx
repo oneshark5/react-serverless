@@ -1,4 +1,3 @@
-import { useRequest } from 'ahooks';
 import React from 'react';
 import Card from '../../Card';
 import s from './index.module.scss';

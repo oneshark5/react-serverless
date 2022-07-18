@@ -11,7 +11,7 @@ const Footer = (props) => {
     const newChildren = [...children]
     newChildren.push({
       name: 'Item',
-      attributes: { title: '', demo:'', demoLink: '', tags:'' },
+      attributes: { title: '', demo:'', demoLink: '', tags:'', beiLink:'' },
       children: []
     })
     changeChildren(newChildren)
@@ -51,7 +51,7 @@ const Footer = (props) => {
         onClick={addItemToChildren}
       >新增列表项</Button>
       {
-        children.map(({ attributes: { title,demo, demoLink, tags } }, index) => (
+        children.map(({ attributes: { title,demo, demoLink, tags, beiLink } }, index) => (
           <div className={styles.area} key={index} >
             <div className={styles.delete} onClick={() => deleteItemFromChildren(index)}>X</div>
             <div className={styles['area-row']}>
@@ -88,6 +88,15 @@ const Footer = (props) => {
                 className={styles.content}
                 placeholder='请输入标签'
                 onChange={(e) => { changeChildrenItem(index, 'tags', e.target.value) }}
+              />
+            </div>
+            <div className={styles['area-row']}>
+              <span className={styles.label}>备案</span>
+              <Input
+                value={beiLink}
+                className={styles.content}
+                placeholder='请输入标签'
+                onChange={(e) => { changeChildrenItem(index, 'beiLink', e.target.value) }}
               />
             </div>
           </div>
