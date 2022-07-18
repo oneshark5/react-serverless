@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 
 
 const Aside = (props) => {
-
+  console.log(props);
   const { children = [], changeChildren } = props // 给一个空对象，避免外部传的时候边界没处理
   console.log(children);
   const addItemToChildren = () => {

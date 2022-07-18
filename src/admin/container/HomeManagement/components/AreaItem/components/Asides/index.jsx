@@ -21,6 +21,7 @@ const SortableList = SortableContainer(({ list, changeChildren }) => {
 });
 
 const Asides = (props) => {
+  console.log(props);
   const dispatch = useDispatch()
 
   // 从仓库拿数据
