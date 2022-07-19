@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import About from '../About';
 import ArtDetail from '../ArtDetail';
 import Camera from '../Camera';
@@ -29,6 +29,7 @@ const Router = (props) =>  {
           <Route path='/about' element={<About pageSchema={pageSchema}/>} />
           <Route path='/show' element={<Show pageSchema={pageSchema}/>} />
           <Route path='/' element={<Home pageSchema={pageSchema}/>} />
+          <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
       </div>
     </main>
