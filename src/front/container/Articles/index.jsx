@@ -1,9 +1,11 @@
 import { useSafeState } from 'ahooks';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { parseJsonByString } from '../../../common/utils';
 import Layout from '../Layout';
 import MyPagination from '../MyPagination';
 import ArtList from './ArtList';
 import Search from './Search';
+import request from '../../../common/request'
 
 // const data = [
 //   {
@@ -32,28 +34,45 @@ import Search from './Search';
 // ]
 
 
-function Articles(props) {
-  const { pageSchema } = props
-  const { children = [] } = pageSchema;
-  const childrenSection = children.filter(element => (element.name === 'Section'))
-  const sectionData = childrenSection[0].children
-
+function Articles() {
+  const [pageSchema, setPageSchema] = useState({})
+  const [flag, setFlag] = useState(false)
   const [page, setPage] = useState(1);
   // 设置状态，初始时是全部数据，等待点击
   const [where, setWhere] = useSafeState(sectionData)
 
+  useEffect(() => {
+    request.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data;
+      if (data) {
+        setPageSchema(parseJsonByString(data[0].schema))
+        setFlag(true)
+      }
+    })
+  }, [])
+  if (flag) {
+    const { children = [] } = pageSchema;
+    const childrenSection = children.filter(element => (element.name === 'Section'))
+    var sectionData = childrenSection[0].children
+  }
+
   return (
-    <Layout titlt="所有文章">
-      <Search
-        page={page}
-        setPage={setPage}
-        where={where}
-        setWhere={setWhere}
-      >
-      </Search >
-      <ArtList articles={where}></ArtList>
-      {/* <MyPagination></MyPagination> */}
-    </Layout>
+    <>
+      {
+        flag && 
+        <Layout titlt="所有文章">
+          <Search
+            page={page}
+            setPage={setPage}
+            where={where}
+            setWhere={setWhere}
+          >
+          </Search >
+          <ArtList articles={where}></ArtList>
+          {/* <MyPagination></MyPagination> */}
+        </Layout>
+      }
+    </>
   )
 }
 export default Articles;

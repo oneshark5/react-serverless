@@ -3,7 +3,7 @@ import './pagination.custom.scss';
 import { Pagination } from 'antd';
 import React from 'react';
 
-import s from './index.scss';
+import s from './index.module.scss';
 
 const MyPagination = ({
   current,

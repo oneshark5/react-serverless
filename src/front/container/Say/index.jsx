@@ -1,20 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { parseJsonByString } from '../../../common/utils'
 import Layout from '../Layout'
 import SayPop from './SayPop'
+import request from '../../../common/request'
 
-export default function Say(props) {
-  const { pageSchema } = props
-  const { children = [] } = pageSchema;
-  const childrenSay = children.filter(element => (element.name === 'Say'))
-  const sayContents = childrenSay[0].children
+export default function Say() {
+  const [pageSchema, setPageSchema] = useState({})
+  const [flag, setFlag] = useState(false)
+  useEffect(() => {
+    request.get('/api/schema/getLatestOne').then((response) => {
+      const data = response?.data;
+      if (data) {
+        setPageSchema(parseJsonByString(data[0].schema))
+        setFlag(true)
+      }
+    })
+  }, [])
+  if (flag) {
+    const { children = [] } = pageSchema;
+    const childrenSay = children.filter(element => (element.name === 'Say'))
+    var sayContents = childrenSay[0].children
+  }
 
   return (
-    <Layout title='关于你呀👼'>
+    <>
       {
-        sayContents.map(({ id, sayContent, date }) => (
-        <SayPop key={id} content={sayContent} date={date} />
-      ))
+        flag &&
+        <Layout title='关于你呀👼'>
+          {
+            sayContents.map(({ id, sayContent, date }) => (
+              <SayPop key={id} content={sayContent} date={date} />
+            ))
+          }
+        </Layout>
       }
-    </Layout>
+    </>
   )
 }

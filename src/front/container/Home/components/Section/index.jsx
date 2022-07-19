@@ -5,8 +5,11 @@ import { Pagination } from 'antd';
 import './pagination.custom.scss';
 import styles from './style.module.scss'
 import { NavLink } from 'react-router-dom';
+import MyPagination from '../../../MyPagination';
+import { useState } from 'react';
 
 const Section = ({ schema }) => {
+  const [page, setPage] = useState(1);
   // 从后台获取属性
   const { children = [] } = schema
 
@@ -40,9 +43,17 @@ const Section = ({ schema }) => {
       }
 
       {/* 分页 */}
-      <div id='myPagination' className={styles.pageBox}>
-        <Pagination defaultCurrent={1} total={50} />
-      </div>
+      {/* <div id='myPagination' className={styles.pageBox}>
+        <Pagination defaultCurrent={1} total={10} />
+      </div> */}
+      <MyPagination
+        current={page}
+        defaultPageSize={10}
+        total={2}
+        setPage={setPage}
+        autoScroll={true}
+        scrollToTop={document.body.clientHeight - 80}
+      />
 
     </div>
   )
