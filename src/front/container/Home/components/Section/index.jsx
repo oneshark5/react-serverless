@@ -12,6 +12,7 @@ const Section = ({ schema }) => {
   const [page, setPage] = useState(1);
   // 从后台获取属性
   const { children = [] } = schema
+  console.log(schema);
 
   // 定义路由
   // const navigate = useNavigate()
@@ -26,9 +27,9 @@ const Section = ({ schema }) => {
       {
         children.map((item, index) => {
           const { attributes = {} } = item
-          const { title, description, tags, createTime, link } = attributes
+          const { title, description, tags, createTime, link, id } = attributes
           return (
-            <NavLink key={index} to={{pathname:`/artDetail?id=${Number(link)}`}}>
+            <NavLink key={index} to={{pathname:`/artDetail?id=${Number(id)}`}}>
               <Card className={styles.card} >
                 <div className={styles.title}>{title}</div>
                 <p className={styles.description}>{description}</p>
