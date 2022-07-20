@@ -75,7 +75,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "cross-env PUBLIC_URL=http://statics.oneshark.cn/code/ node scripts/build.js"
+    "build": "cross-env PUBLIC_URL=https://statics.oneshark.cn/code/ node scripts/build.js"
   },
   "eslintConfig": {
     "extends": [
