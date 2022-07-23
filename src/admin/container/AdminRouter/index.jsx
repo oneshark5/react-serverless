@@ -20,6 +20,7 @@ import './index.css'
 const AdminRouter = () => {
   return (
     <Routes>
+      <Route path='/' element={<HomeManagement/>} />
       <Route path='/admin/test' element={<PageTest/>} />
       <Route path='/admin/link' element={<Link/>} />
       <Route path='/admin/say' element={<Say/>} />
@@ -34,7 +35,7 @@ const AdminRouter = () => {
       <Route path='/admin/AddArticles' element={<AddArticles/>} />
 
       <Route path='/setting' element={<BasicSetting/>} />
-      <Route path='/' element={<HomeManagement/>} />
+
     </Routes>
   )
 }
