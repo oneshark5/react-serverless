@@ -1,7 +1,6 @@
 import React from 'react'
 import dayjs from 'dayjs'
 import Card from '../../../Card'
-import { Pagination } from 'antd';
 import './pagination.custom.scss';
 import styles from './style.module.scss'
 import { NavLink } from 'react-router-dom';
@@ -27,7 +26,7 @@ const Section = ({ schema }) => {
       {
         children.map((item, index) => {
           const { attributes = {} } = item
-          const { title, description, tags, createTime, link, id } = attributes
+          const { title, description, tags, createTime, id } = attributes
           return (
             <NavLink key={index} to={{pathname:`/artDetail?id=${Number(id)}`}}>
               <Card className={styles.card} >

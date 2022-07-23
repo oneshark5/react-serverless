@@ -1,8 +1,6 @@
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import React from 'react';
-import { connect } from 'react-redux';
-
 import Card from '../Card';
 import LayoutLoading from '../LayoutLoading';
 import PageTitle from '../PageTitle';
