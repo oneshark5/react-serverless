@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import 'normalize.css'
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Data from './Data';
 import store from './redux/store'
 
@@ -18,9 +18,9 @@ import store from './redux/store'
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
       <Data />
-    </BrowserRouter>
+    </HashRouter>
   </Provider>,
   document.getElementById('root')
 );

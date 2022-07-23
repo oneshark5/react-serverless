@@ -8,7 +8,7 @@ import s from './index.module.scss';
 const SayPop = ({ content, date }) => (
   <div className={s.sayItem}>
     <div className={s.avatarBox}>
-      <img src={myAvatar70} className={s.avatar} />
+      <img src={myAvatar70} className={s.avatar} alt="头像" />
     </div>
 
     <div className={s.contentBox}>
