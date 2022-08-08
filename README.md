@@ -1,7 +1,36 @@
+
+
+# 技术栈
+主要技术：
+依赖库：
+- react-lazyload  `npm i react-lazyload`
+
+
 # 初始化
 * 删除无用文件
 * 安装scss
 * 安装normalize.css
+
+# 项目优化
+- 图片懒加载
+`npm i react-lazyload`
+在img遍历的过程中加入Lazyload组件，并准备好替换图片放在placeholder上
+```js
+{/*代码实现*/}
+<div className="good"> 
+        {/* lazyload组件，用placeholder存放懒加载时的图片 */}
+      <Lazyload placeholder={
+        <img width="120%" height="100%"
+            src={loading}
+        />}>
+          <img src={goodItem.img} alt=""/>
+      </Lazyload>
+      <div className="name">{goodItem.goods}</div>
+</div>
+```
+
+- 路由懒加载
+
 
 # Schema协议
 页面设计存储的Schema
