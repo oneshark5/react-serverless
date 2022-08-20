@@ -6,7 +6,8 @@ import Card from '../../Card';
 import s from './index.module.scss';
 import { useRunTime } from './useRunTime';
 
-const SiteCard = () => {
+const SiteCard = (props) => {
+  console.log(props);
   const { runTime } = useRunTime();
 
   return (
