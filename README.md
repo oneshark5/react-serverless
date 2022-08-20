@@ -102,3 +102,41 @@ DragEvent.dataTransfer：在拖放交互期间传输的数据。
   </body>
 </html>
 ```
+
+**项目中应用**
+对于Aside组件，要采用render函数渲染出侧边栏所有组件，采用遍历方式给每个组件添加drabable属性和三个事件；
+- 定义onDragStart拖拽起始事件，获取当前拖拽的元素
+```js
+// 存放拖拽元素
+let dragElement = null;
+const onDragStart = (e) => {
+  // 获取当前拖拽元素
+  dragElement = e.currentTarget;
+}
+```
+- 默认事件会阻止drop事件的执行，所以在onDragOver拖到待放置位置时，阻止默认事件
+```js
+const onDragOver = (e) => {
+  // 阻止默认drop以启用drop
+  e.preventDefault()
+}
+```
+
+- 添加放置drop事件onDrop，先保存当前放置位置的元素，然后判定当已经存在拖拽元素，并且拖拽元素不在原始位置时，进行元素位置交换
+```js
+const onDrop = (e) => {
+  // 当拖动结束的时候，给拖动div所在的位置下面的div做drop事件
+  let dropElement = e.currentTarget;
+  if(dragElement !== null && dragElement !== dropElement){
+    let asideBox = document.querySelector('#aside');
+    // 临时 div 存储box
+    let temp = document.createElement('div');
+    // 将temp添加到父元素中
+    asideBox.appendChild(temp)
+    // 交换
+    asideBox.replaceChild(temp, dropElement)
+    asideBox.replaceChild(dropElement, dragElement)
+    asideBox.replaceChild(dragElement, temp)
+  }
+}
+```

@@ -11,7 +11,7 @@ import { useState } from 'react';
 const Section = ({ schema }) => {
   const [page, setPage] = useState(1);
   // 从后台获取属性
-  const pageCount = 8
+  const pageCount = 8;
   const { children = [] } = schema
   const totalArticle = children.length;
   const defaultArt = [...children].splice(0, pageCount).reverse()
