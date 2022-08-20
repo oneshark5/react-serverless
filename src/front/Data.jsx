@@ -14,6 +14,7 @@ function Data() {
         setFlag(true)
       } 
     })
+
   }, [])
   
   return (

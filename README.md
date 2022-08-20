@@ -1,272 +1,142 @@
-# 初始化
+## 项目结构
 
-- 删除无用文件
-- 安装 scss
-- 安装 normalize.css
+分页策略
 
-# Schema 协议
+## Aside 组件实现拖拽
 
-页面设计存储的 Schema
-通过循环嵌套的结构表述整个页面的结构，不断地丰富 schema 里的内容，整个页面就可以被越来越的配置化的生成，
-低代码：通过拖拽生成一些配置，前台自动渲染这些配置生成页面这种思路去做的。
-低代码引擎和页面配置化最核心的内容就是 Schema 的设计
+### Drag 原生实现
 
-<!-- 自定义的schema结构 -->
+设置`draggable='true'`可拖拽，设置拖拽事件`ondragstart`、`ondragover`、`ondrop`;
 
-```json
-{
-name:'Page',
-attributes:{
-title:'title',
-description:'description'
-}
-children:[
-{
-name:'CourseList',
-attributes:{},
-children:[
-{
-name:'Course',
-attributes:{
-title:'Vue3 系统入门与项目实战',
-description:'课程从 Vue3 基础语法，到基基础语法，到组件原理、动画、代码设计，再到新语法扩展，',
-link:''
-}
-}
-]
-}
-]
-}
-```
+**拖拽事件 DragEvent**
+这个接口继承 MouseEvent 和 Event 属性
 
-设置协议
+DragEvent.dataTransfer：在拖放交互期间传输的数据。
 
-<!-- 对前面的schema结构进行精简 -->
-<!-- 首页配置化 -->
+- `onDragStart`：当拖动元素时，触发该事件.
+- `onDragOver`: 当将元素或文本选择拖动到有效放置目标上时，会触发此事件。---主要是为了阻止默认事件
+- `onDrop`：当在有效放置目标上放置元素或选择文本时触发此事件。
 
-⭐ 拖拽：用于导航栏和首页的 Aside 侧边栏 ⭐
-大的结构
-```json
-{
-  name:'',
-  attributes:{},
-  children:[
-    {
-      name:'About',
-      attributes:{
-        title:"关于",
-        content:"md语法的内容"
-      },
-      children:[
-        {
-          content:'md内容'
+实现代码
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag Demo</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: white;
+      }
+    </style>
+    <script>
+      // 存放拖拽的元素
+      let dragElement = null
+      function onDragStart(e) {
+        // 获取当前拖拽元素
+        dragElement = e.currentTarget
+      }
+      function onDragOver(e) {
+        // 默认的当你dragover的时候会阻止你做drop的操作，所以需要取消这个默认
+        e.preventDefault()
+      }
+      function onDrop(e) {
+        // 当拖动结束的时候，给拖动div所在的位置下面的div做drop事件
+        let dropElement = e.currentTarget
+        if (dragElement != null && dragElement != dropElement) {
+          let wrapper = document.querySelector('.wrapper')
+          // 临时 div 用于存储 box
+          let temp = document.createElement('div')
+          // 添加 temp 到父元素 wrapper 中
+          wrapper.appendChild(temp)
+          // 交换
+          wrapper.replaceChild(temp, dropElement)
+          wrapper.replaceChild(dropElement, dragElement)
+          wrapper.replaceChild(dragElement, temp)
         }
-      ]
-    }
-  ],
+      }
+    </script>
+  </head>
+  <body>
+    <div class="wrapper" style="display: flex">
+      <div
+        class="box"
+        style="background: green"
+        draggable="true"
+        ondragstart="onDragStart(event)"
+        ondragover="onDragOver(event)"
+        ondrop="onDrop(event)"
+      >
+        box1
+      </div>
+      <div
+        class="box"
+        style="background: orange"
+        draggable="true"
+        ondragstart="onDragStart(event)"
+        ondragover="onDragOver(event)"
+        ondrop="onDrop(event)"
+      >
+        box2
+      </div>
+      <div
+        class="box"
+        style="background: cyan"
+        draggable="true"
+        ondragstart="onDragStart(event)"
+        ondragover="onDragOver(event)"
+        ondrop="onDrop(event)"
+      >
+        box3
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+**项目中应用**
+对于Aside组件，要采用render函数渲染出侧边栏所有组件，采用遍历方式给每个组件添加drabable属性和三个事件；
+- 定义onDragStart拖拽起始事件，获取当前拖拽的元素
+```js
+// 存放拖拽元素
+let dragElement = null;
+const onDragStart = (e) => {
+  // 获取当前拖拽元素
+  dragElement = e.currentTarget;
+}
+```
+- 默认事件会阻止drop事件的执行，所以在onDragOver拖到待放置位置时，阻止默认事件
+```js
+const onDragOver = (e) => {
+  // 阻止默认drop以启用drop
+  e.preventDefault()
 }
 ```
 
-```json
-{
-  name:'Page',
-  attributes:{
-    title:'鲨鱼小站'
-    poem:'',
-    backgroundUrl:'',
-    // ⭐⭐⭐临时使用
-    aboutContent:'',
-    artContent:''
-  },
-  children:[
-    {
-      name:'Banner',
-      attributes:{
-        title:'鲨鱼小站',
-        description:'this is the description area',
-        showSmallPic:true,//是否显示logo
-        smallPicUrl:'',//logo地址
-        backgroundUrl:'',//背景
-        backgroundHeight:'100px'//背景高度
-      },
-      children:[]
-    },
-    {
-      name:'Section',
-      attributes:{},
-      children:[{
-        name:'Item',
-        attributes:{
-          title:'Vue3 系统入门与项目实战',
-          description:'内容描述',
-          imageUrl:'',
-          link:''
-        },
-        children:[]
-      }]
-    },
-    {
-      name:'Aside',
-      attributes:{},
-      children:[{
-        name:'Item',
-        attributes:{
-          defaultPageSize:'8',
-          total:'20',
-        },
-        children:[]
-      }]
-    },
-    {
-      name:'ArticleDetail',
-      attributes:{},
-      children:[
-        {
-          attributes:{},
-          children:[
-            {
-              articleContent:'md文章内容'
-            }
-          ]
-        },
-        {
-          // 预留的评论区
-          name:"Message",
-          attributes:{},
-          children:[]
-        }
-      ],
-    },
-    {
-      name:'About',
-      attributes:{},
-      children:[
-        {
-          name:'关于',
-          attributes:{},
-          children:[
-            {
-              aboutContent:'md内容'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      name:'Categories',
-      attributes:{
-        name:'Item',
-        attributes:{
-          categoryTitle: "JavaScript 手撕代码",
-          _id: "14139e12611f3428060dbba71ed08248",
-          _openid: "9bf44da2dbb8473da1fcf4f591cb82ff",
-        },
-        children:[]
-      },
-      children:[]
-    },
-    {
-      name:'Say',
-      attributes:{
-        attributes:{},
-        children:[
-          {
-            date: 1656424439329,
-            id: 674044419800,
-            sayContent: "不管怎样，都要好好努力💪"
-          }
-        ]
-      },
-      children:[]
-    },
-    {
-      name:'Link',
-      attributes:{
-        attributes:{},
-        children:[
-          {
-            name:'Item',
-            attributes:'',
-            children:[
-              {
-                id: Math.trunc(Math.random()+Date.now()),
-                avatar:'',
-                descr:'描述',
-                link:"https://www.oneshark.cn/",
-                name:"oneshark",
-              }
-            ]
-          }
-        ]
-      },
-      children:[]
-    },
-    {
-      name:'Footer',
-      attributes:{
-        record:''
-      },
-      children:[{
-        name:'Item',
-        attributes:{
-          title:'个人博客系统',
-          demo:'源代码',
-          demoLink:'',
-          tags:'React',
-        },
-        children:[]
-      }]
-    },
-  ],
-},
-
-
-```
-
-图库地址
-头像：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/avatar.jpeg`
-背景 1：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/bg.jpeg`
-背景 2：`https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/react.jpeg`
-背景图片的计算过程
-分辨率：1920\*697
-网页宽度为 1280 1920 / 1280 = 1.5
-所以高度设置为 697 / 1.5
-
-Aside 思路
-在大组件下渲染成组件，形成组件后，各自组件自己引用属性去渲染页面。
-
-飞鸟作品数据
-
-```json
-{
-  cover: "https://img.lzxjack.top/img/202203292224441.webp"
-  descr: "使用React写的博客展示页面。"
-  link: "https://github.com/lzxjack/blog-show"
-  name: "个人博客页面"
-  order: "1"
-  _id: "2d44d6c2612a44b90794f8ef729fe486"
-  _openid: "9bf44da2dbb8473da1fcf4f591cb82ff"
-
-
-  cover: "https://img.lzxjack.top/img/202203292224442.webp"
-  descr: "使用React+腾讯云开发写的博客后台管理页面。"
-  link: "https://react-blog-admin-8fo571wf24c87f9-1304393382.ap-shanghai.app.tcloudbase.com/admin/home"
-  name: "个人博客后台管理"
-  order: "2"
-  _id: "14139e12612a4585078cfaf732694261"
-  _openid: "9bf44da2dbb8473da1fcf4f591cb82ff"
+- 添加放置drop事件onDrop，先保存当前放置位置的元素，然后判定当已经存在拖拽元素，并且拖拽元素不在原始位置时，进行元素位置交换
+```js
+const onDrop = (e) => {
+  // 当拖动结束的时候，给拖动div所在的位置下面的div做drop事件
+  let dropElement = e.currentTarget;
+  if(dragElement !== null && dragElement !== dropElement){
+    let asideBox = document.querySelector('#aside');
+    // 临时 div 存储box
+    let temp = document.createElement('div');
+    // 将temp添加到父元素中
+    asideBox.appendChild(temp)
+    // 交换
+    asideBox.replaceChild(temp, dropElement)
+    asideBox.replaceChild(dropElement, dragElement)
+    asideBox.replaceChild(dragElement, temp)
+  }
 }
 ```
-
-
-```json
-{"name":"Page","attributes":{"title":"鲨鱼小站(●'◡'●)"},"children":[{"name":"Banner","attributes":{"title":"oneshark","description":"this is desc area","showSmallPic":true,"smallPicUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/avatar.jpeg","backgroundUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/bg.jpeg","backgroundHeight":"300"},"children":[]},{"name":"List","attributes":{},"children":[{"attributes":{"title":"React系统入门与项目实战","description":"基础语法，到基基础语法，到组件原理、动画、代码设计","imageUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/vue3.png","link":"https://www.baidu.com/"}},{"name":"Item","attributes":{"title":"新增一个区块","description":"就新增加的一个区块","imageUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/vue3.png","link":"https://www.baidu.com/"},"children":[]},{"name":"Item","attributes":{"title":"测试","description":"测试下优化后的内容","imageUrl":"https://shark-serverless-static-files.oss-cn-beijing.aliyuncs.com/images/vue3.png","link":"https://www.baidu.com/"},"children":[]}]},{"name":"Footer","attributes":{"copyright":"Copyright© 2021 imooc.com","record":"京ICP备 12003892号-11"},"children":[{"name":"Item","attributes":{"title":"后台管理页面","link":"http://localhost:3000/admin.html"},"children":[]}]},{"name":"Footer","attributes":{"copyright":"test","record":"1"},"children":[]}]}
-```
-
-🦈希望未来的你可以独当一面
-
-
-## 优化
-首屏加载过慢解决方法
-- 封装路由懒加载
-路由匹配，临时下载

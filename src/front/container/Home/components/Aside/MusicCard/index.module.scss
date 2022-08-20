@@ -1,5 +1,5 @@
-@import '../../../styles/base.scss';
-@import '../../../styles/style.scss';
+@import '../../../../../styles/base.scss';
+@import '../../../../../styles/style.scss';
 
 .card {
   height: 80px;
@@ -7,6 +7,11 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  .dragFlag {
+    font-size: 1.6rem;
+  }
+
 
   .musicItem {
     
