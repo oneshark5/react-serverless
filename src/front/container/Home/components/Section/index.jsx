@@ -14,13 +14,13 @@ const Section = ({ schema }) => {
   const pageCount = 8
   const { children = [] } = schema
   const totalArticle = children.length;
-  const defaultArt = [...children].splice(0, pageCount)
+  const defaultArt = [...children].splice(0, pageCount).reverse()
   const [selectArticles, setSelectArticles] = useState(defaultArt)
 
 
   // 根据page即页数获取响应的文章概述卡片 （根据page截取）
   useEffect(() => {
-    let selectArt = [...children].splice((page - 1) * pageCount, pageCount)
+    let selectArt = [...children].splice((page - 1) * pageCount, pageCount).reverse()
     setSelectArticles(selectArt)
   }, [page])
   // console.log('分页数据为',selectArticles);
