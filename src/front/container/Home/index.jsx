@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 import Section from './components/Section'
 import Aside from './components/Aside'
 import styles from './index.module.scss'
-import PageTitle from "../PageTitle";
+// import PageTitle from "../PageTitle";
 import { useEffect, useState } from "react";
 import { parseJsonByString } from "../../../common/utils";
 import request from '../../../common/request'
@@ -35,25 +35,31 @@ const Home = (props) => {
     var { title = '', poem = '' } = attributes
     var midComs = children.filter(item => item.name !== 'Banner' && item.name !== 'Footer')
   }
-  
+
 
   return (
     <>
       {
         flag &&
         <>
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
-        <PageTitle title={title} desc={poem} className={styles.homeTitle} />
-        {/* 各个组件：筛选组件，把第一个和最后一个去掉===>想渲染特定的组件 */}
-        <div className={styles.body}>
-          {
-            midComs.map((item, index) => {
-              return render(item, index)
-            })
-          }
-        </div>
+          <Helmet>
+            <title>{title}</title>
+          </Helmet>
+          {/* <PageTitle title={title} desc={poem} className={styles.homeTitle} /> */}
+
+          <div className={styles.box}>
+            <div className={styles.title}>{title}</div>
+            {poem && <div className={styles.desc}>{poem}</div>}
+          </div>
+
+          {/* 各个组件：筛选组件，把第一个和最后一个去掉===>想渲染特定的组件 */}
+          <div className={styles.body}>
+            {
+              midComs.map((item, index) => {
+                return render(item, index)
+              })
+            }
+          </div>
         </>
       }
     </>

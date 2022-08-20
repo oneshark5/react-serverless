@@ -1,48 +1,43 @@
 @import './styles/base.scss';
-  // .box {
-  //   color: $textColor;
-  //   height: $topTitleHeight;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   flex-direction: column;
-  //   user-select: none;
-  //   width: $layoutWidth;
-  //   margin: 0 auto;
-  
-  //   .title {
-  //     font-size: 50px;
-  //     font-weight: 700;
-  //     text-shadow: 4px 4px 10px $footerBg;
-  //   }
-  
-  //   .poem {
-  //     font-size: 28px;
-  //   }
-  // }
-  // .body{
-  //   display: flex;
-  // }
+.box {
+  color: $textColor;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+  width: $layoutWidth;
+  margin: 0 auto;
 
-  .homeTitle {
-    height: 100vh;
-  }
-  
-  .body {
-    display: flex;
+  .title {
+    font-size: 45px;
+    font-weight: 600;
+    text-shadow: 4px 4px 10px $footerBg;
   }
 
-  @media screen and (max-width: 1240px) {
-    .box {
-      width: 100vw;
-  
-      .title {
-        font-size: 1.5rem;
-        text-shadow: 1rem 1rem 2rem $footerBg;
-      }
-  
-      .poem {
-        font-size: 1rem;
-      }
+  .desc {
+    font-size: 28px;
+    margin-top: 8px;
+  }
+}
+
+
+.body {
+  display: flex;
+}
+
+@media screen and (max-width: 1240px) {
+  .box {
+    width: 100vw;
+
+    .title {
+      font-size: 1.5rem;
+      text-shadow: 1rem 1rem 2rem $footerBg;
+    }
+
+    .poem {
+      font-size: 1rem;
     }
   }
+}
