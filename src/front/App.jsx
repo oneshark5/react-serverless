@@ -34,6 +34,29 @@ const App = (props) => {
 
   ]
 
+
+  // MutationObserver 给我们提供了监听页面DOM树变化的能力
+  // 注册监听函数
+  const observer = new MutationObserver((mutations) => {
+    console.log('时间：', performance.now(), 'ms', '，DOM树发生变化啦！增加了这些节点:');
+    for (let i = 0; i < mutations.length; i++) {
+      console.log(mutations[0].addedNodes);
+    }
+  })
+  // 开始监听document的节点变化
+  observer.observe(document, {
+    childList: true,
+    subtree: true
+  });
+
+  // performance
+  console.log('页面加载了这些图片：');
+  performance.getEntriesByType('resource').forEach((resource) => {
+    if (resource.initiatorType === 'img') {
+      console.log(resource.name);
+    }
+  })
+
   return (
     <div className={styles.AppBox} style={selectBackground[mode]}>
       <Helmet>
