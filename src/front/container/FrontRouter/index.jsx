@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Loading from '../Loading';
 import styles from './index.module.scss'
 
 const Router = () =>  {
@@ -16,7 +17,7 @@ const Router = () =>  {
           <Route path='/link' element={LazyLoad('Link')} />
           <Route path='/about' element={LazyLoad('About')} />
           <Route path='/show' element={LazyLoad('Show')} />
-          
+          {/* 重定向不需要懒加载 */}
           <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
       </div>
@@ -25,10 +26,11 @@ const Router = () =>  {
 }
 export default Router
 
+// 封装为函数
 const LazyLoad = (path) => {
   const Comp =React.lazy(() => import(`../${path}`))
   return (
-    <React.Suspense fallback={<>加载中。。。</>}>
+    <React.Suspense fallback={<><Loading/></>}>
       <Comp/>
     </React.Suspense>
   )
