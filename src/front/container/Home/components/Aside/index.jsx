@@ -52,6 +52,7 @@ const Aside = ({ schema }) => {
         onDragStart={onDragStart}
         onDragOver={onDragOver}
         onDrop={onDrop}
+        key={index}
       >
         <Component key={item} schema={item}/>
       </div> : null;
