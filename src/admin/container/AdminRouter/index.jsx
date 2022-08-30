@@ -1,14 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import About from "../About";
 import AboutEdit from "../AboutEdit";
-import AddArticle from "../AddArticle";
-
+// import AddArticle from "../AddArticle";
 
 import AddArticles from "../AddArticles";
 
-
-
-import Article from "../Article";
 import Articles from "../Articles";
 import Say from "../Say";
 import BasicSetting from "../BasicSetting"
@@ -25,8 +21,7 @@ const AdminRouter = () => {
       <Route path='/admin/link' element={<Link/>} />
       <Route path='/admin/say' element={<Say/>} />
 
-      <Route path='/admin/AddArticle' element={<AddArticle/>} />
-      <Route path='/admin/article' element={<Article/>} />
+      {/* <Route path='/admin/AddArticle' element={<AddArticle/>} /> */}
 
       <Route path='/admin/aboutEdit' element={<AboutEdit/>} />
       <Route path='/admin/about' element={<About/>} />

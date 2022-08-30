@@ -175,7 +175,8 @@ const Articles = () => {
   };
   // 添加文章：转到新建文章页面
   const turnAddPage = () => {
-    navigate('/admin/addArticles');
+    // navigate('/admin/addArticles');
+    navigate('/admin/AddArticles');
   };
   // ———————————————————————对文章的操作end—————————————————————————
 
@@ -239,6 +240,8 @@ const Articles = () => {
           ))}
         </Select>
       </div>
+
+      
       <Table
         size='middle'
         className='Table'
