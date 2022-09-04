@@ -6,6 +6,8 @@ export default function Item({ item }) {
     <div className={style.item} >
       <img className="item_image"
         src={item.giftImage}
+        width='280px'
+        height='190px'
       />
     </div>
   )
