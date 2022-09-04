@@ -1,44 +1,50 @@
 import React, { useEffect, useState } from 'react'
-import Layout from '../Layout'
-import ShowItem from './ShowItem'
-import s from './index.module.scss';
-import request from '../../../common/request'
-import { parseJsonByString } from '../../../common/utils';
+import { listData } from '../utils/mock'
+import ScrollView from './ScrollView';
+
+
+
+
+const fetchData = (page) => {
+  return new Promise((resolve) => {
+    resolve({
+      ...listData,
+      page,
+      list: listData.list.slice(5 * (page - 1), 5 * page)
+    })
+  })
+}
 
 const Camera = () => {
-  const [pageSchema, setPageSchema] = useState({})
-  const [flag, setFlag] = useState(false)
-  useEffect(() => {
-    request.get('/api/schema/getLatestOne').then((response) => {
-      const data = response?.data;
-      if (data) {
-        setPageSchema(parseJsonByString(data[0].schema))
-        setFlag(true)
-      }
-    })
-  }, [])
-  if (flag) {
-    const { children = [] } = pageSchema;
-    const childrenShow = children.filter(element => (element.name === 'Camera'))
-    var showData = childrenShow[0].children
+  console.log('----获取数据-----')
+  const [data, setData] = useState({ list: [], page: 0, pageCount: 1 }) /* 记录列表数据 */
+  /* 请求数据 */
+  const getData = async () => {
+    if (data.page === data.pageCount) return console.log('没有数据了～')
+    const res = await fetchData(data.page + 1)
+    const payload = {
+      ...res,
+      list: res.page === 1 ? res.list : data.list.concat(res.list)
+    }
+    // console.log(payload, 'payloadpayloadpayload')
+    if (res.code === 0) setData(payload)
   }
-  console.log('图片',showData)
+  /* 滚动到底部触发 🦈到底后,子组件 回调函数然后再次请求数据 */
+  const handerScrolltolower = () => {
+    console.log('scroll已经到底部')
+    getData()
+  }
 
-  return (
-    <>
-      {
-        flag &&
-        <Layout title='图片' className={s.showBox}>
-          {showData.map(({ attributes }) => (
-            <ShowItem
-              key={attributes.id}
-              cover={attributes.cover}
-            />
-          ))}
-        </Layout>
-      }
-    </>
+  /* 初始化请求数据 */
+  useEffect(() => {
+    getData()
+  }, [])
 
-  )
+
+  return <ScrollView
+      data={data}  /* Item 渲染的单元组件 */
+      scroll={() => { }}
+      scrolltolower={handerScrolltolower}
+    />
 }
 export default Camera
