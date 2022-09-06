@@ -3,8 +3,6 @@ import { listData } from '../utils/mock'
 import ScrollView from './ScrollView';
 
 
-
-
 const fetchData = (page) => {
   return new Promise((resolve) => {
     resolve({
@@ -27,6 +25,7 @@ const Camera = () => {
       list: res.page === 1 ? res.list : data.list.concat(res.list)
     }
     // console.log(payload, 'payloadpayloadpayload')
+    console.log(res);
     if (res.code === 0) setData(payload)
   }
   /* 滚动到底部触发 🦈到底后,子组件 回调函数然后再次请求数据 */

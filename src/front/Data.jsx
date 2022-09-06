@@ -19,7 +19,7 @@ function Data() {
   useEffect(() => {
     request.get('/api/schema/getLatestOne').then((response) => {
       const data = response?.data;
-      console.log('sssssss',data);
+      
       if(data){
         setPageSchema(parseJsonByString(data[0].schema))
         setFlag(true)

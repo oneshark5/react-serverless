@@ -1,3 +1,4 @@
+import React from "react";
 import { Helmet } from "react-helmet";
 import Banner from './container/Home/components/Banner'
 import Footer from './container/Home/components/Footer'
@@ -15,11 +16,6 @@ const App = (props) => {
 
   const navCom = children[0]
   const footerCom = children.at(-1)
-
-  // 背景图片
-  // const homeBoxStyleObj = {
-  //   backgroundImage: `url('${backgroundUrl}')`
-  // }
 
   const selectBackground = [
     {
