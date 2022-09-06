@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { ArrowRightOutlined, RedoOutlined } from '@ant-design/icons';
 import { useKeyPress, useMemoizedFn, useSafeState } from 'ahooks';
-import { message } from 'antd';
+// import { message } from 'antd';
 import s from './index.module.scss';
 
 // 可以手写防抖节流实现
