@@ -164,7 +164,6 @@ const Banner = ({ schema, mode, setMode }) => {
               {item.name}
             </NavLink>
           ))}
-          {/* <div class="slider">1111</div> */}
         </div>
       </div>
 
