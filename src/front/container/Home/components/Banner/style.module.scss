@@ -64,9 +64,11 @@
     .navBtn {
       @extend .baseBtn;
     }
+
     .navBtn:last-child {
       margin-right: 0;
     }
+
     .navActive {
       @extend .navBtn;
       background-color: $hoverColor;
@@ -99,15 +101,18 @@
           background-color: $themeColor2;
           color: $textColor;
         }
+
         .articelsSecondItem:last-child {
           margin-bottom: 0;
         }
+
         .sedActive {
           @extend .articelsSecondItem;
           background-color: $hoverColor;
         }
       }
     }
+
     .articlesBtn:hover .articelsSecond {
       top: 60px;
     }
@@ -141,6 +146,7 @@
           @extend .trans;
           color: #fff;
         }
+
         .modeItem1,
         .modeItem2 {
           color: #000;
@@ -149,12 +155,14 @@
         .modeItem:last-child {
           margin-bottom: 0;
         }
+
         .modeItem:hover {
           transform: scale(1.07);
           box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
         }
       }
     }
+
     .modeBtn:hover .modeOpions {
       top: 60px;
     }
@@ -208,9 +216,38 @@
   .nav {
     display: none;
   }
+
   .mobileNavBtn {
     display: flex;
   }
+
+  // 导航条部分
+  .boboMobileNavBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+  }
+
+  .boboMobileNav {
+    position: relative;
+    display: flex;
+    transition: all ease 0.4s;
+    animation: 2s ease-in-out waves infinite;
+
+    :focus{
+      background-color: #9c9cc8;
+      border-radius: 0.5rem;
+    }
+    .boboMobileNavItem {
+      list-style: none;
+      width: 3rem;
+      line-height: 2rem;
+      text-align: center;
+
+    }
+  }
+
 }
 
 
@@ -270,7 +307,7 @@
 //       cursor: pointer;
 //       left: 0px;
 //     }
-    
+
 //     .adminBtn {
 //       @extend .homeAndAdmin;
 //       margin-right: 0;
@@ -317,7 +354,7 @@
 //       @extend .homeAndAdmin;
 //       right: 80px;
 //       margin-right: 0;
-      
+
 //       .modeOptions {
 //         position: absolute;
 //         left: 50%;
@@ -424,7 +461,7 @@
 //   .nav {
 //     display: none;
 //   }
-  
+
 //   .mobileNavBox {
 //     .mobileNavItem {
 //       display: flex;

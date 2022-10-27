@@ -9,15 +9,21 @@ import { useEventListener, useUpdateEffect } from 'ahooks';
 import { connect } from 'react-redux';
 import { setMode } from '../../../../redux/action';
 import { modeMap, modeMapArr } from '../../../utils/modeMap';
-
+import { useLinkList } from './config';
 
 const bodyStyle = window.document.getElementsByTagName('body')[0].style;
 
 const Banner = ({ schema, mode, setMode }) => {
   // 从后台获取属性
   const { children = [] } = schema
+
+  // 获取移动端导航条数据
+  const { mobileNavArr } = useLinkList();
+
+
   // 路由，编程式导航;只需要在navigate()里添加要跳转的页面即可
   const navigate = useNavigate()
+  
 
   // 移动端按钮
   const [visible, setVisible] = useState(false)
@@ -109,12 +115,11 @@ const Banner = ({ schema, mode, setMode }) => {
       {/* <button className={styles.mobileNavBtn} onClick={showDrawer}>
         <MenuOutlined />
       </button> */}
-      {/*改成导航条吧。。。 */}
-      
-      <Drawer 
-        title="Basic Drawer" 
-        placement="right" 
-        onClose={onClose} 
+
+      <Drawer
+        title="Basic Drawer"
+        placement="right"
+        onClose={onClose}
         open={open}
       >
         <div className={styles.mobileNavBox}>
@@ -145,6 +150,24 @@ const Banner = ({ schema, mode, setMode }) => {
           }
         </div>
       </Drawer> */}
+
+
+      {/*改成导航条吧。。。 */}
+      <div className={styles.boboMobileNavBox}>
+        <div className={styles.boboMobileNav}>
+          {mobileNavArr.map((item, index) => (
+            <NavLink
+              className={styles.boboMobileNavItem}
+              to={item.to}
+              key={index}
+            >
+              {item.name}
+            </NavLink>
+          ))}
+          {/* <div class="slider">1111</div> */}
+        </div>
+      </div>
+
     </>
   )
 }
