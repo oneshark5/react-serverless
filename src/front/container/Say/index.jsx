@@ -26,7 +26,7 @@ export default function Say() {
     <>
       {
         flag &&
-        <Layout title='开发记录'>
+        <Layout title='碎碎念'>
           {
             sayContents.map(({ id, sayContent, date }) => (
               <SayPop key={id} content={sayContent} date={date} />
