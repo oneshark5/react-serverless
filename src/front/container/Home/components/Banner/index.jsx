@@ -43,8 +43,15 @@ const Banner = ({ schema, mode, setMode }) => {
     }
   }, [mode]);
 
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+
   return (
-    // <div className='Nav'>
     <>
       <nav className={classNames(styles.nav, { [styles.hiddenNav]: !navShow })}>
         <div className={styles.navContent}>
@@ -99,27 +106,51 @@ const Banner = ({ schema, mode, setMode }) => {
       </nav>
 
       {/* 移动端 */}
-      <div className={styles.mobileNavBtn} onClick={() => setVisible(true)}>
+      {/* <button className={styles.mobileNavBtn} onClick={showDrawer}>
         <MenuOutlined />
-      </div>
-      <Drawer placement="left" onClose={() => setVisible(false)}
-        visible={visible} className='mobile-nav-box'>
+      </button> */}
+      {/*改成导航条吧。。。 */}
+      
+      <Drawer 
+        title="Basic Drawer" 
+        placement="right" 
+        onClose={onClose} 
+        open={open}
+      >
         <div className={styles.mobileNavBox}>
           {
             children.map(({ attributes: { title } }, index) =>
-              <div key={index} className={styles.mobileNavItem}>
+              <div key={index} className={({ isActive }) =>
+                isActive ? styles.mobileNavActive : styles.mobileNavItem
+              }>
                 {title}
               </div>)
           }
         </div>
       </Drawer>
-    {/* </div> */}
+      {/* <Drawer 
+        placement="left" 
+        onClose={() => setVisible(false)}
+        visible={visible} 
+        className='mobile-nav-box'
+      >
+        <div className={styles.mobileNavBox}>
+          {
+            children.map(({ attributes: { title } }, index) =>
+              <div key={index} className={({ isActive }) =>
+                isActive ? styles.mobileNavActive : styles.mobileNavItem
+              }>
+                {title}
+              </div>)
+          }
+        </div>
+      </Drawer> */}
     </>
   )
 }
 export default connect(
   (state) => ({
-    mode:state.mode
+    mode: state.mode
   }),
   { setMode }
 )(Banner)
