@@ -84,7 +84,7 @@ const Banner = ({ schema, mode, setMode }) => {
             <SearchOutlined />
           </div>
 
-          {/* 黑白模式切换 */}
+          {/* 模式切换 */}
           <div className={styles.modeBtn} >
             <BgColorsOutlined />
             <div className={styles.modeOptions}>
