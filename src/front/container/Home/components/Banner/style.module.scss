@@ -21,7 +21,7 @@
   transform: translate(0, -$navHeight);
 }
 
-.nav{
+.nav {
   position: fixed;
   top: 0;
   width: 100%;
@@ -31,7 +31,7 @@
   z-index: 10;
   @extend .trans;
 
-  .navContent{
+  .navContent {
     position: relative;
     margin: 0 auto;
     display: flex;
@@ -49,6 +49,7 @@
       font-size: 26px;
       width: 60px;
     }
+
     .homeBtn {
       @extend .homeAndAdmin;
       // 开启定位后，设置偏移量，此时是相对于navContent定位
@@ -59,22 +60,27 @@
     .adminBtn {
       @extend .homeAndAdmin;
       margin-right: 0;
-      .link{
+
+      .link {
         color: $textColor
       }
     }
-    .searchBtn{
+
+    .searchBtn {
       @extend .homeAndAdmin;
       margin-right: 0;
       right: 160px
     }
+
     .navBtn {
       @extend .baseBtn;
     }
+
     .navBtn:last-child {
       margin-right: 0;
     }
-    .navActive{
+
+    .navActive {
       @extend .navBtn;
       background-color: $hoverColor;
     }
@@ -83,7 +89,7 @@
       position: relative;
       @extend .baseBtn;
 
-      .articlesSecond{
+      .articlesSecond {
         position: absolute;
         top: -160px;
         width: 90px;
@@ -94,6 +100,7 @@
         @extend .trans;
       }
     }
+
     .articlesBtn:hover .articelsSecond {
       top: 60px;
     }
@@ -127,6 +134,7 @@
           @extend .trans;
           color: #fff;
         }
+
         .modeItem1,
         .modeItem2 {
           color: #000;
@@ -135,12 +143,14 @@
         .modeItem:last-child {
           margin-bottom: 0;
         }
+
         .modeItem:hover {
           transform: scale(1.07);
           box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
         }
       }
     }
+
     .modeBtn:hover .modeOptions {
       top: 60px;
     }
@@ -161,25 +171,48 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 8vh;
+    height: 6vh;
+    background-color: #7491f1;
   }
 
   .boboMobileNav {
     position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
     transition: all ease 0.4s;
     animation: 2s ease-in-out waves infinite;
 
-    :focus{
-      background-color: #9c9cc8;
+    :focus {
+      background-color: #2c2c49;
+      color: #fff;
       border-radius: 0.5rem;
     }
+
     .boboMobileNavItem {
+      justify-content: center;
+      align-items: center;
       list-style: none;
       width: 3rem;
       line-height: 2rem;
       text-align: center;
+      margin: 0 0.1rem;
+      border-radius: 0.3rem;
+      background-color: #8484f0;
+    }
 
+    .mobileNavActive {
+      // @extend .boboMobileNavItem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      height: 2rem;
+      width: 3rem;
+      // text-align: center;
+      margin: 0 0.1rem;
+      border-radius: 0.3rem;
+      background-color: red;
     }
   }
 

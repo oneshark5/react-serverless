@@ -20,11 +20,9 @@ const Banner = ({ schema, mode, setMode }) => {
   // 获取移动端导航条数据
   const { mobileNavArr } = useLinkList();
 
-
   // 路由，编程式导航;只需要在navigate()里添加要跳转的页面即可
   const navigate = useNavigate()
   
-
   // 移动端按钮
   const [visible, setVisible] = useState(false)
   // 导航栏显示与隐藏
@@ -56,6 +54,11 @@ const Banner = ({ schema, mode, setMode }) => {
   const onClose = () => {
     setOpen(false);
   };
+
+  // 移动端 点击导航条 更改颜色
+  const chanegNavColoe = (index) => {
+    
+  }
 
   return (
     <>
@@ -160,6 +163,7 @@ const Banner = ({ schema, mode, setMode }) => {
               className={styles.boboMobileNavItem}
               to={item.to}
               key={index}
+              onClick={chanegNavColoe(index)}
             >
               {item.name}
             </NavLink>
