@@ -1,30 +1,151 @@
-@import './../../../../styles/base.scss';
-@import './../../../../styles/style.scss';
+// @import './../../../../styles/base.scss';
+// @import './../../../../styles/style.scss';
 
-.mobile-nav-box {
-  display: none;
-  .ant-drawer-content-wrapper {
-    width: 9rem !important;
-    .ant-drawer-header-close-only {
-      display: none;
-    }
+// .mobile-nav-box {
+//   border: solid red 5px;
+//   display: none;
+//   position: relative;
+//   height: 85vh;
+//   width: 5rem;
+//   float: right;
 
-    .ant-drawer-content {
-      background-color: $themeColor;
-      color: $textColor;
 
-      .ant-drawer-body {
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-  }
-}
+//   .ant-drawer-content-wrapper {
+//     position: absolute;
+//     right: 0;
+//     width: 5rem !important;
+//     height: 100vh;
 
-@media screen and (max-width: 1240px) {
-  .mobile-nav-box {
-    display: block;
-  }
-}
+//     .ant-drawer-header-close-only {
+//       display: none;
+//     }
+
+//     .ant-drawer-content {
+//       background-color: rgb(32, 57, 141);
+//       color: $textColor;
+//       height: 80%;
+
+//       .ant-drawer-body {
+//         height: 100%;
+//         padding-top: 5rem;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//       }
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 1240px) {
+//   .mobile-nav-box {
+//     display: block;
+//   }
+// }
+
+
+
+
+// // @import './../../../../styles/base.scss';
+// // @import './../../../../styles/style.scss';
+
+// // // .mobile-nav-box {
+// // //   z-index: 99;
+// // //   // border: solid red 1px;
+// // //   .ant-drawer.ant-drawer-open .ant-drawer-mask {
+// // //     animation: antdDrawerFadeIn .3s cubic-bezier(.23,1,.32,1);
+// // //     height: 100%;
+// // //     opacity: 1;
+// // //     pointer-events: auto;
+// // //     transition: none;
+// // // }
+// // //   .ant-drawer-mask{
+// // //     background-color: rgba(0,0,0,.45);
+// // //     height: 0;
+// // //     left: 0;
+// // //     opacity: 0;
+// // //     pointer-events: none;
+// // //     position: absolute;
+// // //     top: 0;
+// // //     transition: opacity .3s linear,height 0s ease .3s;
+// // //     width: 100%;
+// // //   }
+
+// // //   // display: none;
+// // //   .ant-drawer-content-wrapper {
+// // //     width: 5rem !important;
+// // //     height: 100vh;
+// // //     border: solid red 1px;
+
+// // //     .ant-drawer-header-close-only {
+// // //       display: none;
+// // //     }
+
+// // //     .ant-drawer-content {
+// // //       height: 100%;
+// // //       background-color: $themeColor;
+// // //       color: $textColor;
+
+// // //       .ant-drawer-body {
+// // //         padding: 0;
+// // //         display: flex;
+// // //         justify-content: center;
+// // //         align-items: center;
+// // //       }
+// // //     }
+// // //   }
+// // // }
+
+// // @media screen and (max-width: 1240px) {
+// //   .mobile-nav-box {
+// //     display: block;
+// //   }
+
+
+
+// //   .mobile-nav-box {
+// //     z-index: 99;
+// //     // border: solid red 1px;
+// //     .ant-drawer.ant-drawer-open .ant-drawer-mask {
+// //       animation: antdDrawerFadeIn .3s cubic-bezier(.23,1,.32,1);
+// //       height: 100%;
+// //       opacity: 1;
+// //       pointer-events: auto;
+// //       transition: none;
+// //   }
+// //     .ant-drawer-mask{
+// //       background-color: rgba(0,0,0,.45);
+// //       height: 0;
+// //       left: 0;
+// //       opacity: 0;
+// //       pointer-events: none;
+// //       position: absolute;
+// //       top: 0;
+// //       transition: opacity .3s linear,height 0s ease .3s;
+// //       width: 100%;
+// //     }
+  
+// //     // display: none;
+// //     .ant-drawer-content-wrapper {
+// //       width: 5rem !important;
+// //       height: 100vh;
+// //       border: solid red 1px;
+      
+// //       .ant-drawer-header-close-only {
+// //         display: none;
+// //       }
+  
+// //       .ant-drawer-content {
+// //         height: 100%;
+// //         background-color: $themeColor;
+// //         color: $textColor;
+  
+// //         .ant-drawer-body {
+// //           padding: 0;
+// //           display: flex;
+// //           justify-content: center;
+// //           align-items: center;
+// //         }
+// //       }
+// //     }
+// //   }
+// // }

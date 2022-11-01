@@ -55,7 +55,7 @@
       cursor: pointer;
       left: 0px;
     }
-    
+
     .adminBtn {
       @extend .homeAndAdmin;
       margin-right: 0;
@@ -102,7 +102,7 @@
       @extend .homeAndAdmin;
       right: 80px;
       margin-right: 0;
-      
+
       .modeOptions {
         position: absolute;
         left: 50%;
@@ -147,54 +147,175 @@
   }
 }
 
-// 移动端
-.mobileNavBtn {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  width: 5rem;
-  height: 5rem;
-  font-size: 2rem;
-  color: $textColor;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
-}
-
-// 手机端导航
-.mobileNavBox {
-  .mobileNavItem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    color: $textColor;
-    font-size: 1rem;
-    font-family: 'dengxian';
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.3rem;
-    margin-bottom: 0.5rem;
-  }
-  .mobileNavItem:last-child {
-    margin-bottom: 0;
-  }
-  .mobileNavActive {
-    @extend .mobileNavItem;
-    background-color: $hoverColor;
-  }
-  .modeItem {
-    @extend .mobileNavItem;
-    border: 2rem solid #ccc;
-  }
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
   .nav {
     display: none;
   }
+
   .mobileNavBtn {
     display: flex;
   }
+
+  // 导航条部分
+  .boboMobileNavBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+  }
+
+  .boboMobileNav {
+    position: relative;
+    display: flex;
+    transition: all ease 0.4s;
+    animation: 2s ease-in-out waves infinite;
+
+    :focus{
+      background-color: #9c9cc8;
+      border-radius: 0.5rem;
+    }
+    .boboMobileNavItem {
+      list-style: none;
+      width: 3rem;
+      line-height: 2rem;
+      text-align: center;
+
+    }
+  }
+
 }
+
+// // 手机端呼出导航的按钮
+// .mobileNavBtn {
+//   width: 5rem;
+//   height: 5rem;
+//   display: none;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 2rem;
+//   color: $textColor;
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   z-index: 99;
+// }
+
+// // 手机端导航
+// .mobileNavBox {
+//   .mobileNavItem {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     color: $textColor;
+//     font-size: 1rem;
+//     font-family: 'dengxian';
+//     width: 3rem;
+//     height: 3rem;
+//     border-radius: 0.3rem;
+//     margin-bottom: 0.5rem;
+//   }
+//   .mobileNavItem:last-child {
+//     margin-bottom: 0;
+//   }
+//   .mobileNavActive {
+//     @extend .mobileNavItem;
+//     background-color: $hoverColor;
+//   }
+//   .modeItem {
+//     @extend .mobileNavItem;
+//     border: 2rem solid #ccc;
+//   }
+// }
+
+
+// // // 移动端
+// // .mobileNavBtn {
+// //   display: none;
+// //   justify-content: center;
+// //   align-items: center;
+// //   width: 5rem;
+// //   height: 5rem;
+// //   font-size: 2rem;
+// //   color: $textColor;
+// //   position: fixed;
+// //   top: 0;
+// //   left: 0;
+// //   z-index: 99;
+// // }
+
+// // 手机端导航
+// // .mobileNavBox {
+// //   .mobileNavItem {
+// //     display: flex;
+// //     justify-content: center;
+// //     align-items: center;
+// //     width: 100%;
+// //     color: $textColor;
+// //     font-size: 1rem;
+// //     font-family: 'dengxian';
+// //     width: 3rem;
+// //     height: 3rem;
+// //     border-radius: 0.3rem;
+// //     margin-bottom: 0.5rem;
+// //   }
+// //   .mobileNavItem:last-child {
+// //     margin-bottom: 0;
+// //   }
+// //   .mobileNavActive {
+// //     @extend .mobileNavItem;
+// //     background-color: $hoverColor;
+// //   }
+// //   .modeItem {
+// //     @extend .mobileNavItem;
+// //     border: 2rem solid #ccc;
+// //   }
+// // }
+
+// .mobileNavBtn {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 3rem;
+//   height: 3rem;
+//   margin: 1rem;
+//   font-size: 1.5rem;
+//   color: $textColor;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   z-index: 99;
+// }
+
+// @media screen and (max-width: 768px) {
+//   .nav {
+//     display: none;
+//   }
+
+//   .mobileNavBox {
+//     .mobileNavItem {
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       width: 100%;
+//       color: $textColor;
+//       font-size: 1rem;
+//       font-family: 'dengxian';
+//       width: 3rem;
+//       height: 3rem;
+//       border-radius: 0.3rem;
+//       margin-bottom: 0.5rem;
+//     }
+//     .mobileNavItem:last-child {
+//       margin-bottom: 0;
+//     }
+//     .mobileNavActive {
+//       @extend .mobileNavItem;
+//       background-color: $hoverColor;
+//     }
+//     .modeItem {
+//       @extend .mobileNavItem;
+//       border: 2rem solid #ccc;
+//     }
+//   }
+// }

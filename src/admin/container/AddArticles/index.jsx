@@ -38,8 +38,9 @@ const AddArticles = props => {
   }
   const { schema, pageChild = {}, changePageChild } = useSchemaData(index)
   const articleData = pageChild.children
+  console.log('文章',articleData);
 
-  const { tags, classes, articles, getClasses, getArticles, getMsgs, history } = articleData[0]
+  const { tags=["JavaScript","ES6"], classes=["前端基础","基础前端"], articles, getClasses, getArticles, getMsgs, history } = articleData[0]
 
 
   // ————————————————————判断是否是编辑模式、是否是草稿————————————————————————————

@@ -9,9 +9,9 @@
   }
 }
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 960px) {
   .main {
-    min-height: calc(100vh - 70rem - 20rem);
+    min-height: calc(100vh - 3rem - 2rem);
 
     .center {
       width: 100vw;

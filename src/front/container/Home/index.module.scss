@@ -30,14 +30,18 @@
 @media screen and (max-width: 960px) {
   .box {
     width: 100vw;
+    height: 50vh;
 
     .title {
-      font-size: 1.5rem;
+      font-size: 2rem;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       text-shadow: 1rem 1rem 2rem $footerBg;
+      color: rgb(44, 46, 61);
     }
 
-    .poem {
+    .desc {
       font-size: 1rem;
+      color: rgb(44, 46, 61);
     }
   }
 }

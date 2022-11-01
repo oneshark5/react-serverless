@@ -1,0 +1,54 @@
+@import '../Gallery/index.scss';
+
+.showBox {
+  @extend .imgBox;
+}
+
+.box{
+  width: 500px;
+  padding: 30px;
+}
+.context_box{
+  width: 300px;
+  height:300px;
+  position: relative;
+  .icon{
+      position: absolute;
+      left:50%;
+      toP:50%;
+      transform: translate(-50%,-50%);
+  }
+}
+
+.alien{
+  width: 300px;
+  height:300px;
+}
+
+.listBox{
+  display: flex; /* 弹性布局 */
+  flex-wrap: wrap; /* 换行 */
+  margin: 0 auto;
+  padding-top: 200px;
+  width: 60vw;
+  justify-content: space-between; /* 横向中间自动空间 */
+  align-content: space-between;  /* 竖向中间自动空间 */
+  
+  
+  .item {
+    width: 30vw;
+    padding: 3vh 1vw;
+  }
+}
+
+@media screen and (max-width:960px) {
+  .listBox {
+    // margin-right: 13.5rem;
+    margin-right: 1.5rem;
+    width: 30vw;
+  }
+  .item {
+    width: 20vw;
+    padding: 3vh 1vw;
+  }
+}

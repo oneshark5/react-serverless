@@ -5,6 +5,7 @@
   width: calc(100% - #{$asideWidth});
   padding-right: $space;
   box-sizing: border-box;
+  margin-bottom: 5px;
 }
 .pageBox {
   display: flex;
@@ -98,10 +99,11 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 960px) {
   .section {
     width: 100vw;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
     .card {
       margin-bottom: 1rem;
       border-radius: 1rem;

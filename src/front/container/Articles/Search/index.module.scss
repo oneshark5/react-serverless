@@ -29,19 +29,19 @@
 
 @media screen and (max-width: 1240px) {
   .searchBox {
-    margin-bottom: 10rem;
+    margin-bottom: 1rem;
 
     .search {
-      height: 40rem;
-      border-radius: 10rem;
-      font-size: 18rem;
-      padding: 0 10rem;
+      height: 2rem;
+      border-radius: 0.5rem;
+      font-size: 2rem;
+      padding: 0 0.2rem;
     }
     .searchBtn {
-      height: 40rem;
-      width: 40rem;
-      border-radius: 10rem;
-      margin-left: 6rem;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 0.5rem;
+      margin-left: 1rem;
     }
   }
 }

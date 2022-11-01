@@ -1,3 +1,4 @@
+import React from "react";
 import { Helmet } from "react-helmet";
 import Banner from './container/Home/components/Banner'
 import Footer from './container/Home/components/Footer'
@@ -14,12 +15,10 @@ const App = (props) => {
   const { title = '', backgroundUrl = '', backgroundUrl02 = '', backgroundUrl03 = '' } = attributes
 
   const navCom = children[0]
-  const footerCom = children.at(-1)
-
-  // 背景图片
-  // const homeBoxStyleObj = {
-  //   backgroundImage: `url('${backgroundUrl}')`
-  // }
+  const footerCom = children[children.length - 1] // 移动端存在问题的地方
+  // const footerCom = children.slice(-1) 
+  // 已手动实现 Array.prototype.at() 方法
+  // const footerCom = children.at(-1) 
 
   const selectBackground = [
     {
@@ -35,27 +34,28 @@ const App = (props) => {
   ]
 
 
-  // MutationObserver 给我们提供了监听页面DOM树变化的能力
-  // 注册监听函数
-  const observer = new MutationObserver((mutations) => {
-    console.log('时间：', performance.now(), 'ms', '，DOM树发生变化啦！增加了这些节点:');
-    for (let i = 0; i < mutations.length; i++) {
-      console.log(mutations[0].addedNodes);
-    }
-  })
-  // 开始监听document的节点变化
-  observer.observe(document, {
-    childList: true,
-    subtree: true
-  });
+  // 看性能用的
+  // // MutationObserver 给我们提供了监听页面DOM树变化的能力
+  // // 注册监听函数
+  // const observer = new MutationObserver((mutations) => {
+  //   console.log('时间：', performance.now(), 'ms', '，DOM树发生变化啦！增加了这些节点:');
+  //   for (let i = 0; i < mutations.length; i++) {
+  //     console.log(mutations[0].addedNodes);
+  //   }
+  // })
+  // // 开始监听document的节点变化
+  // observer.observe(document, {
+  //   childList: true,
+  //   subtree: true
+  // });
 
-  // performance
-  console.log('页面加载了这些图片：');
-  performance.getEntriesByType('resource').forEach((resource) => {
-    if (resource.initiatorType === 'img') {
-      console.log(resource.name);
-    }
-  })
+  // // performance
+  // console.log('页面加载了这些图片：');
+  // performance.getEntriesByType('resource').forEach((resource) => {
+  //   if (resource.initiatorType === 'img') {
+  //     console.log(resource.name);
+  //   }
+  // })
 
   return (
     <div className={styles.AppBox} style={selectBackground[mode]}>

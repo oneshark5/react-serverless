@@ -3,3 +3,15 @@
 .showBox {
   @extend .imgBox;
 }
+
+@media screen and (max-width:960px) {
+  .showBox {
+    @extend .imgBox;
+    font-size: 1rem;
+    .showItem {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1rem;
+    }
+  }
+}

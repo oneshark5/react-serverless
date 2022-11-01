@@ -7,7 +7,6 @@ import AreaItem from '../AreaItem';
 import styles from './style.module.scss'
 
 const SortableList = SortableContainer(({list}) => {
-  console.log(list);
   return (
     <ul className={styles.list}>
         {
@@ -24,7 +23,7 @@ const AreaList = () => {
   const dispatch = useDispatch()
   // 使用redux，采用useSelector拿到仓库的数据
   const children = useSelector(state => state.common.schema?.children || [])
-  console.log(children);
+  console.log('home列表',children);
 
   const addPageChildren = () => {
     dispatch(getAddPageChildrenAction())

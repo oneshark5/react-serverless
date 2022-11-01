@@ -1,25 +1,28 @@
 import React, { useRef } from 'react'
 import { ArrowRightOutlined, RedoOutlined } from '@ant-design/icons';
 import { useKeyPress, useMemoizedFn, useSafeState } from 'ahooks';
-import { message } from 'antd';
+// import { message } from 'antd';
 import s from './index.module.scss';
 
 // 可以手写防抖节流实现
 const Search = ({where, setWhere}) => {
+  console.log('where⭐',where);
   const inputRef = useRef(null);
   const [input, setInput] = useSafeState('');
 
   const search = useMemoizedFn(() => {
     if (!input) {
-      message.info('请输入关键词再搜索!');
+      // message.info('请输入关键词再搜索!');
+      alert('请输入关键词再搜索!')
       return;
     }
     let regex = new RegExp(input, 'gi')
     const changeTitle = where.filter(item => regex.test(item.attributes.title))
+    console.log(changeTitle);
     setWhere(changeTitle)
   })
   const reset = useMemoizedFn(() => {
-    
+
   });
 
   useKeyPress(13, search, {

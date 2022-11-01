@@ -7,6 +7,7 @@ import Banner from './components/Banner';
 import Section from './components/Section';
 import Aside from './components/Aside';
 import About from './components/About';
+import Camera from './components/Camera';
 import Show from './components/Show';
 import ArticleDetail from './components/ArticleDetail';
 import Say from './components/Say';
@@ -19,7 +20,7 @@ import styles from './style.module.scss'
 const { Option } = Select// 选择组件，下拉列表选择器
 // 定义一个变量做临时存储---放在外层的原因：内部每次渲染时都会重新生成该变量；本身和render没有关系，放在里面会降低性能。
 
-const map = {Banner, Section, Aside, ArticleDetail, Say, Link, Categories, Show, About, Footer }
+const map = {Banner, Section, Aside, ArticleDetail, Say, Link, Categories, Camera, Show, About, Footer }
 
 // store中存取数据（把使用store的逻辑放在一起）
 // const useStore = (index) => {
@@ -120,6 +121,7 @@ const AreaItem = (props) => {
             <Option value='Say'>Say 组件</Option>
             <Option value='Link'>Link 组件</Option>
             <Option value='Categories'>Categories 组件</Option>
+            <Option value='Camera'>Camera 组件</Option>
             <Option value='Show'>Show 组件</Option>
             <Option value='About'>About 组件</Option>
             <Option value='Footer'>Footer 组件</Option>

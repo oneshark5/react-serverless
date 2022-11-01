@@ -13,6 +13,25 @@
       content="oneshark blog"
     />
     <title>oneshark</title>
+    <script>
+      ;(function(){
+        Array.prototype.at = function(index){
+          if(index >= 0) {
+            return this[index]
+          }else {
+            return this.slice(index)
+          }
+        }
+      })()
+    </script>
+    <!-- 移动端调试 -->
+    <!-- // 查询手机浏览器信息 -->
+    <!-- <script> alert(this.navigator.userAgent)    </script>  -->
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script>
+      // VConsole will be exported to `window.VConsole` by default.
+      var vConsole = new window.VConsole();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

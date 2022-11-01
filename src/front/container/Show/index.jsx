@@ -35,6 +35,7 @@ const Resume = () => {
               link={attributes.link}
               name={attributes.name}
               descr={attributes.descr}
+              className={s.showItem}
             />
           ))}
         </Layout>
