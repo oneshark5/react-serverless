@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './index.custom.scss';
 import styles from './style.module.scss'
 import { Drawer } from 'antd';
-import { MenuOutlined, HomeOutlined, SearchOutlined, BgColorsOutlined, SettingOutlined, CheckOutlined } from '@ant-design/icons';
+import { HomeOutlined, SearchOutlined, BgColorsOutlined, SettingOutlined, CheckOutlined } from '@ant-design/icons';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames'
 import { useEventListener, useUpdateEffect } from 'ahooks';
@@ -24,7 +24,7 @@ const Banner = ({ schema, mode, setMode }) => {
   const navigate = useNavigate()
   
   // 移动端按钮
-  const [visible, setVisible] = useState(false)
+  // const [visible, setVisible] = useState(false)
   // 导航栏显示与隐藏
   const [navShow, setNavShow] = useState(true)
 
@@ -48,9 +48,9 @@ const Banner = ({ schema, mode, setMode }) => {
   }, [mode]);
 
   const [open, setOpen] = useState(false);
-  const showDrawer = () => {
-    setOpen(true);
-  };
+  // const showDrawer = () => {
+  //   setOpen(true);
+  // };
   const onClose = () => {
     setOpen(false);
   };
