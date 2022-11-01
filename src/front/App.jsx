@@ -15,7 +15,10 @@ const App = (props) => {
   const { title = '', backgroundUrl = '', backgroundUrl02 = '', backgroundUrl03 = '' } = attributes
 
   const navCom = children[0]
-  const footerCom = children.at(-1)
+  const footerCom = children[children.length - 1] // 移动端存在问题的地方
+  // const footerCom = children.slice(-1) 
+  // 已手动实现 Array.prototype.at() 方法
+  // const footerCom = children.at(-1) 
 
   const selectBackground = [
     {
